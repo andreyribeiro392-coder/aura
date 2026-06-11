@@ -3,7 +3,15 @@
 ## ✅ Alterações Realizadas
 
 ### 1. **E-mail Mestre PRO Automático**
+<<<<<<< HEAD
 - O e-mail `andreybribeiro392@gmail.com` agora é automaticamente configurado como **PRO** ao fazer login ou criar uma nova conta
+=======
+<<<<<<< HEAD
+- O e-mail `andreyribeiro392@gmail.com` agora é automaticamente configurado como **PRO** ao fazer login ou criar uma nova conta
+=======
+- O e-mail `andreybribeiro392@gmail.com` agora é automaticamente configurado como **PRO** ao fazer login ou criar uma nova conta
+>>>>>>> e2566c5acaec9c358505328a126895ec33129987
+>>>>>>> 7134618968fe316e66e28c16a3aa9e91197bd436
 - Implementado em:
   - `loadUserData()` - Carregamento de dados do usuário
   - `handleAuth()` - Criação de nova conta
@@ -72,7 +80,15 @@ public/img/products/
 ## 🚀 Como Usar as Novas Funcionalidades
 
 ### Adicionar Produtos com Imagem
+<<<<<<< HEAD
 1. Faça login com `andreybribeiro392@gmail.com` (será PRO automaticamente)
+=======
+<<<<<<< HEAD
+1. Faça login com `andreyribeiro392@gmail.com` (será PRO automaticamente)
+=======
+1. Faça login com `andreybribeiro392@gmail.com` (será PRO automaticamente)
+>>>>>>> e2566c5acaec9c358505328a126895ec33129987
+>>>>>>> 7134618968fe316e66e28c16a3aa9e91197bd436
 2. Vá para a aba "Loja"
 3. Clique em "Painel Admin"
 4. Preencha o formulário:
@@ -124,7 +140,15 @@ public/img/products/
 
 ## 📝 Notas Importantes
 
+<<<<<<< HEAD
 1. **E-mail PRO**: Apenas `andreybribeiro392@gmail.com` recebe PRO automaticamente
+=======
+<<<<<<< HEAD
+1. **E-mail PRO**: Apenas `andreyribeiro392@gmail.com` recebe PRO automaticamente
+=======
+1. **E-mail PRO**: Apenas `andreybribeiro392@gmail.com` recebe PRO automaticamente
+>>>>>>> e2566c5acaec9c358505328a126895ec33129987
+>>>>>>> 7134618968fe316e66e28c16a3aa9e91197bd436
 2. **Imagens**: Use formatos PNG ou JPG para melhor compatibilidade
 3. **Tamanho de Imagens**: Recomenda-se redimensionar para ~400x300px antes de enviar
 4. **Caminhos**: Use caminhos relativos (`/img/products/...`) para melhor portabilidade
@@ -141,7 +165,15 @@ public/img/products/
 - Redimensione a janela do navegador para testar
 
 **E-mail não fica PRO:**
+<<<<<<< HEAD
 - Verifique se o e-mail é exatamente `andreybribeiro392@gmail.com`
+=======
+<<<<<<< HEAD
+- Verifique se o e-mail é exatamente `andreyribeiro392@gmail.com`
+=======
+- Verifique se o e-mail é exatamente `andreybribeiro392@gmail.com`
+>>>>>>> e2566c5acaec9c358505328a126895ec33129987
+>>>>>>> 7134618968fe316e66e28c16a3aa9e91197bd436
 - Faça logout e login novamente
 
 ---

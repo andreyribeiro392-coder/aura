@@ -55,7 +55,15 @@ As credenciais estão em `src/services/firebase.js`.
 ---
 
 ## 👤 Conta Admin
+<<<<<<< HEAD
 - Email: `andreybribeiro392@gmail.com`
+=======
+<<<<<<< HEAD
+- Email: `andreyribeiro392@gmail.com`
+=======
+- Email: `andreybribeiro392@gmail.com`
+>>>>>>> e2566c5acaec9c358505328a126895ec33129987
+>>>>>>> 7134618968fe316e66e28c16a3aa9e91197bd436
 - Acesso ao painel de produtos na Loja
 - Acesso ao painel de dados bancários
 
