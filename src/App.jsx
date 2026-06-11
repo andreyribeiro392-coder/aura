@@ -22,6 +22,35 @@ const VideoBackground = () => (
   </div>
 );
 
+const AudioPlayer = () => {
+  const [isPlaying, setIsPlaying] = useState(false);
+  const audioRef = useRef(null);
+
+  const toggleAudio = () => {
+    if (isPlaying) {
+      audioRef.current.pause();
+    } else {
+      audioRef.current.play().catch(err => console.log("Auto-play blocked, wait for user interaction"));
+    }
+    setIsPlaying(!isPlaying);
+  };
+
+  return (
+    <>
+      <audio ref={audioRef} loop>
+        <source src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663735503721/UgdjuOJPteQYkHYi.mp3" type="audio/mpeg" />
+      </audio>
+      <button 
+        className={`audio-toggle ${isPlaying ? 'playing' : ''}`} 
+        onClick={toggleAudio}
+        title={isPlaying ? "Pausar Batida" : "Tocar Batida"}
+      >
+        {isPlaying ? '⏸️' : '🎵'}
+      </button>
+    </>
+  );
+};
+
 // ============================================================
 // PIX PAYLOAD (BR Code / EMV) - Nubank Chave Aleatória
 // ============================================================
@@ -725,6 +754,7 @@ export default function App() {
     return (
       <div className={`auth-container ${darkMode ? 'dark' : ''}`}>
         <VideoBackground />
+        <AudioPlayer />
         <div className="auth-box">
           <div className="auth-logo">
             <img src="/favicon_weight.png" alt="AuraFit Logo" />
@@ -767,6 +797,7 @@ export default function App() {
   return (
     <div className={`app-container ${darkMode ? 'dark' : ''}`}>
       <VideoBackground />
+      <AudioPlayer />
 
       {/* HEADER */}
       <header className="header">
