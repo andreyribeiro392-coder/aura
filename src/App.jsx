@@ -684,7 +684,7 @@ export default function App() {
                 {userPlan === 'pro' ? '💎 PRO' : '🆓 FREE'}
               </button>
               {showProMenu && (
-                <div style={{ position: 'absolute', top: '100%', right: 0, background: 'var(--bg-card)', border: '1px solid var(--border)', borderRadius: 8, padding: 8, z-index: 100 }}>
+                <div style={{ position: 'absolute', top: '100%', right: 0, background: 'var(--bg-card)', border: '1px solid var(--border)', borderRadius: 8, padding: 8, zIndex: 100 }}>
                   {userPlan === 'pro' ? (
                     <button onClick={() => { setShowAdminPaymentPanel(true); setShowProMenu(false); }} className="nav-btn">💳 Pagamento</button>
                   ) : (
