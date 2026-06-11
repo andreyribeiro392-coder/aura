@@ -2554,3 +2554,197 @@ img { max-width: 100%; height: auto; }
     padding: 16px;
   }
 }
+<<<<<<< HEAD
+=======
+
+
+/* ============================================================
+   CARDS MODERNOS DO DASHBOARD
+   ============================================================ */
+.dashboard-cards-modern {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.modern-card {
+  position: relative;
+  height: 180px;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  cursor: pointer;
+  transition: var(--transition-slow);
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: flex-end;
+  padding: 20px;
+  min-height: 200px;
+}
+
+.modern-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(124, 58, 237, 0.1), rgba(124, 58, 237, 0.05));
+  z-index: 0;
+}
+
+.modern-card.home-workout-card::before {
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.15), rgba(59, 130, 246, 0.05));
+}
+
+.modern-card.gym-workout-card::before {
+  background: linear-gradient(135deg, rgba(239, 68, 68, 0.15), rgba(239, 68, 68, 0.05));
+}
+
+.modern-card.nutrition-card::before {
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.15), rgba(16, 185, 129, 0.05));
+}
+
+.modern-card.goals-card::before {
+  background: linear-gradient(135deg, rgba(245, 158, 11, 0.15), rgba(245, 158, 11, 0.05));
+}
+
+.card-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.1) 100%);
+  z-index: 1;
+}
+
+.card-content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.card-icon {
+  font-size: 2.5rem;
+  margin-bottom: 4px;
+}
+
+.modern-card h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.modern-card p {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin: 0;
+  line-height: 1.3;
+}
+
+.modern-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--primary);
+}
+
+.modern-card:hover::before {
+  opacity: 0.8;
+}
+
+@media (max-width: 768px) {
+  .dashboard-cards-modern {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .modern-card {
+    height: 160px;
+    padding: 16px;
+    min-height: 160px;
+  }
+
+  .card-icon {
+    font-size: 2rem;
+  }
+
+  .modern-card h3 {
+    font-size: 0.95rem;
+  }
+
+  .modern-card p {
+    font-size: 0.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .dashboard-cards-modern {
+    grid-template-columns: 1fr;
+  }
+
+  .modern-card {
+    height: 140px;
+  }
+}
+
+/* ============================================================
+   MELHORIAS NA FORMATAÇÃO DE DATA/HORA
+   ============================================================ */
+.time-date-display {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+  padding: 16px 20px;
+  border-radius: var(--radius);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.current-time {
+  font-size: 2.2rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  font-family: 'Courier New', monospace;
+  color: white;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.current-date {
+  font-size: 0.9rem;
+  text-transform: capitalize;
+  opacity: 0.95;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.9);
+  margin-top: 4px;
+}
+
+.welcome-section h2 {
+  font-size: 1.6rem;
+  font-weight: 800;
+  margin: 0;
+  color: white;
+  letter-spacing: -0.01em;
+}
+
+@media (max-width: 768px) {
+  .dashboard-header-premium {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .current-time {
+    font-size: 1.8rem;
+  }
+
+  .current-date {
+    font-size: 0.85rem;
+  }
+
+  .welcome-section h2 {
+    font-size: 1.3rem;
+  }
+}
+>>>>>>> e2566c5acaec9c358505328a126895ec33129987

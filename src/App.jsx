@@ -76,7 +76,11 @@ const HOME_WORKOUTS = [
     id: 2, name: 'Flexões para Iniciantes', level: 'Iniciante', muscleGroup: 'Peito',
     duration: '15 min', difficulty: 1, image: '💪',
     description: 'Desenvolva força no peito, ombros e tríceps com variações acessíveis de flexão. Perfeito para quem está começando a treinar em casa.',
+<<<<<<< HEAD
     benefits: ['Fortalece peito e tríceps', 'Melhora postura', 'Sem equipamento necessário'],
+=======
+    benefits: ['FortAlece peito e tríceps', 'Melhora postura', 'Sem equipamento necessário'],
+>>>>>>> e2566c5acaec9c358505328a126895ec33129987
     exercises: [
       { name: 'Flexão na Parede', reps: '3x10', rest: '60s', tip: 'Posicione as mãos na altura dos ombros. Mantenha o corpo reto como uma prancha.' },
       { name: 'Flexão de Joelhos', reps: '3x8', rest: '60s', tip: 'Apoie os joelhos no chão. Desça o peito até quase tocar o chão.' },
@@ -212,9 +216,12 @@ const HOME_WORKOUTS = [
   },
 ];
 
+<<<<<<< HEAD
 // ============================================================
 // DADOS DE TREINOS NA ACADEMIA
 // ============================================================
+=======
+>>>>>>> e2566c5acaec9c358505328a126895ec33129987
 const GYM_WORKOUTS = [
   { id: 101, name: 'Supino Reto', category: 'Peito', image: '💪', sets: 4, reps: '8-10', rest: '90s', description: 'Exercício fundamental para desenvolvimento do peito. Deite no banco, barra na altura do peito, desça controlado e empurre explosivo. Mantenha os pés no chão e as costas levemente arqueadas.' },
   { id: 102, name: 'Supino Inclinado', category: 'Peito', image: '💪', sets: 3, reps: '10-12', rest: '90s', description: 'Foca no peito superior e clavicular. Banco a 30-45°. Barra desce até a parte superior do peito. Excelente para dar volume ao peito alto.' },
@@ -237,9 +244,12 @@ const GYM_WORKOUTS = [
   { id: 119, name: 'Bicicleta Ergométrica', category: 'Cardio', image: '🏃', sets: 1, reps: '20-30 min', rest: '2 min', description: 'Cardio de baixo impacto articular. Ajuste o selim na altura correta. Varie a resistência. Excelente para recuperação ativa ou queima de gordura.' },
 ];
 
+<<<<<<< HEAD
 // ============================================================
 // DADOS DE REFEIÇÕES
 // ============================================================
+=======
+>>>>>>> e2566c5acaec9c358505328a126895ec33129987
 const MEALS = [
   { id: 1, name: 'Ovos com Pão Integral', category: 'Café da manhã', image: '🥚', calories: 350, protein: 15, carbs: 35, fat: 12, ingredients: ['2 ovos', '2 fatias pão integral', 'manteiga light'] },
   { id: 2, name: 'Aveia com Frutas', category: 'Café da manhã', image: '🥣', calories: 300, protein: 10, carbs: 50, fat: 5, ingredients: ['1 xícara aveia', 'banana', 'morango', 'mel'] },
@@ -255,9 +265,12 @@ const MEALS = [
   { id: 12, name: 'Iogurte com Mel', category: 'Ceia', image: '🥛', calories: 150, protein: 12, carbs: 18, fat: 3, ingredients: ['150ml iogurte natural', '1 col mel', 'canela'] },
 ];
 
+<<<<<<< HEAD
 // ============================================================
 // METAS
 // ============================================================
+=======
+>>>>>>> e2566c5acaec9c358505328a126895ec33129987
 const GOALS = [
   { id: 1, emoji: '🔥', name: 'Perder Peso', description: 'Reduza o percentual de gordura corporal com treinos e alimentação adequada.', tips: ['Déficit calórico de 300-500 kcal/dia', 'Priorize proteínas (2g/kg)', 'Cardio 3-4x por semana', 'Treino de força preserva músculo'] },
   { id: 2, emoji: '💪', name: 'Ganhar Massa', description: 'Aumente a massa muscular com treinos progressivos e superávit calórico.', tips: ['Superávit calórico de 200-400 kcal/dia', 'Proteína: 2-2.5g/kg de peso', 'Treino de força 4-5x por semana', 'Sono de qualidade 7-9h'] },
@@ -267,9 +280,12 @@ const GOALS = [
   { id: 6, emoji: '❤️', name: 'Saúde Geral', description: 'Mantenha-se saudável, ativo e com qualidade de vida elevada.', tips: ['Exercício regular 3-4x/semana', 'Alimentação equilibrada', 'Gestão do estresse', 'Check-ups médicos regulares'] },
 ];
 
+<<<<<<< HEAD
 // ============================================================
 // DICAS EDUCACIONAIS
 // ============================================================
+=======
+>>>>>>> e2566c5acaec9c358505328a126895ec33129987
 const EDUCATION_TIPS = [
   { id: 1, emoji: '⚠️', title: 'Não Pule o Aquecimento', description: 'O aquecimento prepara músculos, tendões e articulações para o esforço. Pular essa etapa aumenta drasticamente o risco de lesões.', tips: ['5-10 min de aquecimento geral', 'Mobilidade articular específica', 'Séries de aquecimento com peso leve', 'Nunca vá direto para o peso máximo'] },
   { id: 2, emoji: '🏋️', title: 'Técnica Antes do Peso', description: 'Executar exercícios com técnica incorreta é a principal causa de lesões na academia. Aprenda o movimento correto antes de aumentar a carga.', tips: ['Comece com peso leve para aprender', 'Grave-se para analisar a técnica', 'Peça orientação a um profissional', 'Amplitude completa de movimento'] },
@@ -279,9 +295,17 @@ const EDUCATION_TIPS = [
   { id: 6, emoji: '📈', title: 'Progressão de Carga', description: 'Para continuar evoluindo, você precisa aumentar progressivamente o estímulo. Fazer sempre o mesmo treino com o mesmo peso leva à estagnação.', tips: ['Aumente 2.5-5% de carga por semana', 'Varie repetições e séries', 'Periodize o treino a cada 4-8 semanas', 'Registre seus treinos para acompanhar'] },
 ];
 
+<<<<<<< HEAD
 // ============================================================
 // UTILITÁRIOS
 // ============================================================
+=======
+const NUTRITION_TIPS = [
+  { id: 1, name: 'Dieta Equilibrada', category: 'Geral', image: '🥗', calories: 2000, protein: 150, carbs: 200, avoidFoods: ['Açúcar refinado', 'Frituras', 'Refrigerantes'] },
+  { id: 2, name: 'Ganho de Massa', category: 'Bulking', image: '🥩', calories: 3000, protein: 200, carbs: 400, avoidFoods: ['Fast food', 'Álcool'] },
+];
+
+>>>>>>> e2566c5acaec9c358505328a126895ec33129987
 function formatTime(seconds) {
   const m = Math.floor(seconds / 60).toString().padStart(2, '0');
   const s = (seconds % 60).toString().padStart(2, '0');
@@ -302,9 +326,12 @@ function getAuthErrorMessage(code) {
   return messages[code] || 'Ocorreu um erro. Tente novamente.';
 }
 
+<<<<<<< HEAD
 // ============================================================
 // COMPONENTE TOAST
 // ============================================================
+=======
+>>>>>>> e2566c5acaec9c358505328a126895ec33129987
 function Toast({ toasts, removeToast }) {
   return (
     <div className="toast-container">
@@ -318,9 +345,12 @@ function Toast({ toasts, removeToast }) {
   );
 }
 
+<<<<<<< HEAD
 // ============================================================
 // APP PRINCIPAL
 // ============================================================
+=======
+>>>>>>> e2566c5acaec9c358505328a126895ec33129987
 export default function App() {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -330,10 +360,16 @@ export default function App() {
   const [authError, setAuthError] = useState('');
   const [authSuccess, setAuthSuccess] = useState('');
   const [authLoading, setAuthLoading] = useState(false);
+<<<<<<< HEAD
 
   const [darkMode, setDarkMode] = useState(() => {
     const saved = localStorage.getItem('darkMode');
     return saved !== null ? saved === 'true' : true; // Padrão: modo escuro (true)
+=======
+  const [darkMode, setDarkMode] = useState(() => {
+    const saved = localStorage.getItem('darkMode');
+    return saved !== null ? saved === 'true' : true;
+>>>>>>> e2566c5acaec9c358505328a126895ec33129987
   });
   const [currentPage, setCurrentPage] = useState('dashboard');
   const [userPlan, setUserPlan] = useState('free');
@@ -341,35 +377,53 @@ export default function App() {
   const [completedWorkoutsCount, setCompletedWorkoutsCount] = useState(0);
   const [userProfile, setUserProfile] = useState({ name: '', photoURL: '' });
   const [weeklyGoals, setWeeklyGoals] = useState({});
+<<<<<<< HEAD
 
+=======
+>>>>>>> e2566c5acaec9c358505328a126895ec33129987
   const [selectedWorkout, setSelectedWorkout] = useState(null);
   const [selectedGymWorkout, setSelectedGymWorkout] = useState(null);
   const [completedExercises, setCompletedExercises] = useState([]);
   const [homeWorkoutFilter, setHomeWorkoutFilter] = useState('Todos');
   const [gymWorkoutFilter, setGymWorkoutFilter] = useState('Todos');
+<<<<<<< HEAD
 
+=======
+>>>>>>> e2566c5acaec9c358505328a126895ec33129987
   const [timerTime, setTimerTime] = useState(0);
   const [timerActive, setTimerActive] = useState(false);
   const [timerMode, setTimerMode] = useState('ascending');
   const [timerSetMinutes, setTimerSetMinutes] = useState(10);
   const [timerSetSeconds, setTimerSetSeconds] = useState(0);
   const timerRef = useRef(null);
+<<<<<<< HEAD
 
+=======
+>>>>>>> e2566c5acaec9c358505328a126895ec33129987
   const [storeProducts, setStoreProducts] = useState([]);
   const [showAdminPanel, setShowAdminPanel] = useState(false);
   const [newProduct, setNewProduct] = useState({ name: '', category: 'Suplementos', price: '', image: '💊', imageUrl: '', description: '', link: '' });
   const [editingProductId, setEditingProductId] = useState(null);
+<<<<<<< HEAD
 
   const [expandedEducation, setExpandedEducation] = useState(null);
   const [profileName, setProfileName] = useState('');
   const [savingProfile, setSavingProfile] = useState(false);
 
+=======
+  const [expandedEducation, setExpandedEducation] = useState(null);
+  const [profileName, setProfileName] = useState('');
+  const [savingProfile, setSavingProfile] = useState(false);
+>>>>>>> e2566c5acaec9c358505328a126895ec33129987
   const [showUpgradeModal, setShowUpgradeModal] = useState(false);
   const [showAdminPaymentPanel, setShowAdminPaymentPanel] = useState(false);
   const [showProMenu, setShowProMenu] = useState(false);
   const [paymentTab, setPaymentTab] = useState('pix');
+<<<<<<< HEAD
   const [paymentMethodTab, setPaymentMethodTab] = useState('pix');
 
+=======
+>>>>>>> e2566c5acaec9c358505328a126895ec33129987
   const [processingPayment, setProcessingPayment] = useState(false);
   const [cardNumber, setCardNumber] = useState('');
   const [cardExpiry, setCardExpiry] = useState('');
@@ -377,6 +431,7 @@ export default function App() {
   const [cardName, setCardName] = useState('');
   const [pixConfirmCode, setPixConfirmCode] = useState('');
   const [pixPending, setPixPending] = useState(false);
+<<<<<<< HEAD
 
   const [adminBankData, setAdminBankData] = useState({
     pixKeyType: 'random', pixKey: '',
@@ -389,6 +444,10 @@ export default function App() {
 
   const [exerciseTimers, setExerciseTimers] = useState({});
   const exerciseTimerRefs = useRef({});
+=======
+  const [toasts, setToasts] = useState([]);
+  const toastId = useRef(0);
+>>>>>>> e2566c5acaec9c358505328a126895ec33129987
   const [userMeals, setUserMeals] = useState({});
   const [selectedNutrition, setSelectedNutrition] = useState(null);
   const [mealInput, setMealInput] = useState('');
@@ -406,7 +465,10 @@ export default function App() {
   }, []);
 
   useEffect(() => { localStorage.setItem('darkMode', darkMode); }, [darkMode]);
+<<<<<<< HEAD
 
+=======
+>>>>>>> e2566c5acaec9c358505328a126895ec33129987
   useEffect(() => {
     const timer = setInterval(() => setCurrentTime(new Date()), 1000);
     return () => clearInterval(timer);
@@ -430,9 +492,14 @@ export default function App() {
       const snap = await getDoc(doc(db, 'users', uid));
       if (snap.exists()) {
         const data = snap.data();
+<<<<<<< HEAD
         // Auto-PRO para e-mail mestre
         const userEmail = data.email || '';
         const isPro = userEmail === 'andreyribeiro392@gmail.com' ? 'pro' : (data.plan || 'free');
+=======
+        const userEmail = data.email || '';
+        const isPro = userEmail === 'andreybribeiro392@gmail.com' ? 'pro' : (data.plan || 'free');
+>>>>>>> e2566c5acaec9c358505328a126895ec33129987
         setUserPlan(isPro);
         setUserGoal(data.goal || '');
         setCompletedWorkoutsCount(data.completedWorkouts || 0);
@@ -469,6 +536,7 @@ export default function App() {
     return () => clearInterval(timerRef.current);
   }, [timerActive, timerMode, addToast]);
 
+<<<<<<< HEAD
   function startDescendingTimer() {
     const totalSeconds = timerSetMinutes * 60 + timerSetSeconds;
     if (totalSeconds <= 0) { addToast('Configure um tempo válido', 'error', '❌'); return; }
@@ -508,6 +576,8 @@ export default function App() {
     });
   }
 
+=======
+>>>>>>> e2566c5acaec9c358505328a126895ec33129987
   function addMeal(nutritionId, meal) {
     if (!meal.trim()) return;
     setUserMeals((prev) => ({
@@ -535,8 +605,12 @@ export default function App() {
         await signInWithEmailAndPassword(auth, email, password);
       } else {
         const cred = await createUserWithEmailAndPassword(auth, email, password);
+<<<<<<< HEAD
         // Auto-PRO para e-mail mestre
         const userPlan = cred.user.email === 'andreyribeiro392@gmail.com' ? 'pro' : 'free';
+=======
+        const userPlan = cred.user.email === 'andreybribeiro392@gmail.com' ? 'pro' : 'free';
+>>>>>>> e2566c5acaec9c358505328a126895ec33129987
         await setDoc(doc(db, 'users', cred.user.uid), {
           email: cred.user.email, plan: userPlan, completedWorkouts: 0,
           goal: '', name: '', createdAt: serverTimestamp(),
@@ -606,6 +680,7 @@ export default function App() {
     setProcessingPayment(true);
     try {
       const paymentRef = doc(db, 'payments', user.uid);
+<<<<<<< HEAD
       const paymentSnap = await getDoc(paymentRef);
       if (paymentSnap.exists() && paymentSnap.data().status === 'approved') {
         await updateDoc(doc(db, 'users', user.uid), { plan: 'pro', upgradedAt: serverTimestamp() });
@@ -620,12 +695,21 @@ export default function App() {
         setPixPending(true);
         addToast('Pagamento em análise. Aguarde a confirmação.', 'warning', '⏳');
       }
+=======
+      await setDoc(paymentRef, {
+        userId: user.uid, email: user.email, amount: 9.99, method: 'pix',
+        confirmCode: pixConfirmCode.trim(), status: 'pending', requestedAt: serverTimestamp(),
+      });
+      setPixPending(true);
+      addToast('Pagamento em análise. Aguarde a confirmação.', 'warning', '⏳');
+>>>>>>> e2566c5acaec9c358505328a126895ec33129987
     } catch (e) { addToast('Erro ao verificar pagamento', 'error', '❌'); }
     finally { setProcessingPayment(false); }
   }
 
   async function handleCardPayment() {
     if (!cardName || !cardNumber || !cardExpiry || !cardCVC) { addToast('Preencha todos os dados do cartão', 'error', '❌'); return; }
+<<<<<<< HEAD
     if (cardNumber.replace(/\s/g, '').length < 16) { addToast('Número do cartão inválido', 'error', '❌'); return; }
     setProcessingPayment(true);
     try {
@@ -644,6 +728,17 @@ export default function App() {
         addToast('Pagamento em análise. Aguarde a confirmação.', 'warning', '⏳');
         setShowUpgradeModal(false);
       }
+=======
+    setProcessingPayment(true);
+    try {
+      const paymentRef = doc(db, 'payments', user.uid);
+      await setDoc(paymentRef, {
+        userId: user.uid, email: user.email, amount: 9.99, method: 'card',
+        cardLast4: cardNumber.replace(/\s/g, '').slice(-4), status: 'pending', requestedAt: serverTimestamp(),
+      });
+      addToast('Pagamento em análise. Aguarde a confirmação.', 'warning', '⏳');
+      setShowUpgradeModal(false);
+>>>>>>> e2566c5acaec9c358505328a126895ec33129987
     } catch (e) { addToast('Erro ao processar pagamento', 'error', '❌'); }
     finally { setProcessingPayment(false); }
   }
@@ -658,6 +753,7 @@ export default function App() {
     finally { setSavingProfile(false); }
   }
 
+<<<<<<< HEAD
   async function saveWeeklyGoal(goalName, day, value) {
     const key = `${goalName}-${day}`;
     const newGoals = { ...weeklyGoals, [key]: value };
@@ -666,19 +762,25 @@ export default function App() {
     catch (e) { console.error('Erro ao salvar meta:', e); }
   }
 
+=======
+>>>>>>> e2566c5acaec9c358505328a126895ec33129987
   const filteredHomeWorkouts = homeWorkoutFilter === 'Todos' ? HOME_WORKOUTS : HOME_WORKOUTS.filter((w) => w.level === homeWorkoutFilter);
   const filteredGymWorkouts = gymWorkoutFilter === 'Todos' ? GYM_WORKOUTS : GYM_WORKOUTS.filter((w) => w.category === gymWorkoutFilter);
   const gymCategories = ['Todos', ...new Set(GYM_WORKOUTS.map((w) => w.category))];
 
   if (loading) return <div className="loading">⚡ AuraFit Carregando...</div>;
 
+<<<<<<< HEAD
   // ============================================================
   // TELA DE LOGIN
   // ============================================================
+=======
+>>>>>>> e2566c5acaec9c358505328a126895ec33129987
   if (!user) {
     return (
       <div className={`auth-container ${darkMode ? 'dark' : ''}`}>
         <div className="auth-box">
+<<<<<<< HEAD
           <div className="auth-logo">
             <img src="/favicon_weight.png" alt="AuraFit Logo" />
           </div>
@@ -709,11 +811,28 @@ export default function App() {
               {isLogin ? 'Registre-se grátis' : 'Faça login'}
             </button>
           </div>
+=======
+          <h1>AuraFit</h1>
+          <p>Seu app de treinos premium</p>
+          <div className="auth-tabs" style={{ display: 'flex', gap: 10, marginBottom: 20 }}>
+            <button className={`nav-btn ${isLogin ? 'active' : ''}`} onClick={() => setIsLogin(true)}>Entrar</button>
+            <button className={`nav-btn ${!isLogin ? 'active' : ''}`} onClick={() => setIsLogin(false)}>Criar Conta</button>
+          </div>
+          {authError && <div className="toast toast-error" style={{ marginBottom: 10 }}>⚠️ {authError}</div>}
+          <form className="auth-form" onSubmit={handleAuth}>
+            <input type="email" placeholder="seu@email.com" value={email} onChange={(e) => setEmail(e.target.value)} required />
+            <input type="password" placeholder="Sua senha" value={password} onChange={(e) => setPassword(e.target.value)} required />
+            <button type="submit" className="primary-btn" disabled={authLoading}>
+              {authLoading ? '⏳ Aguarde...' : isLogin ? '🚀 Entrar' : '✨ Criar Conta'}
+            </button>
+          </form>
+>>>>>>> e2566c5acaec9c358505328a126895ec33129987
         </div>
       </div>
     );
   }
 
+<<<<<<< HEAD
   // ============================================================
   // APP PRINCIPAL
   // ============================================================
@@ -750,16 +869,44 @@ export default function App() {
                     </>
                   ) : (
                     <button className="pro-menu-item" onClick={() => { setShowUpgradeModal(true); setShowProMenu(false); }}>💎 Fazer Upgrade para PRO</button>
+=======
+  return (
+    <div className={`app-container ${darkMode ? 'dark' : ''}`}>
+      <header className="header">
+        <div className="header-content">
+          <div className="header-brand">
+            <h1>Aura<span>Fit</span></h1>
+          </div>
+          <div style={{ display: 'flex', gap: 12, alignItems: 'center' }}>
+            <button onClick={() => setDarkMode(!darkMode)} className="badge">{darkMode ? '☀️' : '🌙'}</button>
+            <div className="pro-menu-container">
+              <button onClick={() => setShowProMenu(!showProMenu)} className={`badge ${userPlan === 'pro' ? 'badge-muscle' : ''}`}>
+                {userPlan === 'pro' ? '💎 PRO' : '🆓 FREE'}
+              </button>
+              {showProMenu && (
+                <div style={{ position: 'absolute', top: '100%', right: 0, background: 'var(--bg-card)', border: '1px solid var(--border)', borderRadius: 8, padding: 8, zIndex: 100 }}>
+                  {userPlan === 'pro' ? (
+                    <button onClick={() => { setShowAdminPaymentPanel(true); setShowProMenu(false); }} className="nav-btn">💳 Pagamento</button>
+                  ) : (
+                    <button onClick={() => { setShowUpgradeModal(true); setShowProMenu(false); }} className="nav-btn">💎 Upgrade</button>
+>>>>>>> e2566c5acaec9c358505328a126895ec33129987
                   )}
                 </div>
               )}
             </div>
+<<<<<<< HEAD
             <span className="user-email">{user.email}</span>
+=======
+            <button onClick={handleLogout} className="badge">🚪</button>
+>>>>>>> e2566c5acaec9c358505328a126895ec33129987
           </div>
         </div>
       </header>
 
+<<<<<<< HEAD
       {/* SIDEBAR */}
+=======
+>>>>>>> e2566c5acaec9c358505328a126895ec33129987
       <nav className="sidebar-nav">
         {[
           { id: 'dashboard', icon: '📊', label: 'Dashboard' },
@@ -775,6 +922,7 @@ export default function App() {
             {item.icon} {item.label}
           </button>
         ))}
+<<<<<<< HEAD
         <button onClick={handleLogout} className="logout-btn">🚪 Sair</button>
       </nav>
 
@@ -838,10 +986,111 @@ export default function App() {
                     <div className="goal-emoji">{goal.emoji}</div>
                     <h4>{goal.name}</h4>
                     <p>{goal.description.substring(0, 60)}...</p>
+=======
+      </nav>
+
+      <main className="main-content">
+        {currentPage === 'dashboard' && (
+          <div className="dashboard-page">
+            <div className="dashboard-header-premium">
+              <div>
+                <h2>Bem-vindo ao AuraFit</h2>
+                <p className="current-date">{currentTime.toLocaleDateString('pt-BR', { weekday: 'long', day: 'numeric', month: 'long' })}</p>
+              </div>
+              <div className="current-time">{currentTime.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' })}</div>
+            </div>
+            <div className="stats-container">
+              <div className="stat-card"><h3>Treinos Concluídos</h3><p className="stat-number">{completedWorkoutsCount}</p></div>
+              <div className="stat-card"><h3>Plano Atual</h3><p className="stat-number">{userPlan.toUpperCase()}</p></div>
+              <div className="stat-card"><h3>Meta</h3><p className="stat-number" style={{ fontSize: '1.2rem' }}>{userGoal || 'Definir'}</p></div>
+            </div>
+            <div className="workouts-grid">
+              {GOALS.slice(0, 3).map(goal => (
+                <div key={goal.id} className="goal-card" onClick={() => setCurrentPage('goals')}>
+                  <div style={{ fontSize: '2rem' }}>{goal.emoji}</div>
+                  <h3>{goal.name}</h3>
+                  <p>{goal.description}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {currentPage === 'home-workouts' && (
+          <div className="workouts-page">
+            <div style={{ display: 'flex', gap: 10, marginBottom: 24 }}>
+              {['Todos', 'Iniciante', 'Intermediário', 'Avançado'].map(f => (
+                <button key={f} className={`badge ${homeWorkoutFilter === f ? 'badge-muscle' : ''}`} onClick={() => setHomeWorkoutFilter(f)}>{f}</button>
+              ))}
+            </div>
+            <div className="workouts-grid">
+              {filteredHomeWorkouts.map(w => (
+                <div key={w.id} className="workout-card">
+                  <div style={{ fontSize: '2rem' }}>{w.image}</div>
+                  <h3>{w.name}</h3>
+                  <div style={{ display: 'flex', gap: 8 }}><span className="badge">{w.level}</span><span className="badge">{w.duration}</span></div>
+                  <p>{w.description}</p>
+                  <button className="primary-btn" onClick={() => { if (canStartWorkout()) setSelectedWorkout(w); }}>Começar Treino</button>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {currentPage === 'gym-workouts' && (
+          <div className="gym-workouts-page">
+            <div style={{ display: 'flex', gap: 10, marginBottom: 24, overflowX: 'auto', paddingBottom: 10 }}>
+              {gymCategories.map(c => (
+                <button key={c} className={`badge ${gymWorkoutFilter === c ? 'badge-muscle' : ''}`} onClick={() => setGymWorkoutFilter(c)}>{c}</button>
+              ))}
+            </div>
+            <div className="gym-workouts-grid">
+              {filteredGymWorkouts.map(w => (
+                <div key={w.id} className="gym-workout-card">
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+                    <div style={{ fontSize: '2rem' }}>{w.image}</div>
+                    <span className="badge badge-muscle">{w.category}</span>
+                  </div>
+                  <h3>{w.name}</h3>
+                  <div style={{ display: 'flex', gap: 12, fontSize: '0.85rem', color: 'var(--text-secondary)' }}>
+                    <span>🔄 {w.sets} séries</span>
+                    <span>🔢 {w.reps} reps</span>
+                    <span>⏱️ {w.rest} desc.</span>
+                  </div>
+                  <p style={{ fontSize: '0.9rem' }}>{w.description}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {currentPage === 'nutrition' && (
+          <div className="nutrition-page">
+            <div className="nutrition-grid">
+              {MEALS.map(meal => (
+                <div key={meal.id} className="meal-card">
+                  <div style={{ fontSize: '2rem' }}>{meal.image}</div>
+                  <h3>{meal.name}</h3>
+                  <p className="badge">{meal.category}</p>
+                  <p>🔥 {meal.calories} kcal | 💪 {meal.protein}g P</p>
+                  <p style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>{meal.ingredients.join(', ')}</p>
+                </div>
+              ))}
+            </div>
+            <div style={{ marginTop: 40 }}>
+              <h3>Dicas de Nutrição</h3>
+              <div className="nutrition-grid" style={{ marginTop: 20 }}>
+                {NUTRITION_TIPS.map(tip => (
+                  <div key={tip.id} className="goal-card">
+                    <div style={{ fontSize: '2rem' }}>{tip.image}</div>
+                    <h3>{tip.name}</h3>
+                    <p><strong>Evitar:</strong> {tip.avoidFoods.join(', ')}</p>
+>>>>>>> e2566c5acaec9c358505328a126895ec33129987
                   </div>
                 ))}
               </div>
             </div>
+<<<<<<< HEAD
             {userPlan === 'free' && (
               <div className="upgrade-banner">
                 <h3>💎 Desbloqueie Treinos Ilimitados</h3>
@@ -1273,12 +1522,60 @@ export default function App() {
                       </div>
                     </div>
                   )}
+=======
+          </div>
+        )}
+
+        {currentPage === 'goals' && (
+          <div className="goals-page">
+            <div className="goals-grid">
+              {GOALS.map(goal => (
+                <div key={goal.id} className="goal-card">
+                  <div style={{ fontSize: '2.5rem', marginBottom: 10 }}>{goal.emoji}</div>
+                  <h3 style={{ marginBottom: 8 }}>{goal.name}</h3>
+                  <p style={{ marginBottom: 16 }}>{goal.description}</p>
+                  <div style={{ background: 'var(--bg-tertiary)', padding: 12, borderRadius: 8 }}>
+                    <h4 style={{ fontSize: '0.85rem', color: 'var(--primary)', marginBottom: 8 }}>Dicas Pro:</h4>
+                    <ul style={{ paddingLeft: 16, fontSize: '0.85rem' }}>
+                      {goal.tips.map((tip, i) => <li key={i}>{tip}</li>)}
+                    </ul>
+                  </div>
                 </div>
               ))}
             </div>
           </div>
         )}
 
+        {currentPage === 'store' && (
+          <div className="store-page">
+            {user.email === 'andreybribeiro392@gmail.com' && (
+              <div className="stat-card" style={{ marginBottom: 24 }}>
+                <button onClick={() => setShowAdminPanel(!showAdminPanel)} className="primary-btn">⚙️ Gerenciar Loja</button>
+                {showAdminPanel && (
+                  <div className="auth-form" style={{ marginTop: 16 }}>
+                    <input type="text" placeholder="Nome" value={newProduct.name} onChange={e => setNewProduct({...newProduct, name: e.target.value})} />
+                    <input type="number" placeholder="Preço" value={newProduct.price} onChange={e => setNewProduct({...newProduct, price: e.target.value})} />
+                    <button onClick={handleSaveProduct} className="primary-btn">Salvar Produto</button>
+                  </div>
+                )}
+              </div>
+            )}
+            <div className="products-grid">
+              {storeProducts.map(p => (
+                <div key={p.id} className="product-card">
+                  <div style={{ fontSize: '3rem', textAlign: 'center' }}>{p.image}</div>
+                  <h3>{p.name}</h3>
+                  <p>{p.description}</p>
+                  <p className="stat-number" style={{ fontSize: '1.5rem' }}>R$ {p.price}</p>
+                  <a href={p.link} target="_blank" rel="noreferrer" className="primary-btn">Comprar</a>
+>>>>>>> e2566c5acaec9c358505328a126895ec33129987
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+<<<<<<< HEAD
         {/* EDUCAÇÃO */}
         {currentPage === 'education' && (
           <div className="education-page">
@@ -1295,12 +1592,28 @@ export default function App() {
                     </>
                   )}
                   {expandedEducation !== tip.id && <p style={{ fontSize: '0.8rem', color: 'var(--primary)', marginTop: 4 }}>Clique para expandir →</p>}
+=======
+        {currentPage === 'education' && (
+          <div className="education-page">
+            <div className="workouts-grid">
+              {EDUCATION_TIPS.map(tip => (
+                <div key={tip.id} className="education-card">
+                  <div style={{ display: 'flex', gap: 12, alignItems: 'center', marginBottom: 12 }}>
+                    <div style={{ fontSize: '2rem' }}>{tip.emoji}</div>
+                    <h3>{tip.title}</h3>
+                  </div>
+                  <p style={{ marginBottom: 16 }}>{tip.description}</p>
+                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
+                    {tip.tips.map((t, i) => <span key={i} className="badge">{t}</span>)}
+                  </div>
+>>>>>>> e2566c5acaec9c358505328a126895ec33129987
                 </div>
               ))}
             </div>
           </div>
         )}
 
+<<<<<<< HEAD
         {/* PERFIL */}
         {currentPage === 'profile' && (
           <div className="profile-page">
@@ -1497,6 +1810,41 @@ export default function App() {
                 <button onClick={async () => { try { await updateDoc(doc(db, 'users', user.uid), { 'paymentMethods.bank': { bankName: adminBankData.bankName } }); addToast('Dados bancários salvos!', 'success', '✅'); } catch (e) { addToast('Erro ao salvar', 'error', '❌'); } }} className="save-btn">💾 Salvar Conta</button>
               </div>
             )}
+=======
+        {currentPage === 'profile' && (
+          <div className="modal" style={{ maxWidth: '100%' }}>
+            <h2>Meu Perfil</h2>
+            <div className="auth-form">
+              <label>Nome</label>
+              <input type="text" value={profileName} onChange={(e) => setProfileName(e.target.value)} />
+              <button onClick={saveProfile} className="primary-btn" disabled={savingProfile}>Salvar</button>
+            </div>
+            <div style={{ marginTop: 20 }}>
+              <p>E-mail: {user.email}</p>
+              <p>Plano: {userPlan.toUpperCase()}</p>
+            </div>
+          </div>
+        )}
+      </main>
+
+      {showUpgradeModal && (
+        <div className="modal-overlay" onClick={() => setShowUpgradeModal(false)}>
+          <div className="modal" onClick={e => e.stopPropagation()}>
+            <button className="modal-close-btn" onClick={() => setShowUpgradeModal(false)}>×</button>
+            <h2>💎 Upgrade para PRO</h2>
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 20, margin: '20px 0' }}>
+              <div className="stat-card"><h4>FREE</h4><p>2 treinos/mês</p></div>
+              <div className="stat-card" style={{ borderColor: 'var(--primary)' }}><h4>PRO</h4><p>Ilimitado</p></div>
+            </div>
+            <div className="auth-form">
+              <p>Pague R$ 9,99 via PIX ou Cartão</p>
+              <div style={{ textAlign: 'center' }}>
+                <QRCodeSVG value={PIX_PAYLOAD} size={150} />
+              </div>
+              <input type="text" placeholder="Cód. Confirmação" value={pixConfirmCode} onChange={e => setPixConfirmCode(e.target.value)} />
+              <button onClick={handlePixConfirm} className="primary-btn">Confirmar Pagamento</button>
+            </div>
+>>>>>>> e2566c5acaec9c358505328a126895ec33129987
           </div>
         </div>
       )}
