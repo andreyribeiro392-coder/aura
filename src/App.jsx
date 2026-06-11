@@ -80,7 +80,7 @@ const HOME_WORKOUTS = [
     exercises: [
       { name: 'Flexão na Parede', reps: '3x10', rest: '60s', tip: 'Posicione as mãos na altura dos ombros. Mantenha o corpo reto como uma prancha.' },
       { name: 'Flexão de Joelhos', reps: '3x8', rest: '60s', tip: 'Apoie os joelhos no chão. Desça o peito até quase tocar o chão.' },
-      { name: 'Flexão Normal', reps: '2x5', rest: '60s', tip: 'Tente a versão completa. Se não conseguir, volte para a de joelhos.' },
+      { name: 'Flexão Normal', reps: '2x5', rest: '60s', tip: 'Tente a version completa. Se não conseguir, volte para a de joelhos.' },
       { name: 'Alongamento de Peito', reps: '2x30s', rest: '30s', tip: 'Abra os braços em T e sinta o alongamento no peito.' },
     ],
   },
@@ -212,9 +212,6 @@ const HOME_WORKOUTS = [
   },
 ];
 
-// ============================================================
-// DADOS DE TREINOS NA ACADEMIA
-// ============================================================
 const GYM_WORKOUTS = [
   { id: 101, name: 'Supino Reto', category: 'Peito', image: '💪', sets: 4, reps: '8-10', rest: '90s', description: 'Exercício fundamental para desenvolvimento do peito. Deite no banco, barra na altura do peito, desça controlado e empurre explosivo. Mantenha os pés no chão e as costas levemente arqueadas.' },
   { id: 102, name: 'Supino Inclinado', category: 'Peito', image: '💪', sets: 3, reps: '10-12', rest: '90s', description: 'Foca no peito superior e clavicular. Banco a 30-45°. Barra desce até a parte superior do peito. Excelente para dar volume ao peito alto.' },
@@ -237,9 +234,6 @@ const GYM_WORKOUTS = [
   { id: 119, name: 'Bicicleta Ergométrica', category: 'Cardio', image: '🏃', sets: 1, reps: '20-30 min', rest: '2 min', description: 'Cardio de baixo impacto articular. Ajuste o selim na altura correta. Varie a resistência. Excelente para recuperação ativa ou queima de gordura.' },
 ];
 
-// ============================================================
-// DADOS DE REFEIÇÕES
-// ============================================================
 const MEALS = [
   { id: 1, name: 'Ovos com Pão Integral', category: 'Café da manhã', image: '🥚', calories: 350, protein: 15, carbs: 35, fat: 12, ingredients: ['2 ovos', '2 fatias pão integral', 'manteiga light'] },
   { id: 2, name: 'Aveia com Frutas', category: 'Café da manhã', image: '🥣', calories: 300, protein: 10, carbs: 50, fat: 5, ingredients: ['1 xícara aveia', 'banana', 'morango', 'mel'] },
@@ -255,9 +249,6 @@ const MEALS = [
   { id: 12, name: 'Iogurte com Mel', category: 'Ceia', image: '🥛', calories: 150, protein: 12, carbs: 18, fat: 3, ingredients: ['150ml iogurte natural', '1 col mel', 'canela'] },
 ];
 
-// ============================================================
-// METAS
-// ============================================================
 const GOALS = [
   { id: 1, emoji: '🔥', name: 'Perder Peso', description: 'Reduza o percentual de gordura corporal com treinos e alimentação adequada.', tips: ['Déficit calórico de 300-500 kcal/dia', 'Priorize proteínas (2g/kg)', 'Cardio 3-4x por semana', 'Treino de força preserva músculo'] },
   { id: 2, emoji: '💪', name: 'Ganhar Massa', description: 'Aumente a massa muscular com treinos progressivos e superávit calórico.', tips: ['Superávit calórico de 200-400 kcal/dia', 'Proteína: 2-2.5g/kg de peso', 'Treino de força 4-5x por semana', 'Sono de qualidade 7-9h'] },
@@ -267,9 +258,6 @@ const GOALS = [
   { id: 6, emoji: '❤️', name: 'Saúde Geral', description: 'Mantenha-se saudável, ativo e com qualidade de vida elevada.', tips: ['Exercício regular 3-4x/semana', 'Alimentação equilibrada', 'Gestão do estresse', 'Check-ups médicos regulares'] },
 ];
 
-// ============================================================
-// DICAS EDUCACIONAIS
-// ============================================================
 const EDUCATION_TIPS = [
   { id: 1, emoji: '⚠️', title: 'Não Pule o Aquecimento', description: 'O aquecimento prepara músculos, tendões e articulações para o esforço. Pular essa etapa aumenta drasticamente o risco de lesões.', tips: ['5-10 min de aquecimento geral', 'Mobilidade articular específica', 'Séries de aquecimento com peso leve', 'Nunca vá direto para o peso máximo'] },
   { id: 2, emoji: '🏋️', title: 'Técnica Antes do Peso', description: 'Executar exercícios com técnica incorreta é a principal causa de lesões na academia. Aprenda o movimento correto antes de aumentar a carga.', tips: ['Comece com peso leve para aprender', 'Grave-se para analisar a técnica', 'Peça orientação a um profissional', 'Amplitude completa de movimento'] },
@@ -277,6 +265,12 @@ const EDUCATION_TIPS = [
   { id: 4, emoji: '💧', title: 'Hidratação é Fundamental', description: 'Desidratação de apenas 2% já prejudica a performance. Beba água antes, durante e após o treino para manter o rendimento e a saúde.', tips: ['2-3L de água por dia', 'Beba 500ml antes do treino', 'Reponha durante o exercício', 'Isotônicos em treinos longos'] },
   { id: 5, emoji: '🍎', title: 'Nutrição Pós-Treino', description: 'A janela anabólica pós-treino é real. Consuma proteínas e carboidratos em até 2 horas após o exercício para maximizar a recuperação muscular.', tips: ['Proteína: 20-40g pós-treino', 'Carboidratos para repor glicogênio', 'Whey protein de absorção rápida', 'Refeição completa em até 2h'] },
   { id: 6, emoji: '📈', title: 'Progressão de Carga', description: 'Para continuar evoluindo, você precisa aumentar progressivamente o estímulo. Fazer sempre o mesmo treino com o mesmo peso leva à estagnação.', tips: ['Aumente 2.5-5% de carga por semana', 'Varie repetições e séries', 'Periodize o treino a cada 4-8 semanas', 'Registre seus treinos para acompanhar'] },
+];
+
+// Corrigido: NUTRITION_TIPS adicionado
+const NUTRITION_TIPS = [
+  { id: 1, name: 'Dieta Equilibrada', category: 'Geral', image: '🥗', calories: 2000, protein: 150, carbs: 200, avoidFoods: ['Açúcar refinado', 'Frituras', 'Refrigerantes'] },
+  { id: 2, name: 'Ganho de Massa', category: 'Bulking', image: '🥩', calories: 3000, protein: 200, carbs: 400, avoidFoods: ['Fast food', 'Álcool'] },
 ];
 
 // ============================================================
@@ -333,7 +327,7 @@ export default function App() {
 
   const [darkMode, setDarkMode] = useState(() => {
     const saved = localStorage.getItem('darkMode');
-    return saved !== null ? saved === 'true' : true; // Padrão: modo escuro (true)
+    return saved !== null ? saved === 'true' : true;
   });
   const [currentPage, setCurrentPage] = useState('dashboard');
   const [userPlan, setUserPlan] = useState('free');
@@ -388,7 +382,6 @@ export default function App() {
   const toastId = useRef(0);
 
   const [exerciseTimers, setExerciseTimers] = useState({});
-  const exerciseTimerRefs = useRef({});
   const [userMeals, setUserMeals] = useState({});
   const [selectedNutrition, setSelectedNutrition] = useState(null);
   const [mealInput, setMealInput] = useState('');
@@ -431,17 +424,13 @@ export default function App() {
       const paymentSnap = await getDoc(paymentRef);
       if (paymentSnap.exists()) {
         const payment = paymentSnap.data();
-        console.log('[DEBUG] Pagamento encontrado:', payment);
         if (payment.status === 'approved' || payment.status === 'aproved') {
-          console.log('[DEBUG] Pagamento aprovado! Atualizando plano para PRO...');
           await updateDoc(doc(db, 'users', uid), { plan: 'pro', upgradedAt: serverTimestamp() });
           setUserPlan('pro');
           addToast('Pagamento aprovado! Bem-vindo ao PRO! 🎉', 'success', '💎');
         }
       }
-    } catch (e) {
-      console.error('[DEBUG] Erro ao verificar pagamentos:', e);
-    }
+    } catch (e) { console.error('Erro ao verificar pagamentos:', e); }
   }
 
   async function loadUserData(uid) {
@@ -449,19 +438,14 @@ export default function App() {
       const snap = await getDoc(doc(db, 'users', uid));
       if (snap.exists()) {
         const data = snap.data();
-        // Auto-PRO apenas para e-mail mestre: andreybribeiro392@gmail.com
         const userEmail = data.email || '';
         const isPro = userEmail === 'andreybribeiro392@gmail.com' ? 'pro' : (data.plan || 'free');
         setUserPlan(isPro);
-        console.log('[DEBUG] Email:', userEmail, '| Plan:', isPro);
         setUserGoal(data.goal || '');
         setCompletedWorkoutsCount(data.completedWorkouts || 0);
         setWeeklyGoals(data.weeklyGoals || {});
         setUserProfile({ name: data.name || '', photoURL: data.photoURL || '' });
         setProfileName(data.name || '');
-        
-        // Verificar pagamentos pendentes
-        console.log('[DEBUG] Verificando pagamentos pendentes para:', uid);
         await checkPendingPayments(uid);
       }
     } catch (e) { console.error('Erro ao carregar dados:', e); }
@@ -509,29 +493,6 @@ export default function App() {
     return 'timer-display';
   }
 
-  function startExerciseTimer(exerciseId, minutes = 1) {
-    const totalSeconds = minutes * 60;
-    setExerciseTimers((prev) => ({
-      ...prev,
-      [exerciseId]: { time: totalSeconds, active: true, mode: 'descending' },
-    }));
-  }
-
-  function toggleExerciseTimer(exerciseId) {
-    setExerciseTimers((prev) => ({
-      ...prev,
-      [exerciseId]: { ...prev[exerciseId], active: !prev[exerciseId]?.active },
-    }));
-  }
-
-  function resetExerciseTimer(exerciseId) {
-    setExerciseTimers((prev) => {
-      const newTimers = { ...prev };
-      delete newTimers[exerciseId];
-      return newTimers;
-    });
-  }
-
   function addMeal(nutritionId, meal) {
     if (!meal.trim()) return;
     setUserMeals((prev) => ({
@@ -559,9 +520,7 @@ export default function App() {
         await signInWithEmailAndPassword(auth, email, password);
       } else {
         const cred = await createUserWithEmailAndPassword(auth, email, password);
-        // Auto-PRO apenas para e-mail mestre: andreybribeiro392@gmail.com
         const userPlan = cred.user.email === 'andreybribeiro392@gmail.com' ? 'pro' : 'free';
-        console.log('[DEBUG] Novo usuário criado:', cred.user.email, '| Plan:', userPlan);
         await setDoc(doc(db, 'users', cred.user.uid), {
           email: cred.user.email, plan: userPlan, completedWorkouts: 0,
           goal: '', name: '', createdAt: serverTimestamp(),
@@ -651,24 +610,15 @@ export default function App() {
 
   async function handleCardPayment() {
     if (!cardName || !cardNumber || !cardExpiry || !cardCVC) { addToast('Preencha todos os dados do cartão', 'error', '❌'); return; }
-    if (cardNumber.replace(/\s/g, '').length < 16) { addToast('Número do cartão inválido', 'error', '❌'); return; }
     setProcessingPayment(true);
     try {
       const paymentRef = doc(db, 'payments', user.uid);
-      const paymentSnap = await getDoc(paymentRef);
-      if (paymentSnap.exists() && paymentSnap.data().status === 'approved') {
-        await updateDoc(doc(db, 'users', user.uid), { plan: 'pro', upgradedAt: serverTimestamp() });
-        setUserPlan('pro');
-        setShowUpgradeModal(false);
-        addToast('Bem-vindo ao PRO! 🎉', 'success', '💎');
-      } else {
-        await setDoc(paymentRef, {
-          userId: user.uid, email: user.email, amount: 9.99, method: 'card',
-          cardLast4: cardNumber.replace(/\s/g, '').slice(-4), status: 'pending', requestedAt: serverTimestamp(),
-        });
-        addToast('Pagamento em análise. Aguarde a confirmação.', 'warning', '⏳');
-        setShowUpgradeModal(false);
-      }
+      await setDoc(paymentRef, {
+        userId: user.uid, email: user.email, amount: 9.99, method: 'card',
+        cardLast4: cardNumber.replace(/\s/g, '').slice(-4), status: 'pending', requestedAt: serverTimestamp(),
+      });
+      addToast('Pagamento em análise. Aguarde a confirmação.', 'warning', '⏳');
+      setShowUpgradeModal(false);
     } catch (e) { addToast('Erro ao processar pagamento', 'error', '❌'); }
     finally { setProcessingPayment(false); }
   }
@@ -697,94 +647,57 @@ export default function App() {
 
   if (loading) return <div className="loading">⚡ AuraFit Carregando...</div>;
 
-  // ============================================================
-  // TELA DE LOGIN
-  // ============================================================
   if (!user) {
     return (
       <div className={`auth-container ${darkMode ? 'dark' : ''}`}>
         <div className="auth-box">
-          <div className="auth-logo">
-            <img src="/favicon_weight.png" alt="AuraFit Logo" />
-          </div>
           <h1>AuraFit</h1>
           <p>Seu app de treinos premium</p>
-          <div className="auth-tabs">
-            <button className={`auth-tab ${isLogin ? 'active' : ''}`} onClick={() => { setIsLogin(true); setAuthError(''); setAuthSuccess(''); }}>Entrar</button>
-            <button className={`auth-tab ${!isLogin ? 'active' : ''}`} onClick={() => { setIsLogin(false); setAuthError(''); setAuthSuccess(''); }}>Criar Conta</button>
+          <div className="auth-tabs" style={{ display: 'flex', gap: 10, marginBottom: 20 }}>
+            <button className={`nav-btn ${isLogin ? 'active' : ''}`} onClick={() => setIsLogin(true)}>Entrar</button>
+            <button className={`nav-btn ${!isLogin ? 'active' : ''}`} onClick={() => setIsLogin(false)}>Criar Conta</button>
           </div>
-          {authError && <div className="auth-error">⚠️ {authError}</div>}
-          {authSuccess && <div className="auth-success">✅ {authSuccess}</div>}
+          {authError && <div className="toast toast-error" style={{ marginBottom: 10 }}>⚠️ {authError}</div>}
           <form className="auth-form" onSubmit={handleAuth}>
-            <div className="auth-input-group">
-              <label>E-mail</label>
-              <input type="email" placeholder="seu@email.com" value={email} onChange={(e) => setEmail(e.target.value)} required />
-            </div>
-            <div className="auth-input-group">
-              <label>Senha</label>
-              <input type="password" placeholder="Sua senha" value={password} onChange={(e) => setPassword(e.target.value)} required />
-            </div>
-            <button type="submit" className="auth-submit-btn" disabled={authLoading}>
+            <input type="email" placeholder="seu@email.com" value={email} onChange={(e) => setEmail(e.target.value)} required />
+            <input type="password" placeholder="Sua senha" value={password} onChange={(e) => setPassword(e.target.value)} required />
+            <button type="submit" className="primary-btn" disabled={authLoading}>
               {authLoading ? '⏳ Aguarde...' : isLogin ? '🚀 Entrar' : '✨ Criar Conta'}
             </button>
           </form>
-          <div className="auth-toggle">
-            {isLogin ? 'Não tem conta? ' : 'Já tem conta? '}
-            <button onClick={() => { setIsLogin(!isLogin); setAuthError(''); setAuthSuccess(''); }}>
-              {isLogin ? 'Registre-se grátis' : 'Faça login'}
-            </button>
-          </div>
         </div>
       </div>
     );
   }
 
-  // ============================================================
-  // APP PRINCIPAL
-  // ============================================================
   return (
     <div className={`app-container ${darkMode ? 'dark' : ''}`}>
-
-      {/* HEADER */}
       <header className="header">
         <div className="header-content">
           <div className="header-brand">
-            <button className="mobile-back-btn" onClick={() => setCurrentPage('dashboard')} title="Voltar">
-              ← 
-            </button>
-            <img src="/favicon_weight.png" alt="AuraFit" />
             <h1>Aura<span>Fit</span></h1>
           </div>
-          <div className="user-info">
-            <button onClick={() => setShowMobileMenuNav(!showMobileMenuNav)} className="mobile-menu-btn" title="Menu">
-              ≡
-            </button>
-            <button onClick={() => setDarkMode(!darkMode)} className="theme-toggle" title="Alternar tema">
-              {darkMode ? '☀️' : '🌙'}
-            </button>
+          <div style={{ display: 'flex', gap: 12, alignItems: 'center' }}>
+            <button onClick={() => setDarkMode(!darkMode)} className="badge">{darkMode ? '☀️' : '🌙'}</button>
             <div className="pro-menu-container">
-              <button onClick={() => setShowProMenu(!showProMenu)} className={`plan-badge ${userPlan}`}>
+              <button onClick={() => setShowProMenu(!showProMenu)} className={`badge ${userPlan === 'pro' ? 'badge-muscle' : ''}`}>
                 {userPlan === 'pro' ? '💎 PRO' : '🆓 FREE'}
               </button>
               {showProMenu && (
-                <div className="pro-menu-dropdown">
+                <div style={{ position: 'absolute', top: '100%', right: 0, background: 'var(--bg-card)', border: '1px solid var(--border)', borderRadius: 8, padding: 8, z-index: 100 }}>
                   {userPlan === 'pro' ? (
-                    <>
-                      <div className="pro-menu-item pro-status">✅ Você é PRO!</div>
-                      <button className="pro-menu-item" onClick={() => { setShowAdminPaymentPanel(true); setShowProMenu(false); }}>💳 Dados de Pagamento</button>
-                    </>
+                    <button onClick={() => { setShowAdminPaymentPanel(true); setShowProMenu(false); }} className="nav-btn">💳 Pagamento</button>
                   ) : (
-                    <button className="pro-menu-item" onClick={() => { setShowUpgradeModal(true); setShowProMenu(false); }}>💎 Fazer Upgrade para PRO</button>
+                    <button onClick={() => { setShowUpgradeModal(true); setShowProMenu(false); }} className="nav-btn">💎 Upgrade</button>
                   )}
                 </div>
               )}
             </div>
-            <span className="user-email">{user.email}</span>
+            <button onClick={handleLogout} className="badge">🚪</button>
           </div>
         </div>
       </header>
 
-      {/* SIDEBAR */}
       <nav className="sidebar-nav">
         {[
           { id: 'dashboard', icon: '📊', label: 'Dashboard' },
@@ -800,548 +713,163 @@ export default function App() {
             {item.icon} {item.label}
           </button>
         ))}
-        <button onClick={handleLogout} className="logout-btn">🚪 Sair</button>
       </nav>
 
-      {/* MENU MOBILE */}
-      {showMobileMenuNav && (
-        <div className="mobile-menu-overlay" onClick={() => setShowMobileMenuNav(false)}>
-          <nav className="mobile-menu-nav" onClick={(e) => e.stopPropagation()}>
-            <button className="mobile-menu-close" onClick={() => setShowMobileMenuNav(false)}>✕</button>
-            {[
-              { id: 'dashboard', icon: '📊', label: 'Dashboard' },
-              { id: 'home-workouts', icon: '🏠', label: 'Treinos em Casa' },
-              { id: 'gym-workouts', icon: '🏋️', label: 'Academia' },
-              { id: 'nutrition', icon: '🍎', label: 'Nutrição' },
-              { id: 'goals', icon: '🎯', label: 'Metas' },
-              { id: 'store', icon: '🛒', label: 'Loja' },
-              { id: 'education', icon: '📚', label: 'Educação' },
-              { id: 'profile', icon: '👤', label: 'Perfil' },
-            ].map((item) => (
-              <button 
-                key={item.id} 
-                className={`mobile-menu-item ${currentPage === item.id ? 'active' : ''}`} 
-                onClick={() => { setCurrentPage(item.id); setShowMobileMenuNav(false); }}
-              >
-                <span className="icon">{item.icon}</span>
-                <span className="label">{item.label}</span>
-              </button>
-            ))}
-            <button className="mobile-menu-logout" onClick={() => { handleLogout(); setShowMobileMenuNav(false); }}>
-              🚪 Sair
-            </button>
-          </nav>
-        </div>
-      )}
-
-      {/* MAIN CONTENT */}
       <main className="main-content">
-
-        {/* DASHBOARD */}
         {currentPage === 'dashboard' && (
           <div className="dashboard-page">
             <div className="dashboard-header-premium">
-              <div className="time-date-display">
-                <div className="current-time">{currentTime.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit', second: '2-digit' })}</div>
-                <div className="current-date">{currentTime.toLocaleDateString('pt-BR', { weekday: 'long', day: 'numeric', month: 'long' })}</div>
+              <div>
+                <h2>Bem-vindo ao AuraFit</h2>
+                <p className="current-date">{currentTime.toLocaleDateString('pt-BR', { weekday: 'long', day: 'numeric', month: 'long' })}</p>
               </div>
-              <div className="welcome-section">
-                <h2>AuraFit</h2>
-              </div>
+              <div className="current-time">{currentTime.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' })}</div>
             </div>
             <div className="stats-container">
               <div className="stat-card"><h3>Treinos Concluídos</h3><p className="stat-number">{completedWorkoutsCount}</p></div>
-              <div className="stat-card"><h3>Plano Atual</h3><p className="stat-number">{userPlan === 'pro' ? 'PRO ∞' : 'FREE (2)'}</p></div>
-              <div className="stat-card"><h3>Meta Atual</h3><p className="stat-number" style={{ fontSize: '1rem', paddingTop: '4px' }}>{userGoal || 'Não definida'}</p></div>
+              <div className="stat-card"><h3>Plano Atual</h3><p className="stat-number">{userPlan.toUpperCase()}</p></div>
+              <div className="stat-card"><h3>Meta</h3><p className="stat-number" style={{ fontSize: '1.2rem' }}>{userGoal || 'Definir'}</p></div>
             </div>
-            <div className="quick-goals-section">
-              <h3>🎯 Metas Rápidas</h3>
-              <div className="quick-goals-grid">
-                {GOALS.slice(0, 3).map((goal) => (
-                  <div key={goal.id} className="quick-goal-card" onClick={() => setCurrentPage('goals')}>
-                    <div className="goal-emoji">{goal.emoji}</div>
-                    <h4>{goal.name}</h4>
-                    <p>{goal.description.substring(0, 60)}...</p>
+            <div className="workouts-grid">
+              {GOALS.slice(0, 3).map(goal => (
+                <div key={goal.id} className="goal-card" onClick={() => setCurrentPage('goals')}>
+                  <div style={{ fontSize: '2rem' }}>{goal.emoji}</div>
+                  <h3>{goal.name}</h3>
+                  <p>{goal.description}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {currentPage === 'home-workouts' && (
+          <div className="workouts-page">
+            <div style={{ display: 'flex', gap: 10, marginBottom: 24 }}>
+              {['Todos', 'Iniciante', 'Intermediário', 'Avançado'].map(f => (
+                <button key={f} className={`badge ${homeWorkoutFilter === f ? 'badge-muscle' : ''}`} onClick={() => setHomeWorkoutFilter(f)}>{f}</button>
+              ))}
+            </div>
+            <div className="workouts-grid">
+              {filteredHomeWorkouts.map(w => (
+                <div key={w.id} className="workout-card">
+                  <div style={{ fontSize: '2rem' }}>{w.image}</div>
+                  <h3>{w.name}</h3>
+                  <div style={{ display: 'flex', gap: 8 }}><span className="badge">{w.level}</span><span className="badge">{w.duration}</span></div>
+                  <p>{w.description}</p>
+                  <button className="primary-btn" onClick={() => { if (canStartWorkout()) setSelectedWorkout(w); }}>Começar Treino</button>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {currentPage === 'nutrition' && (
+          <div className="nutrition-page">
+            <div className="nutrition-grid">
+              {MEALS.map(meal => (
+                <div key={meal.id} className="meal-card">
+                  <div style={{ fontSize: '2rem' }}>{meal.image}</div>
+                  <h3>{meal.name}</h3>
+                  <p className="badge">{meal.category}</p>
+                  <p>🔥 {meal.calories} kcal | 💪 {meal.protein}g P</p>
+                  <p style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>{meal.ingredients.join(', ')}</p>
+                </div>
+              ))}
+            </div>
+            <div style={{ marginTop: 40 }}>
+              <h3>Dicas de Nutrição</h3>
+              <div className="nutrition-grid" style={{ marginTop: 20 }}>
+                {NUTRITION_TIPS.map(tip => (
+                  <div key={tip.id} className="goal-card">
+                    <div style={{ fontSize: '2rem' }}>{tip.image}</div>
+                    <h3>{tip.name}</h3>
+                    <p><strong>Evitar:</strong> {tip.avoidFoods.join(', ')}</p>
                   </div>
                 ))}
               </div>
             </div>
-            {userPlan === 'free' && (
-              <div className="upgrade-banner">
-                <h3>💎 Desbloqueie Treinos Ilimitados</h3>
-                <p>No plano FREE você tem acesso a 2 treinos. Faça upgrade para PRO e treine sem limites por apenas R$ 9,99/mês!</p>
-                <button onClick={() => setShowUpgradeModal(true)} className="upgrade-btn">💳 Fazer Upgrade para PRO — R$ 9,99</button>
-              </div>
+          </div>
+        )}
+
+        {currentPage === 'store' && (
+          <div className="store-page">
+            {user.email === 'andreybribeiro392@gmail.com' && (
+              <button onClick={() => setShowAdminPanel(!showAdminPanel)} className="primary-btn" style={{ marginBottom: 20 }}>⚙️ Admin Loja</button>
             )}
-
-            <div className="dashboard-cards-modern">
-              <div className="modern-card home-workout-card" onClick={() => setCurrentPage('home-workouts')}>
-                <div className="card-overlay"></div>
-                <div className="card-content">
-                  <div className="card-icon">🏠</div>
-                  <h3>Treino em Casa</h3>
-                  <p>Exercícios sem equipamento</p>
-                </div>
-              </div>
-              <div className="modern-card gym-workout-card" onClick={() => setCurrentPage('gym-workouts')}>
-                <div className="card-overlay"></div>
-                <div className="card-content">
-                  <div className="card-icon">🏋️</div>
-                  <h3>Academia</h3>
-                  <p>Treinos com equipamentos</p>
-                </div>
-              </div>
-              <div className="modern-card nutrition-card" onClick={() => setCurrentPage('nutrition')}>
-                <div className="card-overlay"></div>
-                <div className="card-content">
-                  <div className="card-icon">🍎</div>
-                  <h3>Nutrição</h3>
-                  <p>Planeje suas refeições</p>
-                </div>
-              </div>
-              <div className="modern-card goals-card" onClick={() => setCurrentPage('goals')}>
-                <div className="card-overlay"></div>
-                <div className="card-content">
-                  <div className="card-icon">🎯</div>
-                  <h3>Metas</h3>
-                  <p>Defina seus objetivos</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        )}
-
-        {/* TREINOS EM CASA - LISTA */}
-        {currentPage === 'home-workouts' && !selectedWorkout && (
-          <div className="workouts-page">
-            <div className="page-header">
-              <h2>🏠 Treinos em Casa</h2>
-              <p>Exercícios completos sem precisar de academia ou equipamentos</p>
-            </div>
-            <div className="filter-buttons">
-              {['Todos', 'Iniciante', 'Intermediário', 'Avançado'].map((f) => (
-                <button key={f} className={`filter-btn ${homeWorkoutFilter === f ? 'active' : ''}`} onClick={() => setHomeWorkoutFilter(f)}>{f}</button>
-              ))}
-            </div>
-            <div className="workouts-grid">
-              {filteredHomeWorkouts.map((workout) => (
-                <div key={workout.id} className="workout-card">
-                  <div className="workout-card-header">
-                    <div className="workout-emoji-container">{workout.image}</div>
-                    <div className="workout-card-info">
-                      <h3>{workout.name}</h3>
-                      <div className="workout-badges">
-                        <span className="badge badge-muscle">{workout.level}</span>
-                        <span className="badge badge-muscle">{workout.muscleGroup}</span>
-                      </div>
-                      <div className="workout-meta">
-                        <span>⏱️ {workout.duration}</span>
-                        <span className="difficulty-stars">{'⭐'.repeat(workout.difficulty)}</span>
-                      </div>
-                    </div>
-                  </div>
-                  <p className="workout-description">{workout.description}</p>
-                  {workout.benefits && (
-                    <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', marginBottom: 10 }}>
-                      {workout.benefits.map((b, i) => (
-                        <span key={i} style={{ fontSize: '0.72rem', padding: '2px 8px', background: 'rgba(16,185,129,0.1)', color: '#10b981', border: '1px solid rgba(16,185,129,0.2)', borderRadius: '20px' }}>✓ {b}</span>
-                      ))}
-                    </div>
-                  )}
-                  <div className="workout-exercises-preview">
-                    {workout.exercises.slice(0, 3).map((ex, i) => (
-                      <div key={i} className="exercise-preview-item"><strong>{ex.name}</strong> — {ex.reps}</div>
-                    ))}
-                    {workout.exercises.length > 3 && (
-                      <div className="exercise-preview-item" style={{ color: 'var(--primary)', fontWeight: 600 }}>+{workout.exercises.length - 3} exercícios</div>
-                    )}
-                  </div>
-                  <button
-                    className="select-btn"
-                    disabled={userPlan === 'free' && completedWorkoutsCount >= 2}
-                    onClick={() => { if (canStartWorkout()) { setSelectedWorkout(workout); setCompletedExercises([]); setTimerTime(0); setTimerActive(false); } }}
-                  >
-                    {userPlan === 'free' && completedWorkoutsCount >= 2 ? '🔒 Upgrade para PRO' : '▶️ Começar Treino'}
-                  </button>
+            <div className="products-grid">
+              {storeProducts.map(p => (
+                <div key={p.id} className="product-card">
+                  <div style={{ fontSize: '3rem', textAlign: 'center' }}>{p.image}</div>
+                  <h3>{p.name}</h3>
+                  <p>{p.description}</p>
+                  <p className="stat-number" style={{ fontSize: '1.5rem' }}>R$ {p.price}</p>
+                  <a href={p.link} target="_blank" rel="noreferrer" className="primary-btn">Comprar</a>
                 </div>
               ))}
             </div>
           </div>
         )}
 
-        {/* TREINO EM CASA - DETALHE */}
-        {currentPage === 'home-workouts' && selectedWorkout && (
-          <div className="workout-details">
-            <button className="back-btn" onClick={() => { setSelectedWorkout(null); setTimerActive(false); setTimerTime(0); }}>← Voltar</button>
-            <div className="workout-details-header">
-              <div className="workout-details-emoji">{selectedWorkout.image}</div>
-              <div className="workout-details-info">
-                <h2>{selectedWorkout.name}</h2>
-                <div className="workout-badges" style={{ marginBottom: 8 }}>
-                  <span className="badge badge-muscle">{selectedWorkout.level}</span>
-                  <span className="badge badge-muscle">{selectedWorkout.muscleGroup}</span>
-                  <span className="badge badge-muscle">⏱️ {selectedWorkout.duration}</span>
-                </div>
-                <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', lineHeight: 1.5 }}>{selectedWorkout.description}</p>
-                {selectedWorkout.benefits && (
-                  <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', marginTop: 8 }}>
-                    {selectedWorkout.benefits.map((b, i) => (
-                      <span key={i} style={{ fontSize: '0.75rem', padding: '2px 8px', background: 'rgba(16,185,129,0.1)', color: '#10b981', border: '1px solid rgba(16,185,129,0.2)', borderRadius: '20px' }}>✓ {b}</span>
-                    ))}
-                  </div>
-                )}
-              </div>
-            </div>
-            <div className="exercises-list">
-              <h3>📋 Exercícios ({completedExercises.length}/{selectedWorkout.exercises.length} concluídos)</h3>
-              {selectedWorkout.exercises.map((exercise, idx) => (
-                <div key={idx} className={`exercise-item ${completedExercises.includes(idx) ? 'completed' : ''}`}>
-                  <input type="checkbox" checked={completedExercises.includes(idx)} onChange={() => setCompletedExercises((prev) => prev.includes(idx) ? prev.filter((i) => i !== idx) : [...prev, idx])} id={`ex-${idx}`} />
-                  <label htmlFor={`ex-${idx}`}>
-                    <span className="exercise-name">{exercise.name}</span>
-                    <div className="exercise-details">
-                      <span className="exercise-detail-tag">🔁 {exercise.reps}</span>
-                      <span className="exercise-detail-tag">⏸️ Descanso: {exercise.rest}</span>
-                    </div>
-                    {exercise.tip && <span className="exercise-tip">💡 {exercise.tip}</span>}
-                  </label>
-                </div>
-              ))}
-            </div>
-            {/* CRONÔMETRO */}
-            <div className="timer-section">
-              <h3>⏱️ Cronômetro</h3>
-              <div className={getTimerClass()}>{formatTime(timerTime)}</div>
-              <div className="timer-mode-selector">
-                <button className={`timer-mode-btn ${timerMode === 'ascending' ? 'active' : ''}`} onClick={() => { setTimerMode('ascending'); setTimerTime(0); setTimerActive(false); }}>⬆️ Crescente</button>
-                <button className={`timer-mode-btn ${timerMode === 'descending' ? 'active' : ''}`} onClick={() => { setTimerMode('descending'); setTimerActive(false); }}>⬇️ Regressivo</button>
-              </div>
-              {timerMode === 'descending' && (
-                <div className="timer-set-time">
-                  <label>Minutos:</label>
-                  <input type="number" min="0" max="99" className="timer-time-input" value={timerSetMinutes} onChange={(e) => setTimerSetMinutes(Math.max(0, parseInt(e.target.value) || 0))} />
-                  <label>Segundos:</label>
-                  <input type="number" min="0" max="59" className="timer-time-input" value={timerSetSeconds} onChange={(e) => setTimerSetSeconds(Math.min(59, Math.max(0, parseInt(e.target.value) || 0)))} />
-                </div>
-              )}
-              <div className="timer-buttons">
-                {timerMode === 'descending' && !timerActive && timerTime === 0 ? (
-                  <button className="timer-btn start" onClick={startDescendingTimer}>▶️ Iniciar</button>
-                ) : (
-                  <button className={`timer-btn ${timerActive ? '' : 'start'}`} onClick={() => setTimerActive(!timerActive)}>
-                    {timerActive ? '⏸️ Pausar' : '▶️ Continuar'}
-                  </button>
-                )}
-                <button className="timer-btn" onClick={() => { setTimerTime(0); setTimerActive(false); }}>🔄 Reiniciar</button>
-              </div>
-            </div>
-            <button className="finish-btn" disabled={completedExercises.length !== selectedWorkout.exercises.length} onClick={finishWorkout}>
-              ✅ Finalizar Treino ({completedExercises.length}/{selectedWorkout.exercises.length})
-            </button>
-          </div>
-        )}
-
-        {/* ACADEMIA - LISTA */}
-        {currentPage === 'gym-workouts' && !selectedGymWorkout && (
+        {currentPage === 'gym-workouts' && (
           <div className="gym-workouts-page">
-            <div className="page-header">
-              <h2>🏋️ Treinos na Academia</h2>
-              <p>Exercícios com equipamentos para máximos resultados</p>
-            </div>
-            <div className="filter-buttons">
-              {gymCategories.map((cat) => (
-                <button key={cat} className={`filter-btn ${gymWorkoutFilter === cat ? 'active' : ''}`} onClick={() => setGymWorkoutFilter(cat)}>{cat}</button>
+            <div style={{ display: 'flex', gap: 10, marginBottom: 24, overflowX: 'auto', paddingBottom: 10 }}>
+              {gymCategories.map(c => (
+                <button key={c} className={`badge ${gymWorkoutFilter === c ? 'badge-muscle' : ''}`} onClick={() => setGymWorkoutFilter(c)}>{c}</button>
               ))}
             </div>
             <div className="gym-workouts-grid">
-              {filteredGymWorkouts.map((workout) => (
-                <div key={workout.id} className="gym-workout-card">
-                  <div style={{ fontSize: '1.8rem', marginBottom: 8 }}>{workout.image}</div>
-                  <h3>{workout.name}</h3>
-                  <div className="gym-meta">
-                    <span className="badge badge-muscle">{workout.category}</span>
-                    <span>🔁 {workout.sets}x{workout.reps}</span>
-                    <span>⏸️ {workout.rest}</span>
+              {filteredGymWorkouts.map(w => (
+                <div key={w.id} className="gym-workout-card">
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+                    <div style={{ fontSize: '2rem' }}>{w.image}</div>
+                    <span className="badge badge-muscle">{w.category}</span>
                   </div>
-                  <p className="gym-description">{workout.description}</p>
-                  <button
-                    className="select-btn"
-                    disabled={userPlan === 'free' && completedWorkoutsCount >= 2}
-                    onClick={() => { if (canStartWorkout()) { setSelectedGymWorkout(workout); setCompletedExercises([]); setTimerTime(0); setTimerActive(false); } }}
-                  >
-                    {userPlan === 'free' && completedWorkoutsCount >= 2 ? '🔒 PRO' : '▶️ Iniciar'}
-                  </button>
+                  <h3>{w.name}</h3>
+                  <div style={{ display: 'flex', gap: 12, fontSize: '0.85rem', color: 'var(--text-secondary)' }}>
+                    <span>🔄 {w.sets} séries</span>
+                    <span>🔢 {w.reps} reps</span>
+                    <span>⏱️ {w.rest} desc.</span>
+                  </div>
+                  <p style={{ fontSize: '0.9rem' }}>{w.description}</p>
                 </div>
               ))}
             </div>
           </div>
         )}
 
-        {/* ACADEMIA - DETALHE */}
-        {currentPage === 'gym-workouts' && selectedGymWorkout && (
-          <div className="workout-details">
-            <button className="back-btn" onClick={() => { setSelectedGymWorkout(null); setTimerActive(false); setTimerTime(0); }}>← Voltar</button>
-            <div className="workout-details-header">
-              <div className="workout-details-emoji">{selectedGymWorkout.image}</div>
-              <div className="workout-details-info">
-                <h2>{selectedGymWorkout.name}</h2>
-                <div className="workout-badges" style={{ marginBottom: 8 }}>
-                  <span className="badge badge-muscle">{selectedGymWorkout.category}</span>
-                </div>
-                <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', lineHeight: 1.5 }}>{selectedGymWorkout.description}</p>
-              </div>
-            </div>
-            <div className="gym-details">
-              <div className="detail-box"><h4>Séries</h4><div className="big-number">{selectedGymWorkout.sets}</div></div>
-              <div className="detail-box"><h4>Repetições</h4><div className="big-number">{selectedGymWorkout.reps}</div></div>
-              <div className="detail-box"><h4>Descanso</h4><div className="big-number" style={{ fontSize: '1.4rem' }}>{selectedGymWorkout.rest}</div></div>
-            </div>
-            <div className="timer-section">
-              <h3>⏱️ Cronômetro de Descanso</h3>
-              <div className={getTimerClass()}>{formatTime(timerTime)}</div>
-              <div className="timer-mode-selector">
-                <button className={`timer-mode-btn ${timerMode === 'ascending' ? 'active' : ''}`} onClick={() => { setTimerMode('ascending'); setTimerTime(0); setTimerActive(false); }}>⬆️ Crescente</button>
-                <button className={`timer-mode-btn ${timerMode === 'descending' ? 'active' : ''}`} onClick={() => { setTimerMode('descending'); setTimerActive(false); }}>⬇️ Regressivo</button>
-              </div>
-              {timerMode === 'descending' && (
-                <div className="timer-set-time">
-                  <label>Min:</label>
-                  <input type="number" min="0" max="99" className="timer-time-input" value={timerSetMinutes} onChange={(e) => setTimerSetMinutes(Math.max(0, parseInt(e.target.value) || 0))} />
-                  <label>Seg:</label>
-                  <input type="number" min="0" max="59" className="timer-time-input" value={timerSetSeconds} onChange={(e) => setTimerSetSeconds(Math.min(59, Math.max(0, parseInt(e.target.value) || 0)))} />
-                </div>
-              )}
-              <div className="timer-buttons">
-                {timerMode === 'descending' && !timerActive && timerTime === 0 ? (
-                  <button className="timer-btn start" onClick={startDescendingTimer}>▶️ Iniciar</button>
-                ) : (
-                  <button className={`timer-btn ${timerActive ? '' : 'start'}`} onClick={() => setTimerActive(!timerActive)}>
-                    {timerActive ? '⏸️ Pausar' : '▶️ Continuar'}
-                  </button>
-                )}
-                <button className="timer-btn" onClick={() => { setTimerTime(0); setTimerActive(false); }}>🔄 Reiniciar</button>
-              </div>
-            </div>
-            <button className="finish-btn" onClick={finishWorkout}>✅ Finalizar Treino</button>
-          </div>
-        )}
-
-        {/* NUTRIÇÃO */}
-        {currentPage === 'nutrition' && (
-          <div className="nutrition-page">
-            <div className="page-header"><h2>🍎 Nutrição</h2><p>Planos alimentares para potencializar seus resultados</p></div>
-            <div className="nutrition-grid">
-              {['Café da manhã', 'Lanche da manhã', 'Almoço', 'Lanche da tarde', 'Jantar', 'Ceia'].map((category) => (
-                <div key={category} className="nutrition-category">
-                  <h3>{category}</h3>
-                  <div className="meals-list">
-                    {MEALS.filter((m) => m.category === category).map((meal) => (
-                      <div key={meal.id} className="meal-card">
-                        <div className="meal-card-header"><span className="meal-emoji">{meal.image}</span><h4>{meal.name}</h4></div>
-                        <p className="calories">🔥 {meal.calories} kcal</p>
-                        <p className="macros">🥩 P: {meal.protein}g &nbsp;🌾 C: {meal.carbs}g &nbsp;🥑 G: {meal.fat}g</p>
-                        <p className="ingredients"><strong>Ingredientes:</strong> {meal.ingredients.join(', ')}</p>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        )}
-
-        {/* METAS */}
         {currentPage === 'goals' && (
           <div className="goals-page">
-            <div className="page-header"><h2>🎯 Minhas Metas</h2><p>Defina seus objetivos e acompanhe seu progresso</p></div>
             <div className="goals-grid">
-              {GOALS.map((goal) => (
-                <div key={goal.id} className={`goal-card ${userGoal === goal.name ? 'active' : ''}`}
-                  onClick={async () => { setUserGoal(goal.name); try { await updateDoc(doc(db, 'users', user.uid), { goal: goal.name }); } catch (e) {} }}>
-                  <div className="goal-emoji">{goal.emoji}</div>
-                  <h3>{goal.name}</h3>
-                  <p>{goal.description}</p>
-                  <div className="tips"><strong>Dicas:</strong><ul>{goal.tips.map((tip, i) => <li key={i}>{tip}</li>)}</ul></div>
-                </div>
-              ))}
-            </div>
-            {userGoal && (
-              <div className="weekly-goals-section">
-                <h3>📅 Metas Semanais — {userGoal}</h3>
-                <div className="weekly-goals-grid">
-                  {['Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb', 'Dom'].map((day) => (
-                    <div key={day} className="weekly-goal-card">
-                      <h4>{day}</h4>
-                      <input type="text" placeholder="Meta" value={weeklyGoals[`${userGoal}-${day}`] || ''} onChange={(e) => saveWeeklyGoal(userGoal, day, e.target.value)} className="goal-input" />
-                    </div>
-                  ))}
-                </div>
-              </div>
-            )}
-            <div className="progress-section">
-              <h3>📊 Progresso Geral</h3>
-              <div className="progress-bar"><div className="progress-fill" style={{ width: `${Math.min((completedWorkoutsCount / 50) * 100, 100)}%` }} /></div>
-              <p style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>{completedWorkoutsCount} treinos concluídos de 50 (meta)</p>
-            </div>
-          </div>
-        )}
-
-        {/* LOJA */}
-        {currentPage === 'store' && (
-          <div className="store-page">
-            <div className="page-header"><h2>🛒 Loja</h2><p>Produtos selecionados para potencializar seus treinos</p></div>
-            {user.email === 'andreybribeiro392@gmail.com' && (
-              <button onClick={() => setShowAdminPanel(!showAdminPanel)} className="admin-btn">⚙️ {showAdminPanel ? 'Fechar Painel Admin' : 'Painel Admin'}</button>
-            )}
-            {showAdminPanel && user.email === 'andreybribeiro392@gmail.com' && (
-              <div className="admin-panel">
-                <h3>📝 Gerenciar Produtos</h3>
-                <div className="product-form">
-                  <h4>{editingProductId ? 'Editar Produto' : 'Adicionar Produto'}</h4>
-                  <input type="text" placeholder="Nome do Produto" value={newProduct.name} onChange={(e) => setNewProduct({ ...newProduct, name: e.target.value })} className="form-input" />
-                  <select value={newProduct.category} onChange={(e) => setNewProduct({ ...newProduct, category: e.target.value })} className="form-select">
-                    {['Suplementos', 'Roupas', 'Acessórios', 'Equipamentos'].map((c) => <option key={c}>{c}</option>)}
-                  </select>
-                  <input type="number" placeholder="Preço (R$)" value={newProduct.price} onChange={(e) => setNewProduct({ ...newProduct, price: e.target.value })} className="form-input" step="0.01" />
-                  <input type="text" placeholder="Emoji (ex: 💊)" value={newProduct.image} onChange={(e) => setNewProduct({ ...newProduct, image: e.target.value })} className="form-input" maxLength="2" />
-                  <input type="url" placeholder="URL da Imagem (ex: /img/products/suplementos/produto.jpg)" value={newProduct.imageUrl} onChange={(e) => setNewProduct({ ...newProduct, imageUrl: e.target.value })} className="form-input" />
-                  <textarea placeholder="Descrição" value={newProduct.description} onChange={(e) => setNewProduct({ ...newProduct, description: e.target.value })} className="form-textarea" />
-                  <input type="url" placeholder="Link do produto" value={newProduct.link} onChange={(e) => setNewProduct({ ...newProduct, link: e.target.value })} className="form-input" />
-                  <div className="form-buttons">
-                    <button onClick={handleSaveProduct} className="save-btn">{editingProductId ? '✏️ Atualizar' : '➕ Adicionar'}</button>
-                    {editingProductId && <button onClick={() => { setEditingProductId(null); setNewProduct({ name: '', category: 'Suplementos', price: '', image: '💊', imageUrl: '', description: '', link: '' }); }} className="cancel-btn">❌ Cancelar</button>}
+              {GOALS.map(goal => (
+                <div key={goal.id} className="goal-card">
+                  <div style={{ fontSize: '2.5rem', marginBottom: 10 }}>{goal.emoji}</div>
+                  <h3 style={{ marginBottom: 8 }}>{goal.name}</h3>
+                  <p style={{ marginBottom: 16 }}>{goal.description}</p>
+                  <div style={{ background: 'var(--bg-tertiary)', padding: 12, borderRadius: 8 }}>
+                    <h4 style={{ fontSize: '0.85rem', color: 'var(--primary)', marginBottom: 8 }}>Dicas Pro:</h4>
+                    <ul style={{ paddingLeft: 16, fontSize: '0.85rem' }}>
+                      {goal.tips.map((tip, i) => <li key={i}>{tip}</li>)}
+                    </ul>
                   </div>
-                </div>
-                <div className="products-management">
-                  <h4>Produtos ({storeProducts.length})</h4>
-                  {storeProducts.map((p) => (
-                    <div key={p.id} className="product-management-item">
-                      <div className="product-info">
-                        <span style={{ fontSize: '1.5rem' }}>{p.image}</span>
-                        <div className="product-details">
-                          <p className="product-name">{p.name}</p>
-                          <p className="product-category">{p.category}</p>
-                          <p className="product-price">R$ {parseFloat(p.price).toFixed(2)}</p>
-                        </div>
-                      </div>
-                      <div className="product-actions">
-                        <button onClick={() => { setNewProduct(p); setEditingProductId(p.id); }} className="edit-btn">✏️</button>
-                        <button onClick={() => handleDeleteProduct(p.id)} className="delete-btn">🗑️</button>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            )}
-            {storeProducts.length === 0 ? (
-              <div style={{ textAlign: 'center', padding: '40px', color: 'var(--text-muted)' }}>
-                <p style={{ fontSize: '2rem', marginBottom: 12 }}>🛒</p>
-                <p>Nenhum produto disponível ainda.</p>
-              </div>
-            ) : (
-              <div className="store-categories">
-                {['Suplementos', 'Roupas', 'Acessórios', 'Equipamentos'].map((category) => {
-                  const categoryProducts = storeProducts.filter(p => p.category === category);
-                  if (categoryProducts.length === 0) return null;
-                  return (
-                    <div key={category} className="category-section">
-                      <h3 className="category-title">{category}</h3>
-                      <div className="products-grid">
-                        {categoryProducts.map((product) => (
-                          <div key={product.id} className="product-card">
-                            {product.imageUrl ? (
-                              <img src={product.imageUrl} alt={product.name} className="product-image" />
-                            ) : (
-                              <div className="product-emoji">{product.image}</div>
-                            )}
-                            <h3>{product.name}</h3>
-                            <p className="description">{product.description}</p>
-                            <p className="price">R$ {parseFloat(product.price).toFixed(2)}</p>
-                            <a href={product.link} target="_blank" rel="noopener noreferrer" className="buy-btn">🛒 Comprar</a>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
-            )}
-          </div>
-        )}
-
-        {/* NUTRIÇÃO */}
-        {currentPage === 'nutrition' && (
-          <div className="nutrition-page">
-            <div className="page-header"><h2>🍎 Nutrição</h2><p>Registre suas refeições e veja o que não deve comer</p></div>
-            <div className="nutrition-grid">
-              {NUTRITION_TIPS.map((nutrition) => (
-                <div key={nutrition.id} className="nutrition-card" onClick={() => setSelectedNutrition(selectedNutrition === nutrition.id ? null : nutrition.id)}>
-                  <div className="nutrition-emoji">{nutrition.image}</div>
-                  <h3>{nutrition.name}</h3>
-                  <p className="category">{nutrition.category}</p>
-                  <div className="nutrition-macros">
-                    <span>🔥 {nutrition.calories}kcal</span>
-                    <span>💪 {nutrition.protein}g</span>
-                    <span>🌾 {nutrition.carbs}g</span>
-                  </div>
-                  {selectedNutrition === nutrition.id && (
-                    <div className="nutrition-details">
-                      <div className="meal-input-section">
-                        <input 
-                          type="text" 
-                          placeholder="Registre que comeu..." 
-                          value={mealInput} 
-                          onChange={(e) => setMealInput(e.target.value)}
-                          onKeyPress={(e) => e.key === 'Enter' && addMeal(nutrition.id, mealInput)}
-                          className="meal-input"
-                        />
-                        <button onClick={() => addMeal(nutrition.id, mealInput)} className="add-meal-btn">➕</button>
-                      </div>
-                      {userMeals[nutrition.id] && userMeals[nutrition.id].length > 0 && (
-                        <div className="meals-logged">
-                          <h4>✅ Refeições Registradas:</h4>
-                          <ul>
-                            {userMeals[nutrition.id].map((meal, idx) => (
-                              <li key={idx}>
-                                {meal}
-                                <button onClick={() => removeMeal(nutrition.id, idx)} className="remove-meal">✕</button>
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
-                      )}
-                      <div className="avoid-foods">
-                        <h4>⛔ Evite Comer:</h4>
-                        <ul>
-                          {nutrition.avoidFoods && nutrition.avoidFoods.map((food, idx) => (
-                            <li key={idx}>{food}</li>
-                          ))}
-                        </ul>
-                      </div>
-                    </div>
-                  )}
                 </div>
               ))}
             </div>
           </div>
         )}
 
-        {/* EDUCAÇÃO */}
         {currentPage === 'education' && (
           <div className="education-page">
-            <div className="page-header"><h2>📚 Educação Fitness</h2><p>O que você precisa saber para treinar melhor e com mais segurança</p></div>
-            <div className="education-grid">
-              {EDUCATION_TIPS.map((tip) => (
-                <div key={tip.id} className={`education-card ${expandedEducation === tip.id ? 'expanded' : ''}`} onClick={() => setExpandedEducation(expandedEducation === tip.id ? null : tip.id)}>
-                  <div className="tip-emoji">{tip.emoji}</div>
-                  <h3>{tip.title}</h3>
-                  {expandedEducation === tip.id && (
-                    <>
-                      <p className="description">{tip.description}</p>
-                      <div className="tips-list"><strong>Dicas práticas:</strong><ul>{tip.tips.map((t, i) => <li key={i}>{t}</li>)}</ul></div>
-                    </>
-                  )}
-                  {expandedEducation !== tip.id && <p style={{ fontSize: '0.8rem', color: 'var(--primary)', marginTop: 4 }}>Clique para expandir →</p>}
+            <div className="workouts-grid">
+              {EDUCATION_TIPS.map(tip => (
+                <div key={tip.id} className="education-card">
+                  <div style={{ display: 'flex', gap: 12, alignItems: 'center', marginBottom: 12 }}>
+                    <div style={{ fontSize: '2rem' }}>{tip.emoji}</div>
+                    <h3>{tip.title}</h3>
+                  </div>
+                  <p style={{ marginBottom: 16 }}>{tip.description}</p>
+                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
+                    {tip.tips.map((t, i) => <span key={i} className="badge">{t}</span>)}
+                  </div>
                 </div>
               ))}
             </div>
@@ -1350,217 +878,39 @@ export default function App() {
 
         {/* PERFIL */}
         {currentPage === 'profile' && (
-          <div className="profile-page">
-            <div className="page-header"><h2>👤 Meu Perfil</h2><p>Gerencie suas informações e configurações</p></div>
-            <div className="profile-card">
-              <div className="profile-avatar">
-                {userProfile.photoURL ? <img src={userProfile.photoURL} alt="Avatar" /> : <div className="avatar-placeholder">👤</div>}
-              </div>
-              <div className="profile-info">
-                <p><strong>Nome:</strong> {userProfile.name || 'Não definido'}</p>
-                <p><strong>E-mail:</strong> {user.email}</p>
-                <p><strong>Plano:</strong> {userPlan === 'pro' ? '💎 PRO' : '🆓 FREE'}</p>
-                <p><strong>Treinos:</strong> {completedWorkoutsCount} concluídos</p>
-                <p><strong>Meta:</strong> {userGoal || 'Não definida'}</p>
-              </div>
+          <div className="modal" style={{ maxWidth: '100%' }}>
+            <h2>Meu Perfil</h2>
+            <div className="auth-form">
+              <label>Nome</label>
+              <input type="text" value={profileName} onChange={(e) => setProfileName(e.target.value)} />
+              <button onClick={saveProfile} className="primary-btn" disabled={savingProfile}>Salvar</button>
             </div>
-            <div className="profile-settings">
-              <h3>⚙️ Configurações</h3>
-              <div className="settings-form">
-                <div className="form-group">
-                  <label>Nome de Exibição</label>
-                  <input type="text" placeholder="Seu nome" value={profileName} onChange={(e) => setProfileName(e.target.value)} className="form-input" />
-                </div>
-                <button onClick={saveProfile} className="save-btn" disabled={savingProfile}>{savingProfile ? '⏳ Salvando...' : '💾 Salvar Perfil'}</button>
-                <div style={{ marginTop: 16, padding: 16, background: 'var(--bg-primary)', borderRadius: 'var(--radius)', border: '1px solid var(--border)' }}>
-                  <p style={{ fontSize: '0.85rem', fontWeight: 600, color: 'var(--text-primary)', marginBottom: 8 }}>🌙 Tema</p>
-                  <button onClick={() => setDarkMode(!darkMode)} className="filter-btn" style={{ width: '100%' }}>{darkMode ? '☀️ Mudar para Modo Claro' : '🌙 Mudar para Modo Escuro'}</button>
-                </div>
-                {userPlan === 'free' && (
-                  <button onClick={() => setShowUpgradeModal(true)} className="upgrade-btn" style={{ width: '100%', justifyContent: 'center' }}>💎 Fazer Upgrade para PRO — R$ 9,99</button>
-                )}
-              </div>
+            <div style={{ marginTop: 20 }}>
+              <p>E-mail: {user.email}</p>
+              <p>Plano: {userPlan.toUpperCase()}</p>
             </div>
           </div>
         )}
-
       </main>
 
-      {/* MODAL UPGRADE PRO */}
+      {/* MODAL UPGRADE */}
       {showUpgradeModal && (
-        <div className="modal-overlay" onClick={() => { if (!processingPayment) setShowUpgradeModal(false); }}>
-          <div className="modal upgrade-modal" onClick={(e) => e.stopPropagation()}>
-            <button className="modal-close-btn" onClick={() => { if (!processingPayment) setShowUpgradeModal(false); }}>×</button>
+        <div className="modal-overlay" onClick={() => setShowUpgradeModal(false)}>
+          <div className="modal" onClick={e => e.stopPropagation()}>
+            <button className="modal-close-btn" onClick={() => setShowUpgradeModal(false)}>×</button>
             <h2>💎 Upgrade para PRO</h2>
-            <p>Desbloqueie treinos ilimitados e todas as funcionalidades premium</p>
-
-            <div className="plan-comparison">
-              <div className="plan-option">
-                <h4>🆓 FREE</h4>
-                <div className="plan-price">R$ 0</div>
-                <ul className="plan-features">
-                  <li>2 treinos por mês</li>
-                  <li>Nutrição básica</li>
-                  <li>Metas simples</li>
-                </ul>
-              </div>
-              <div className="plan-option selected">
-                <h4>💎 PRO</h4>
-                <div className="plan-price">R$ 9,99<span>/mês</span></div>
-                <ul className="plan-features">
-                  <li>✅ Treinos ilimitados</li>
-                  <li>✅ Todos os recursos</li>
-                  <li>✅ Suporte prioritário</li>
-                  <li>✅ Sem anúncios</li>
-                </ul>
-              </div>
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 20, margin: '20px 0' }}>
+              <div className="stat-card"><h4>FREE</h4><p>2 treinos/mês</p></div>
+              <div className="stat-card" style={{ borderColor: 'var(--primary)' }}><h4>PRO</h4><p>Ilimitado</p></div>
             </div>
-
-            <div className="payment-tabs">
-              <button className={`tab-btn ${paymentTab === 'pix' ? 'active' : ''}`} onClick={() => setPaymentTab('pix')}>🏦 PIX</button>
-              <button className={`tab-btn ${paymentTab === 'card' ? 'active' : ''}`} onClick={() => setPaymentTab('card')}>💳 Cartão</button>
+            <div className="auth-form">
+              <p>Pague R$ 9,99 via PIX ou Cartão</p>
+              <div style={{ textAlign: 'center' }}>
+                <QRCodeSVG value={PIX_PAYLOAD} size={150} />
+              </div>
+              <input type="text" placeholder="Cód. Confirmação" value={pixConfirmCode} onChange={e => setPixConfirmCode(e.target.value)} />
+              <button onClick={handlePixConfirm} className="primary-btn">Confirmar Pagamento</button>
             </div>
-
-            {paymentTab === 'pix' && (
-              <div className="pix-payment-container">
-                <div className="pix-qr-wrapper">
-                  <QRCodeSVG value={PIX_PAYLOAD} size={190} level="M" includeMargin={false} style={{ display: 'block' }} />
-                </div>
-                <div className="pix-info">
-                  <div className="pix-info-row"><span className="label">Beneficiário</span><span className="value">AuraFit Pro</span></div>
-                  <div className="pix-info-row"><span className="label">Banco</span><span className="value">Nubank</span></div>
-                  <div className="pix-info-row"><span className="label">Valor</span><span className="value price">R$ 9,99</span></div>
-                  <div className="pix-info-row"><span className="label">Descrição</span><span className="value">AuraFit PRO — 1 mês</span></div>
-                </div>
-                <div className="pix-instructions">
-                  <h4>📱 Como pagar:</h4>
-                  <ol>
-                    <li>Abra o app do seu banco</li>
-                    <li>Vá em Pix → Pagar com QR Code</li>
-                    <li>Escaneie o código acima</li>
-                    <li>Confirme o pagamento de R$ 9,99</li>
-                    <li>Informe o código de confirmação abaixo</li>
-                  </ol>
-                </div>
-                {pixPending ? (
-                  <div className="payment-pending-notice">⏳ Seu pagamento está em análise. Assim que confirmado, seu plano PRO será ativado automaticamente. Aguarde até 24h.</div>
-                ) : (
-                  <>
-                    <div className="form-group" style={{ width: '100%' }}>
-                      <label>Código de Confirmação (últimos 4 dígitos do comprovante)</label>
-                      <input type="text" placeholder="Ex: 1234" value={pixConfirmCode} onChange={(e) => setPixConfirmCode(e.target.value)} className="form-input" maxLength="20" disabled={processingPayment} />
-                    </div>
-                    <button className="pix-confirm-btn" onClick={handlePixConfirm} disabled={processingPayment}>
-                      {processingPayment ? '⏳ Verificando...' : '✅ Já Paguei — Confirmar'}
-                    </button>
-                    <div className="payment-pending-notice">⚠️ O plano PRO só será ativado após confirmação do pagamento. Não é possível ativar sem pagamento real.</div>
-                  </>
-                )}
-              </div>
-            )}
-
-            {paymentTab === 'card' && (
-              <div className="card-payment-form">
-                <div className="form-group">
-                  <label>Nome no Cartão</label>
-                  <input type="text" placeholder="NOME COMPLETO" value={cardName} onChange={(e) => setCardName(e.target.value.toUpperCase())} className="card-input" disabled={processingPayment} />
-                </div>
-                <div className="form-group">
-                  <label>Número do Cartão</label>
-                  <input type="text" placeholder="0000 0000 0000 0000" value={cardNumber} onChange={(e) => { let v = e.target.value.replace(/\D/g, '').slice(0, 16); v = v.replace(/(.{4})/g, '$1 ').trim(); setCardNumber(v); }} maxLength="19" className="card-input" disabled={processingPayment} />
-                </div>
-                <div className="form-row">
-                  <div className="form-group">
-                    <label>Validade</label>
-                    <input type="text" placeholder="MM/AA" value={cardExpiry} onChange={(e) => { let v = e.target.value.replace(/\D/g, ''); if (v.length >= 2) v = v.slice(0, 2) + '/' + v.slice(2, 4); setCardExpiry(v); }} maxLength="5" className="card-input" disabled={processingPayment} />
-                  </div>
-                  <div className="form-group">
-                    <label>CVV</label>
-                    <input type="text" placeholder="123" value={cardCVC} onChange={(e) => setCardCVC(e.target.value.replace(/\D/g, '').slice(0, 4))} maxLength="4" className="card-input" disabled={processingPayment} />
-                  </div>
-                </div>
-                <div className="payment-pending-notice">⚠️ O plano PRO só será ativado após confirmação real do pagamento pelo administrador.</div>
-                <div className="modal-buttons">
-                  <button onClick={() => setShowUpgradeModal(false)} className="cancel-btn" disabled={processingPayment}>Cancelar</button>
-                  <button onClick={handleCardPayment} className="upgrade-confirm-btn" disabled={processingPayment}>{processingPayment ? '⏳ Processando...' : '💳 Pagar R$ 9,99'}</button>
-                </div>
-              </div>
-            )}
-          </div>
-        </div>
-      )}
-
-      {/* MODAL ADMIN - DADOS BANCÁRIOS */}
-      {showAdminPaymentPanel && user.email === 'andreybribeiro392@gmail.com' && (
-        <div className="modal-overlay" onClick={() => setShowAdminPaymentPanel(false)}>
-          <div className="modal admin-payment-modal" onClick={(e) => e.stopPropagation()}>
-            <button className="modal-close-btn" onClick={() => setShowAdminPaymentPanel(false)}>×</button>
-            <h2>💳 Dados para Recebimento</h2>
-            <p>Configure como você deseja receber os pagamentos</p>
-            <div className="payment-tabs">
-              <button className={`tab-btn ${paymentMethodTab === 'payments' ? 'active' : ''}`} onClick={() => setPaymentMethodTab('payments')}>📋 Pagamentos Pendentes</button>
-              <button className={`tab-btn ${paymentMethodTab === 'pix' ? 'active' : ''}`} onClick={() => setPaymentMethodTab('pix')}>PIX</button>
-              <button className={`tab-btn ${paymentMethodTab === 'card' ? 'active' : ''}`} onClick={() => setPaymentMethodTab('card')}>Cartão</button>
-              <button className={`tab-btn ${paymentMethodTab === 'bank' ? 'active' : ''}`} onClick={() => setPaymentMethodTab('bank')}>Conta</button>
-            </div>
-            {paymentMethodTab === 'payments' && (
-              <div className="payment-method-form">
-                <h3>📋 Pagamentos Aguardando Aprovação</h3>
-                <p style={{ fontSize: '0.9rem', color: 'var(--text-muted)', marginBottom: '16px' }}>Clique em "Aprovar" para liberar o acesso PRO ao usuário</p>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-                  <div style={{ background: 'var(--bg-tertiary)', padding: '16px', borderRadius: 'var(--radius)', border: '1px solid var(--border)' }}>
-                    <p style={{ margin: '0 0 8px 0', fontWeight: '600' }}>💡 Dica: Verificar pagamentos no Firebase</p>
-                    <p style={{ margin: '0', fontSize: '0.85rem', color: 'var(--text-muted)' }}>1. Acesse o Firebase Console</p>
-                    <p style={{ margin: '0', fontSize: '0.85rem', color: 'var(--text-muted)' }}>2. Vá para Firestore Database → payments</p>
-                    <p style={{ margin: '0', fontSize: '0.85rem', color: 'var(--text-muted)' }}>3. Altere o campo "status" para "approved"</p>
-                    <p style={{ margin: '0', fontSize: '0.85rem', color: 'var(--text-muted)' }}>4. O usuário receberá PRO automaticamente no próximo login</p>
-                  </div>
-                </div>
-              </div>
-            )}
-
-            {paymentMethodTab === 'pix' && (
-              <div className="payment-method-form">
-                <h3>Dados do PIX</h3>
-                <div className="form-group">
-                  <label>Tipo de Chave</label>
-                  <select value={adminBankData.pixKeyType} onChange={(e) => setAdminBankData({ ...adminBankData, pixKeyType: e.target.value })} className="form-select">
-                    <option value="random">Chave Aleatória</option>
-                    <option value="cpf">CPF</option>
-                    <option value="email">E-mail</option>
-                    <option value="phone">Telefone</option>
-                  </select>
-                </div>
-                <div className="form-group">
-                  <label>Chave PIX</label>
-                  <input type="text" placeholder="Sua chave PIX" value={adminBankData.pixKey} onChange={(e) => setAdminBankData({ ...adminBankData, pixKey: e.target.value })} className="form-input" />
-                </div>
-                <button onClick={async () => { try { await updateDoc(doc(db, 'users', user.uid), { 'paymentMethods.pix': { keyType: adminBankData.pixKeyType, key: adminBankData.pixKey } }); addToast('Dados do PIX salvos!', 'success', '✅'); } catch (e) { addToast('Erro ao salvar', 'error', '❌'); } }} className="save-btn">💾 Salvar PIX</button>
-              </div>
-            )}
-            {paymentMethodTab === 'card' && (
-              <div className="payment-method-form">
-                <h3>Dados do Cartão</h3>
-                <div className="form-group"><label>Titular</label><input type="text" placeholder="Nome completo" value={adminBankData.cardholderName} onChange={(e) => setAdminBankData({ ...adminBankData, cardholderName: e.target.value })} className="form-input" /></div>
-                <div className="form-group"><label>Número</label><input type="text" placeholder="0000 0000 0000 0000" value={adminBankData.cardNumber} onChange={(e) => setAdminBankData({ ...adminBankData, cardNumber: e.target.value })} className="form-input" /></div>
-                <div className="form-row">
-                  <div className="form-group"><label>Validade</label><input type="text" placeholder="MM/AA" value={adminBankData.cardExpiry} onChange={(e) => setAdminBankData({ ...adminBankData, cardExpiry: e.target.value })} className="form-input" /></div>
-                  <div className="form-group"><label>CVV</label><input type="text" placeholder="123" value={adminBankData.cardCVC} onChange={(e) => setAdminBankData({ ...adminBankData, cardCVC: e.target.value })} className="form-input" /></div>
-                </div>
-                <button onClick={async () => { try { await updateDoc(doc(db, 'users', user.uid), { 'paymentMethods.card': { cardholderName: adminBankData.cardholderName } }); addToast('Dados do cartão salvos!', 'success', '✅'); } catch (e) { addToast('Erro ao salvar', 'error', '❌'); } }} className="save-btn">💾 Salvar Cartão</button>
-              </div>
-            )}
-            {paymentMethodTab === 'bank' && (
-              <div className="payment-method-form">
-                <h3>Conta Bancária</h3>
-                <div className="form-group"><label>Banco</label><input type="text" placeholder="Ex: Nubank" value={adminBankData.bankName} onChange={(e) => setAdminBankData({ ...adminBankData, bankName: e.target.value })} className="form-input" /></div>
-                <div className="form-row">
-                  <div className="form-group"><label>Agência</label><input type="text" placeholder="0001" value={adminBankData.agencyNumber} onChange={(e) => setAdminBankData({ ...adminBankData, agencyNumber: e.target.value })} className="form-input" /></div>
-                  <div className="form-group"><label>Conta</label><input type="text" placeholder="123456" value={adminBankData.accountNumber} onChange={(e) => setAdminBankData({ ...adminBankData, accountNumber: e.target.value })} className="form-input" /></div>
-                </div>
-                <button onClick={async () => { try { await updateDoc(doc(db, 'users', user.uid), { 'paymentMethods.bank': { bankName: adminBankData.bankName } }); addToast('Dados bancários salvos!', 'success', '✅'); } catch (e) { addToast('Erro ao salvar', 'error', '❌'); } }} className="save-btn">💾 Salvar Conta</button>
-              </div>
-            )}
           </div>
         </div>
       )}
