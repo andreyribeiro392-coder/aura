@@ -256,6 +256,18 @@ const MEALS = [
 ];
 
 // ============================================================
+// DADOS DE NUTRIÇÃO (CONVERTIDO DE MEALS)
+// ============================================================
+const NUTRITION_TIPS = [
+  { id: 1, name: 'Café da manhã', category: 'Primeira refeição', image: '🥚', calories: 350, protein: 15, carbs: 35, avoidFoods: ['Açúcar refinado', 'Frituras', 'Sucos artificiais'] },
+  { id: 2, name: 'Lanche da manhã', category: 'Intermediária', image: '🍌', calories: 250, protein: 10, carbs: 30, avoidFoods: ['Biscoitos recheados', 'Salgadinhos'] },
+  { id: 3, name: 'Almoço', category: 'Principal', image: '🍗', calories: 550, protein: 45, carbs: 60, avoidFoods: ['Refrigerantes', 'Sobremesas pesadas'] },
+  { id: 4, name: 'Lanche da tarde', category: 'Intermediária', image: '🥤', calories: 200, protein: 22, carbs: 20, avoidFoods: ['Doces', 'Pães brancos em excesso'] },
+  { id: 5, name: 'Jantar', category: 'Principal', image: '🍳', calories: 380, protein: 28, carbs: 15, avoidFoods: ['Comidas muito pesadas', 'Cafeína'] },
+  { id: 6, name: 'Ceia', category: 'Última refeição', image: '🥛', calories: 150, protein: 12, carbs: 18, avoidFoods: ['Açúcar', 'Alimentos estimulantes'] },
+];
+
+// ============================================================
 // METAS
 // ============================================================
 const GOALS = [
@@ -840,6 +852,56 @@ export default function App() {
         {/* DASHBOARD */}
         {currentPage === 'dashboard' && (
           <div className="dashboard-page">
+
+            {/* CENA DO CARRO ESPORTIVO EM MOVIMENTO */}
+            <div className="car-scene-container" style={{
+              width: '100%',
+              height: '150px',
+              background: 'linear-gradient(to bottom, #1a1a1a, #000)',
+              borderRadius: 'var(--radius)',
+              position: 'relative',
+              overflow: 'hidden',
+              marginBottom: '20px',
+              border: '1px solid var(--border)'
+            }}>
+              <div className="road" style={{
+                position: 'absolute',
+                bottom: '20px',
+                width: '200%',
+                height: '2px',
+                background: 'dashed linear-gradient(90deg, #fff 50%, transparent 50%)',
+                backgroundSize: '40px 2px',
+                animation: 'roadScroll 0.5s linear infinite'
+              }}></div>
+              <div className="sport-car" style={{
+                position: 'absolute',
+                bottom: '15px',
+                left: '50px',
+                fontSize: '3rem',
+                animation: 'carVibrate 0.1s infinite alternate'
+              }}>
+                🏎️💨
+              </div>
+              <div className="scene-text" style={{
+                position: 'absolute',
+                top: '20px',
+                right: '20px',
+                textAlign: 'right'
+              }}>
+                <h3 style={{ color: '#fff', margin: 0 }}>AuraFit Speed</h3>
+                <p style={{ color: 'var(--primary)', margin: 0, fontSize: '0.8rem' }}>Sua evolução não para</p>
+              </div>
+              <style>{`
+                @keyframes roadScroll {
+                  from { transform: translateX(0); }
+                  to { transform: translateX(-40px); }
+                }
+                @keyframes carVibrate {
+                  from { transform: translateY(0); }
+                  to { transform: translateY(-2px); }
+                }
+              `}</style>
+            </div>
             <div className="dashboard-header-premium">
               <div className="time-date-display">
                 <div className="current-time">{currentTime.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit', second: '2-digit' })}</div>
@@ -1127,28 +1189,28 @@ export default function App() {
         )}
 
         {/* NUTRIÇÃO */}
-        {currentPage === 'nutrition' && (
-          <div className="nutrition-page">
-            <div className="page-header"><h2>🍎 Nutrição</h2><p>Planos alimentares para potencializar seus resultados</p></div>
-            <div className="nutrition-grid">
-              {['Café da manhã', 'Lanche da manhã', 'Almoço', 'Lanche da tarde', 'Jantar', 'Ceia'].map((category) => (
-                <div key={category} className="nutrition-category">
-                  <h3>{category}</h3>
-                  <div className="meals-list">
-                    {MEALS.filter((m) => m.category === category).map((meal) => (
-                      <div key={meal.id} className="meal-card">
-                        <div className="meal-card-header"><span className="meal-emoji">{meal.image}</span><h4>{meal.name}</h4></div>
-                        <p className="calories">🔥 {meal.calories} kcal</p>
-                        <p className="macros">🥩 P: {meal.protein}g &nbsp;🌾 C: {meal.carbs}g &nbsp;🥑 G: {meal.fat}g</p>
-                        <p className="ingredients"><strong>Ingredientes:</strong> {meal.ingredients.join(', ')}</p>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        )}
+//         {currentPage === 'nutrition' && (
+//           <div className="nutrition-page">
+//             <div className="page-header"><h2>🍎 Nutrição</h2><p>Planos alimentares para potencializar seus resultados</p></div>
+//             <div className="nutrition-grid">
+//               {['Café da manhã', 'Lanche da manhã', 'Almoço', 'Lanche da tarde', 'Jantar', 'Ceia'].map((category) => (
+//                 <div key={category} className="nutrition-category">
+//                   <h3>{category}</h3>
+//                   <div className="meals-list">
+//                     {MEALS.filter((m) => m.category === category).map((meal) => (
+//                       <div key={meal.id} className="meal-card">
+//                         <div className="meal-card-header"><span className="meal-emoji">{meal.image}</span><h4>{meal.name}</h4></div>
+//                         <p className="calories">🔥 {meal.calories} kcal</p>
+//                         <p className="macros">🥩 P: {meal.protein}g &nbsp;🌾 C: {meal.carbs}g &nbsp;🥑 G: {meal.fat}g</p>
+//                         <p className="ingredients"><strong>Ingredientes:</strong> {meal.ingredients.join(', ')}</p>
+//                       </div>
+//                     ))}
+//                   </div>
+//                 </div>
+//               ))}
+//             </div>
+//           </div>
+//         )}
 
         {/* METAS */}
         {currentPage === 'goals' && (
