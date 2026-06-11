@@ -16,38 +16,102 @@ import './styles/index.css';
 const VideoBackground = () => (
   <div className="video-background">
     <video autoPlay loop muted playsInline>
-      <source src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663735503721/FGPWCmlJmoEbhcmZ.mp4" type="video/mp4" />
+      <source src="https://videos.pexels.com/video-files/32709636/13944311_2160_3840_30fps.mp4" type="video/mp4" />
     </video>
     <div className="video-overlay"></div>
   </div>
 );
 
 const AudioPlayer = () => {
+  const tracks = [
+    { name: "Journey - Roa", url: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663735503721/fRQACxdMWczhpsll.mp3" },
+    { name: "Motivate - Wavecont", url: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663735503721/DRpeLmpMIzPuXJCf.mp3" },
+    { name: "Greenland - Alex-Productions", url: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663735503721/YToOeGqHRGesECtA.mp3" },
+    { name: "Film - Alex-Productions", url: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663735503721/ANOrYoDAXyUYCxwv.mp3" },
+    { name: "Bliss - Luke Bergs", url: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663735503721/yjxdpWHExsGGRgWV.mp3" },
+    { name: "Champion - Alex-Productions", url: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663735503721/UzhZVSZeIGqDiRYm.mp3" },
+    { name: "Heroic - Alex-Productions", url: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663735503721/imLBTGoFyFBiKHmy.mp3" },
+    { name: "Sweet Dreams - BatchBug", url: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663735503721/McrgqvaImKdsVIEs.mp3" },
+    { name: "Born Of The Sky - Scott Buckley", url: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663735503721/TvgUAvlHPUpjUBaC.mp3" },
+    { name: "Rescue Me - LiQWYD", url: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663735503721/bCDlFSCHjVlsoHub.mp3" },
+  ];
+
+  const [currentTrackIndex, setCurrentTrackIndex] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [showDirectory, setShowDirectory] = useState(false);
   const audioRef = useRef(null);
+
+  useEffect(() => {
+    // Tenta tocar automaticamente ao carregar
+    const playPromise = audioRef.current.play();
+    if (playPromise !== undefined) {
+      playPromise.then(() => {
+        setIsPlaying(true);
+      }).catch(error => {
+        console.log("Auto-play blocked by browser. User must interact first.");
+      });
+    }
+  }, [currentTrackIndex]);
 
   const toggleAudio = () => {
     if (isPlaying) {
       audioRef.current.pause();
     } else {
-      audioRef.current.play().catch(err => console.log("Auto-play blocked, wait for user interaction"));
+      audioRef.current.play();
     }
     setIsPlaying(!isPlaying);
   };
 
+  const selectTrack = (index) => {
+    setCurrentTrackIndex(index);
+    setIsPlaying(true);
+  };
+
   return (
-    <>
-      <audio ref={audioRef} loop>
-        <source src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663735503721/UgdjuOJPteQYkHYi.mp3" type="audio/mpeg" />
-      </audio>
-      <button 
-        className={`audio-toggle ${isPlaying ? 'playing' : ''}`} 
-        onClick={toggleAudio}
-        title={isPlaying ? "Pausar Batida" : "Tocar Batida"}
-      >
-        {isPlaying ? '⏸️' : '🎵'}
-      </button>
-    </>
+    <div className="audio-player-wrapper">
+      <audio 
+        ref={audioRef} 
+        src={tracks[currentTrackIndex].url} 
+        onEnded={() => setCurrentTrackIndex((currentTrackIndex + 1) % tracks.length)}
+      />
+      
+      <div className="audio-controls">
+        <button 
+          className={`audio-toggle ${isPlaying ? 'playing' : ''}`} 
+          onClick={toggleAudio}
+          title={isPlaying ? "Pausar" : "Tocar"}
+        >
+          {isPlaying ? '⏸️' : '▶️'}
+        </button>
+        
+        <button 
+          className="directory-toggle"
+          onClick={() => setShowDirectory(!showDirectory)}
+          title="Diretório de Músicas"
+        >
+          {showDirectory ? '✖️' : '🎶'}
+        </button>
+      </div>
+
+      {showDirectory && (
+        <div className="music-directory">
+          <h4>Playlist de Academia</h4>
+          <ul>
+            {tracks.map((track, index) => (
+              <li 
+                key={index} 
+                className={currentTrackIndex === index ? 'active' : ''}
+                onClick={() => selectTrack(index)}
+              >
+                <span className="track-number">{index + 1}</span>
+                <span className="track-name">{track.name}</span>
+                {currentTrackIndex === index && isPlaying && <span className="playing-icon">🔊</span>}
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+    </div>
   );
 };
 
