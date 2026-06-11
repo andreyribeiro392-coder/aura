@@ -1188,29 +1188,7 @@ export default function App() {
           </div>
         )}
 
-        {/* NUTRIÇÃO */}
-//         {currentPage === 'nutrition' && (
-//           <div className="nutrition-page">
-//             <div className="page-header"><h2>🍎 Nutrição</h2><p>Planos alimentares para potencializar seus resultados</p></div>
-//             <div className="nutrition-grid">
-//               {['Café da manhã', 'Lanche da manhã', 'Almoço', 'Lanche da tarde', 'Jantar', 'Ceia'].map((category) => (
-//                 <div key={category} className="nutrition-category">
-//                   <h3>{category}</h3>
-//                   <div className="meals-list">
-//                     {MEALS.filter((m) => m.category === category).map((meal) => (
-//                       <div key={meal.id} className="meal-card">
-//                         <div className="meal-card-header"><span className="meal-emoji">{meal.image}</span><h4>{meal.name}</h4></div>
-//                         <p className="calories">🔥 {meal.calories} kcal</p>
-//                         <p className="macros">🥩 P: {meal.protein}g &nbsp;🌾 C: {meal.carbs}g &nbsp;🥑 G: {meal.fat}g</p>
-//                         <p className="ingredients"><strong>Ingredientes:</strong> {meal.ingredients.join(', ')}</p>
-//                       </div>
-//                     ))}
-//                   </div>
-//                 </div>
-//               ))}
-//             </div>
-//           </div>
-//         )}
+
 
         {/* METAS */}
         {currentPage === 'goals' && (
