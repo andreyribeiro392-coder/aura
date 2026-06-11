@@ -80,7 +80,7 @@ const HOME_WORKOUTS = [
     exercises: [
       { name: 'Flexão na Parede', reps: '3x10', rest: '60s', tip: 'Posicione as mãos na altura dos ombros. Mantenha o corpo reto como uma prancha.' },
       { name: 'Flexão de Joelhos', reps: '3x8', rest: '60s', tip: 'Apoie os joelhos no chão. Desça o peito até quase tocar o chão.' },
-      { name: 'Flexão Normal', reps: '2x5', rest: '60s', tip: 'Tente a version completa. Se não conseguir, volte para a de joelhos.' },
+      { name: 'Flexão Normal', reps: '2x5', rest: '60s', tip: 'Tente a versão completa. Se não conseguir, volte para a de joelhos.' },
       { name: 'Alongamento de Peito', reps: '2x30s', rest: '30s', tip: 'Abra os braços em T e sinta o alongamento no peito.' },
     ],
   },
@@ -267,15 +267,11 @@ const EDUCATION_TIPS = [
   { id: 6, emoji: '📈', title: 'Progressão de Carga', description: 'Para continuar evoluindo, você precisa aumentar progressivamente o estímulo. Fazer sempre o mesmo treino com o mesmo peso leva à estagnação.', tips: ['Aumente 2.5-5% de carga por semana', 'Varie repetições e séries', 'Periodize o treino a cada 4-8 semanas', 'Registre seus treinos para acompanhar'] },
 ];
 
-// Corrigido: NUTRITION_TIPS adicionado
 const NUTRITION_TIPS = [
   { id: 1, name: 'Dieta Equilibrada', category: 'Geral', image: '🥗', calories: 2000, protein: 150, carbs: 200, avoidFoods: ['Açúcar refinado', 'Frituras', 'Refrigerantes'] },
   { id: 2, name: 'Ganho de Massa', category: 'Bulking', image: '🥩', calories: 3000, protein: 200, carbs: 400, avoidFoods: ['Fast food', 'Álcool'] },
 ];
 
-// ============================================================
-// UTILITÁRIOS
-// ============================================================
 function formatTime(seconds) {
   const m = Math.floor(seconds / 60).toString().padStart(2, '0');
   const s = (seconds % 60).toString().padStart(2, '0');
@@ -296,9 +292,6 @@ function getAuthErrorMessage(code) {
   return messages[code] || 'Ocorreu um erro. Tente novamente.';
 }
 
-// ============================================================
-// COMPONENTE TOAST
-// ============================================================
 function Toast({ toasts, removeToast }) {
   return (
     <div className="toast-container">
@@ -312,9 +305,6 @@ function Toast({ toasts, removeToast }) {
   );
 }
 
-// ============================================================
-// APP PRINCIPAL
-// ============================================================
 export default function App() {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -324,7 +314,6 @@ export default function App() {
   const [authError, setAuthError] = useState('');
   const [authSuccess, setAuthSuccess] = useState('');
   const [authLoading, setAuthLoading] = useState(false);
-
   const [darkMode, setDarkMode] = useState(() => {
     const saved = localStorage.getItem('darkMode');
     return saved !== null ? saved === 'true' : true;
@@ -335,35 +324,28 @@ export default function App() {
   const [completedWorkoutsCount, setCompletedWorkoutsCount] = useState(0);
   const [userProfile, setUserProfile] = useState({ name: '', photoURL: '' });
   const [weeklyGoals, setWeeklyGoals] = useState({});
-
   const [selectedWorkout, setSelectedWorkout] = useState(null);
   const [selectedGymWorkout, setSelectedGymWorkout] = useState(null);
   const [completedExercises, setCompletedExercises] = useState([]);
   const [homeWorkoutFilter, setHomeWorkoutFilter] = useState('Todos');
   const [gymWorkoutFilter, setGymWorkoutFilter] = useState('Todos');
-
   const [timerTime, setTimerTime] = useState(0);
   const [timerActive, setTimerActive] = useState(false);
   const [timerMode, setTimerMode] = useState('ascending');
   const [timerSetMinutes, setTimerSetMinutes] = useState(10);
   const [timerSetSeconds, setTimerSetSeconds] = useState(0);
   const timerRef = useRef(null);
-
   const [storeProducts, setStoreProducts] = useState([]);
   const [showAdminPanel, setShowAdminPanel] = useState(false);
   const [newProduct, setNewProduct] = useState({ name: '', category: 'Suplementos', price: '', image: '💊', imageUrl: '', description: '', link: '' });
   const [editingProductId, setEditingProductId] = useState(null);
-
   const [expandedEducation, setExpandedEducation] = useState(null);
   const [profileName, setProfileName] = useState('');
   const [savingProfile, setSavingProfile] = useState(false);
-
   const [showUpgradeModal, setShowUpgradeModal] = useState(false);
   const [showAdminPaymentPanel, setShowAdminPaymentPanel] = useState(false);
   const [showProMenu, setShowProMenu] = useState(false);
   const [paymentTab, setPaymentTab] = useState('pix');
-  const [paymentMethodTab, setPaymentMethodTab] = useState('pix');
-
   const [processingPayment, setProcessingPayment] = useState(false);
   const [cardNumber, setCardNumber] = useState('');
   const [cardExpiry, setCardExpiry] = useState('');
@@ -371,17 +353,8 @@ export default function App() {
   const [cardName, setCardName] = useState('');
   const [pixConfirmCode, setPixConfirmCode] = useState('');
   const [pixPending, setPixPending] = useState(false);
-
-  const [adminBankData, setAdminBankData] = useState({
-    pixKeyType: 'random', pixKey: '',
-    cardholderName: '', cardNumber: '', cardExpiry: '', cardCVC: '',
-    bankName: '', agencyNumber: '', accountNumber: '',
-  });
-
   const [toasts, setToasts] = useState([]);
   const toastId = useRef(0);
-
-  const [exerciseTimers, setExerciseTimers] = useState({});
   const [userMeals, setUserMeals] = useState({});
   const [selectedNutrition, setSelectedNutrition] = useState(null);
   const [mealInput, setMealInput] = useState('');
@@ -399,7 +372,6 @@ export default function App() {
   }, []);
 
   useEffect(() => { localStorage.setItem('darkMode', darkMode); }, [darkMode]);
-
   useEffect(() => {
     const timer = setInterval(() => setCurrentTime(new Date()), 1000);
     return () => clearInterval(timer);
@@ -418,21 +390,6 @@ export default function App() {
     return unsub;
   }, []);
 
-  async function checkPendingPayments(uid) {
-    try {
-      const paymentRef = doc(db, 'payments', uid);
-      const paymentSnap = await getDoc(paymentRef);
-      if (paymentSnap.exists()) {
-        const payment = paymentSnap.data();
-        if (payment.status === 'approved' || payment.status === 'aproved') {
-          await updateDoc(doc(db, 'users', uid), { plan: 'pro', upgradedAt: serverTimestamp() });
-          setUserPlan('pro');
-          addToast('Pagamento aprovado! Bem-vindo ao PRO! 🎉', 'success', '💎');
-        }
-      }
-    } catch (e) { console.error('Erro ao verificar pagamentos:', e); }
-  }
-
   async function loadUserData(uid) {
     try {
       const snap = await getDoc(doc(db, 'users', uid));
@@ -446,7 +403,6 @@ export default function App() {
         setWeeklyGoals(data.weeklyGoals || {});
         setUserProfile({ name: data.name || '', photoURL: data.photoURL || '' });
         setProfileName(data.name || '');
-        await checkPendingPayments(uid);
       }
     } catch (e) { console.error('Erro ao carregar dados:', e); }
   }
@@ -476,22 +432,6 @@ export default function App() {
     }
     return () => clearInterval(timerRef.current);
   }, [timerActive, timerMode, addToast]);
-
-  function startDescendingTimer() {
-    const totalSeconds = timerSetMinutes * 60 + timerSetSeconds;
-    if (totalSeconds <= 0) { addToast('Configure um tempo válido', 'error', '❌'); return; }
-    setTimerTime(totalSeconds);
-    setTimerMode('descending');
-    setTimerActive(true);
-  }
-
-  function getTimerClass() {
-    if (timerMode === 'descending') {
-      if (timerTime <= 10 && timerTime > 0) return 'timer-display danger';
-      if (timerTime <= 30) return 'timer-display warning';
-    }
-    return 'timer-display';
-  }
 
   function addMeal(nutritionId, meal) {
     if (!meal.trim()) return;
@@ -590,20 +530,12 @@ export default function App() {
     setProcessingPayment(true);
     try {
       const paymentRef = doc(db, 'payments', user.uid);
-      const paymentSnap = await getDoc(paymentRef);
-      if (paymentSnap.exists() && paymentSnap.data().status === 'approved') {
-        await updateDoc(doc(db, 'users', user.uid), { plan: 'pro', upgradedAt: serverTimestamp() });
-        setUserPlan('pro');
-        setShowUpgradeModal(false);
-        addToast('Bem-vindo ao PRO! 🎉', 'success', '💎');
-      } else {
-        await setDoc(paymentRef, {
-          userId: user.uid, email: user.email, amount: 9.99, method: 'pix',
-          confirmCode: pixConfirmCode.trim(), status: 'pending', requestedAt: serverTimestamp(),
-        });
-        setPixPending(true);
-        addToast('Pagamento em análise. Aguarde a confirmação.', 'warning', '⏳');
-      }
+      await setDoc(paymentRef, {
+        userId: user.uid, email: user.email, amount: 9.99, method: 'pix',
+        confirmCode: pixConfirmCode.trim(), status: 'pending', requestedAt: serverTimestamp(),
+      });
+      setPixPending(true);
+      addToast('Pagamento em análise. Aguarde a confirmação.', 'warning', '⏳');
     } catch (e) { addToast('Erro ao verificar pagamento', 'error', '❌'); }
     finally { setProcessingPayment(false); }
   }
@@ -631,14 +563,6 @@ export default function App() {
       addToast('Perfil atualizado!', 'success', '✅');
     } catch (e) { addToast('Erro ao salvar perfil', 'error', '❌'); }
     finally { setSavingProfile(false); }
-  }
-
-  async function saveWeeklyGoal(goalName, day, value) {
-    const key = `${goalName}-${day}`;
-    const newGoals = { ...weeklyGoals, [key]: value };
-    setWeeklyGoals(newGoals);
-    try { await updateDoc(doc(db, 'users', user.uid), { weeklyGoals: newGoals }); }
-    catch (e) { console.error('Erro ao salvar meta:', e); }
   }
 
   const filteredHomeWorkouts = homeWorkoutFilter === 'Todos' ? HOME_WORKOUTS : HOME_WORKOUTS.filter((w) => w.level === homeWorkoutFilter);
@@ -763,6 +687,33 @@ export default function App() {
           </div>
         )}
 
+        {currentPage === 'gym-workouts' && (
+          <div className="gym-workouts-page">
+            <div style={{ display: 'flex', gap: 10, marginBottom: 24, overflowX: 'auto', paddingBottom: 10 }}>
+              {gymCategories.map(c => (
+                <button key={c} className={`badge ${gymWorkoutFilter === c ? 'badge-muscle' : ''}`} onClick={() => setGymWorkoutFilter(c)}>{c}</button>
+              ))}
+            </div>
+            <div className="gym-workouts-grid">
+              {filteredGymWorkouts.map(w => (
+                <div key={w.id} className="gym-workout-card">
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+                    <div style={{ fontSize: '2rem' }}>{w.image}</div>
+                    <span className="badge badge-muscle">{w.category}</span>
+                  </div>
+                  <h3>{w.name}</h3>
+                  <div style={{ display: 'flex', gap: 12, fontSize: '0.85rem', color: 'var(--text-secondary)' }}>
+                    <span>🔄 {w.sets} séries</span>
+                    <span>🔢 {w.reps} reps</span>
+                    <span>⏱️ {w.rest} desc.</span>
+                  </div>
+                  <p style={{ fontSize: '0.9rem' }}>{w.description}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
         {currentPage === 'nutrition' && (
           <div className="nutrition-page">
             <div className="nutrition-grid">
@@ -791,52 +742,6 @@ export default function App() {
           </div>
         )}
 
-        {currentPage === 'store' && (
-          <div className="store-page">
-            {user.email === 'andreybribeiro392@gmail.com' && (
-              <button onClick={() => setShowAdminPanel(!showAdminPanel)} className="primary-btn" style={{ marginBottom: 20 }}>⚙️ Admin Loja</button>
-            )}
-            <div className="products-grid">
-              {storeProducts.map(p => (
-                <div key={p.id} className="product-card">
-                  <div style={{ fontSize: '3rem', textAlign: 'center' }}>{p.image}</div>
-                  <h3>{p.name}</h3>
-                  <p>{p.description}</p>
-                  <p className="stat-number" style={{ fontSize: '1.5rem' }}>R$ {p.price}</p>
-                  <a href={p.link} target="_blank" rel="noreferrer" className="primary-btn">Comprar</a>
-                </div>
-              ))}
-            </div>
-          </div>
-        )}
-
-        {currentPage === 'gym-workouts' && (
-          <div className="gym-workouts-page">
-            <div style={{ display: 'flex', gap: 10, marginBottom: 24, overflowX: 'auto', paddingBottom: 10 }}>
-              {gymCategories.map(c => (
-                <button key={c} className={`badge ${gymWorkoutFilter === c ? 'badge-muscle' : ''}`} onClick={() => setGymWorkoutFilter(c)}>{c}</button>
-              ))}
-            </div>
-            <div className="gym-workouts-grid">
-              {filteredGymWorkouts.map(w => (
-                <div key={w.id} className="gym-workout-card">
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
-                    <div style={{ fontSize: '2rem' }}>{w.image}</div>
-                    <span className="badge badge-muscle">{w.category}</span>
-                  </div>
-                  <h3>{w.name}</h3>
-                  <div style={{ display: 'flex', gap: 12, fontSize: '0.85rem', color: 'var(--text-secondary)' }}>
-                    <span>🔄 {w.sets} séries</span>
-                    <span>🔢 {w.reps} reps</span>
-                    <span>⏱️ {w.rest} desc.</span>
-                  </div>
-                  <p style={{ fontSize: '0.9rem' }}>{w.description}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        )}
-
         {currentPage === 'goals' && (
           <div className="goals-page">
             <div className="goals-grid">
@@ -851,6 +756,34 @@ export default function App() {
                       {goal.tips.map((tip, i) => <li key={i}>{tip}</li>)}
                     </ul>
                   </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {currentPage === 'store' && (
+          <div className="store-page">
+            {user.email === 'andreybribeiro392@gmail.com' && (
+              <div className="stat-card" style={{ marginBottom: 24 }}>
+                <button onClick={() => setShowAdminPanel(!showAdminPanel)} className="primary-btn">⚙️ Gerenciar Loja</button>
+                {showAdminPanel && (
+                  <div className="auth-form" style={{ marginTop: 16 }}>
+                    <input type="text" placeholder="Nome" value={newProduct.name} onChange={e => setNewProduct({...newProduct, name: e.target.value})} />
+                    <input type="number" placeholder="Preço" value={newProduct.price} onChange={e => setNewProduct({...newProduct, price: e.target.value})} />
+                    <button onClick={handleSaveProduct} className="primary-btn">Salvar Produto</button>
+                  </div>
+                )}
+              </div>
+            )}
+            <div className="products-grid">
+              {storeProducts.map(p => (
+                <div key={p.id} className="product-card">
+                  <div style={{ fontSize: '3rem', textAlign: 'center' }}>{p.image}</div>
+                  <h3>{p.name}</h3>
+                  <p>{p.description}</p>
+                  <p className="stat-number" style={{ fontSize: '1.5rem' }}>R$ {p.price}</p>
+                  <a href={p.link} target="_blank" rel="noreferrer" className="primary-btn">Comprar</a>
                 </div>
               ))}
             </div>
@@ -876,7 +809,6 @@ export default function App() {
           </div>
         )}
 
-        {/* PERFIL */}
         {currentPage === 'profile' && (
           <div className="modal" style={{ maxWidth: '100%' }}>
             <h2>Meu Perfil</h2>
@@ -893,7 +825,6 @@ export default function App() {
         )}
       </main>
 
-      {/* MODAL UPGRADE */}
       {showUpgradeModal && (
         <div className="modal-overlay" onClick={() => setShowUpgradeModal(false)}>
           <div className="modal" onClick={e => e.stopPropagation()}>
