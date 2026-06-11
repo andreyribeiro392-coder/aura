@@ -76,7 +76,7 @@ const HOME_WORKOUTS = [
     id: 2, name: 'Flexões para Iniciantes', level: 'Iniciante', muscleGroup: 'Peito',
     duration: '15 min', difficulty: 1, image: '💪',
     description: 'Desenvolva força no peito, ombros e tríceps com variações acessíveis de flexão. Perfeito para quem está começando a treinar em casa.',
-    benefits: ['Fortalece peito e tríceps', 'Melhora postura', 'Sem equipamento necessário'],
+    benefits: ['FortAlece peito e tríceps', 'Melhora postura', 'Sem equipamento necessário'],
     exercises: [
       { name: 'Flexão na Parede', reps: '3x10', rest: '60s', tip: 'Posicione as mãos na altura dos ombros. Mantenha o corpo reto como uma prancha.' },
       { name: 'Flexão de Joelhos', reps: '3x8', rest: '60s', tip: 'Apoie os joelhos no chão. Desça o peito até quase tocar o chão.' },
