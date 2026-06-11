@@ -13,6 +13,15 @@ import {
 import { QRCodeSVG } from 'qrcode.react';
 import './styles/index.css';
 
+const VideoBackground = () => (
+  <div className="video-background">
+    <video autoPlay loop muted playsInline>
+      <source src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663735503721/FGPWCmlJmoEbhcmZ.mp4" type="video/mp4" />
+    </video>
+    <div className="video-overlay"></div>
+  </div>
+);
+
 // ============================================================
 // PIX PAYLOAD (BR Code / EMV) - Nubank Chave Aleatória
 // ============================================================
@@ -715,6 +724,7 @@ export default function App() {
   if (!user) {
     return (
       <div className={`auth-container ${darkMode ? 'dark' : ''}`}>
+        <VideoBackground />
         <div className="auth-box">
           <div className="auth-logo">
             <img src="/favicon_weight.png" alt="AuraFit Logo" />
@@ -756,6 +766,7 @@ export default function App() {
   // ============================================================
   return (
     <div className={`app-container ${darkMode ? 'dark' : ''}`}>
+      <VideoBackground />
 
       {/* HEADER */}
       <header className="header">

@@ -2745,3 +2745,46 @@ img { max-width: 100%; height: auto; }
     font-size: 1.3rem;
   }
 }
+
+/* ============================================================
+   VIDEO BACKGROUND
+   ============================================================ */
+.video-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  overflow: hidden;
+}
+
+.video-background video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.6; /* Ajuste a opacidade conforme necessário para manter a legibilidade */
+}
+
+/* Overlay para garantir contraste */
+.video-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4); /* Escurece um pouco o vídeo */
+  z-index: 0;
+}
+
+/* Ajuste nos containers para ficarem sobre o vídeo */
+.auth-container, .app-container {
+  background: transparent !important;
+  position: relative;
+  z-index: 1;
+}
+
+/* Garante que o fundo do auth-container não esconda o vídeo */
+.auth-container::before {
+  display: none; /* Remove o gradiente original para mostrar o vídeo */
+}
