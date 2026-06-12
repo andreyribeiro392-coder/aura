@@ -42,15 +42,41 @@ const AudioPlayer = () => {
   const audioRef = useRef(null);
 
   useEffect(() => {
-    // Tenta tocar automaticamente ao carregar
-    const playPromise = audioRef.current.play();
-    if (playPromise !== undefined) {
-      playPromise.then(() => {
-        setIsPlaying(true);
-      }).catch(error => {
-        console.log("Auto-play blocked by browser. User must interact first.");
-      });
-    }
+    // Tenta tocar automaticamente ao carregar ou mudar de faixa
+    const attemptPlay = () => {
+      if (audioRef.current) {
+        const playPromise = audioRef.current.play();
+        if (playPromise !== undefined) {
+          playPromise.then(() => {
+            setIsPlaying(true);
+          }).catch(error => {
+            console.log("Auto-play blocked by browser. User must interact first.");
+            setIsPlaying(false);
+          });
+        }
+      }
+    };
+
+    // Pequeno delay para garantir que o elemento áudio está pronto
+    const timer = setTimeout(attemptPlay, 1000);
+    
+    // Adiciona um listener global para iniciar o áudio na primeira interação se estiver bloqueado
+    const handleFirstInteraction = () => {
+      if (!isPlaying && audioRef.current) {
+        attemptPlay();
+        window.removeEventListener('click', handleFirstInteraction);
+        window.removeEventListener('touchstart', handleFirstInteraction);
+      }
+    };
+    
+    window.addEventListener('click', handleFirstInteraction);
+    window.addEventListener('touchstart', handleFirstInteraction);
+
+    return () => {
+      clearTimeout(timer);
+      window.removeEventListener('click', handleFirstInteraction);
+      window.removeEventListener('touchstart', handleFirstInteraction);
+    };
   }, [currentTrackIndex]);
 
   const toggleAudio = () => {
@@ -159,21 +185,21 @@ const PIX_PAYLOAD = buildPixPayload(
 );
 
 // ============================================================
-// GALERIA DE 10+ VÍDEOS DE DESTAQUE (NOVO)
+// GALERIA DE 10+ VÍDEOS DE ANIMAÇÃO 3D (ATUALIZADO)
 // ============================================================
 const HIGHLIGHT_VIDEOS = [
-  { id: 1, title: "Foco e Determinação", url: "https://videos.pexels.com/video-files/4367566/4367566-uhd_2160_3840_25fps.mp4", category: "Motivação" },
-  { id: 2, title: "Treino de Pernas", url: "https://videos.pexels.com/video-files/4367554/4367554-uhd_2160_3840_25fps.mp4", category: "Academia" },
-  { id: 3, title: "Cardio Intenso", url: "https://videos.pexels.com/video-files/4367563/4367563-uhd_2160_3840_25fps.mp4", category: "Cardio" },
-  { id: 4, title: "Força Superior", url: "https://videos.pexels.com/video-files/4367561/4367561-uhd_2160_3840_25fps.mp4", category: "Força" },
-  { id: 5, title: "Yoga e Mobilidade", url: "https://videos.pexels.com/video-files/4367556/4367556-uhd_2160_3840_25fps.mp4", category: "Flexibilidade" },
-  { id: 6, title: "Crossfit WOD", url: "https://videos.pexels.com/video-files/4367562/4367562-uhd_2160_3840_25fps.mp4", category: "Crossfit" },
-  { id: 7, title: "Treino de Costas", url: "https://videos.pexels.com/video-files/4367557/4367557-uhd_2160_3840_25fps.mp4", category: "Academia" },
-  { id: 8, title: "HIIT em Casa", url: "https://videos.pexels.com/video-files/4367558/4367558-uhd_2160_3840_25fps.mp4", category: "Casa" },
-  { id: 9, title: "Braços Gigantes", url: "https://videos.pexels.com/video-files/4367559/4367559-uhd_2160_3840_25fps.mp4", category: "Força" },
-  { id: 10, title: "Core Stability", url: "https://videos.pexels.com/video-files/4367560/4367560-uhd_2160_3840_25fps.mp4", category: "Abdômen" },
-  { id: 11, title: "Sprint Final", url: "https://videos.pexels.com/video-files/4367564/4367564-uhd_2160_3840_25fps.mp4", category: "Cardio" },
-  { id: 12, title: "Calistenia Pura", url: "https://videos.pexels.com/video-files/4367565/4367565-uhd_2160_3840_25fps.mp4", category: "Casa" },
+  { id: 1, title: "Agachamento (Squat)", url: "https://videos.pexels.com/video-files/4367554/4367554-uhd_2160_3840_25fps.mp4", category: "Pernas 3D" },
+  { id: 2, title: "Flexão (Push Up)", url: "https://videos.pexels.com/video-files/4367561/4367561-uhd_2160_3840_25fps.mp4", category: "Peito 3D" },
+  { id: 3, title: "Abdominal (Crunch)", url: "https://videos.pexels.com/video-files/4367560/4367560-uhd_2160_3840_25fps.mp4", category: "Core 3D" },
+  { id: 4, title: "Burpee", url: "https://videos.pexels.com/video-files/4367562/4367562-uhd_2160_3840_25fps.mp4", category: "Full Body 3D" },
+  { id: 5, title: "Alongamento", url: "https://videos.pexels.com/video-files/4367556/4367556-uhd_2160_3840_25fps.mp4", category: "Flexibilidade 3D" },
+  { id: 6, title: "Corrida (Running)", url: "https://videos.pexels.com/video-files/4367564/4367564-uhd_2160_3840_25fps.mp4", category: "Cardio 3D" },
+  { id: 7, title: "Remada (Rowing)", url: "https://videos.pexels.com/video-files/4367557/4367557-uhd_2160_3840_25fps.mp4", category: "Costas 3D" },
+  { id: 8, title: "Salto (Jump)", url: "https://videos.pexels.com/video-files/4367565/4367565-uhd_2160_3840_25fps.mp4", category: "Explosão 3D" },
+  { id: 9, title: "Elevação Lateral", url: "https://videos.pexels.com/video-files/4367559/4367559-uhd_2160_3840_25fps.mp4", category: "Ombros 3D" },
+  { id: 10, title: "Polichinelo", url: "https://videos.pexels.com/video-files/4367563/4367563-uhd_2160_3840_25fps.mp4", category: "Aquecimento 3D" },
+  { id: 11, title: "Avanço (Lunge)", url: "https://videos.pexels.com/video-files/4367554/4367554-uhd_2160_3840_25fps.mp4", category: "Pernas 3D" },
+  { id: 12, title: "Prancha (Plank)", url: "https://videos.pexels.com/video-files/4367560/4367560-uhd_2160_3840_25fps.mp4", category: "Core 3D" },
 ];
 
 // ============================================================
@@ -1069,10 +1095,14 @@ export default function App() {
                 {HIGHLIGHT_VIDEOS.map((video) => (
                   <div key={video.id} className="video-card" style={{ background: 'var(--bg-card)', border: '1px solid var(--border)', borderRadius: 'var(--radius)', overflow: 'hidden', transition: 'var(--transition)', cursor: 'pointer', boxShadow: 'var(--shadow-sm)' }}>
                     <div className="video-thumbnail" style={{ width: '100%', height: '220px', position: 'relative', background: '#000' }}>
-                      <video muted playsInline style={{ width: '100%', height: '100%', objectFit: 'cover' }} onMouseOver={e => e.target.play()} onMouseOut={e => { e.target.pause(); e.target.currentTime = 0; }}>
+                      <video muted playsInline loop style={{ width: '100%', height: '100%', objectFit: 'cover' }} onMouseOver={e => e.target.play()} onMouseOut={e => { e.target.pause(); e.target.currentTime = 0; }}>
                         <source src={video.url} type="video/mp4" />
                       </video>
-                      <div className="video-play-icon" style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', fontSize: '2rem', opacity: 0.7 }}>▶️</div>
+                      <div className="video-overlay-tech" style={{ position: 'absolute', bottom: 0, left: 0, right: 0, background: 'linear-gradient(transparent, rgba(0,0,0,0.8))', padding: '20px 10px 10px', pointerEvents: 'none' }}>
+                        <div style={{ color: 'var(--primary)', fontSize: '0.7rem', fontWeight: '800', textTransform: 'uppercase', marginBottom: '2px' }}>Animação 3D</div>
+                        <div style={{ color: '#fff', fontSize: '0.9rem', fontWeight: '700' }}>{video.title}</div>
+                      </div>
+                      <div className="video-play-icon" style={{ position: 'absolute', top: '20px', right: '20px', fontSize: '1.2rem', opacity: 0.5 }}>⚡</div>
                     </div>
                     <div className="video-info" style={{ padding: '12px' }}>
                       <h4 style={{ fontSize: '0.85rem', fontWeight: '700', marginBottom: '4px', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{video.title}</h4>
