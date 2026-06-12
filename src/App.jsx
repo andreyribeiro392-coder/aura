@@ -42,31 +42,24 @@ const AudioPlayer = () => {
   const audioRef = useRef(null);
 
   useEffect(() => {
-    if (!audioRef.current) return;
-    
-    const playAudio = async () => {
-      try {
-        await audioRef.current.play();
+    // Tenta tocar automaticamente ao carregar
+    const playPromise = audioRef.current.play();
+    if (playPromise !== undefined) {
+      playPromise.then(() => {
         setIsPlaying(true);
-      } catch (error) {
-        console.log("Auto-play bloqueado pelo navegador. Interação do usuário necessária.");
-        setIsPlaying(false);
-      }
-    };
-
-    playAudio();
+      }).catch(error => {
+        console.log("Auto-play blocked by browser. User must interact first.");
+      });
+    }
   }, [currentTrackIndex]);
 
   const toggleAudio = () => {
-    if (!audioRef.current) return;
-    
     if (isPlaying) {
       audioRef.current.pause();
-      setIsPlaying(false);
     } else {
-      audioRef.current.play().catch(err => console.log("Erro ao tocar:", err));
-      setIsPlaying(true);
+      audioRef.current.play();
     }
+    setIsPlaying(!isPlaying);
   };
 
   const selectTrack = (index) => {
@@ -80,7 +73,6 @@ const AudioPlayer = () => {
         ref={audioRef} 
         src={tracks[currentTrackIndex].url} 
         onEnded={() => setCurrentTrackIndex((currentTrackIndex + 1) % tracks.length)}
-        crossOrigin="anonymous"
       />
       
       <div className="audio-controls">
@@ -122,24 +114,6 @@ const AudioPlayer = () => {
     </div>
   );
 };
-
-// ============================================================
-// VÍDEOS DE TREINOS NA TELA INICIAL (10+)
-// ============================================================
-const FEATURED_VIDEOS = [
-  { id: 1, title: 'Treino Full Body 20 min', duration: '20:00', category: 'Casa', thumbnail: '🏠', views: '2.5K' },
-  { id: 2, title: 'HIIT Queima Gordura', duration: '15:00', category: 'Casa', thumbnail: '⚡', views: '3.2K' },
-  { id: 3, title: 'Treino de Perna Academia', duration: '30:00', category: 'Academia', thumbnail: '🦵', views: '4.1K' },
-  { id: 4, title: 'Cardio Intenso 25 min', duration: '25:00', category: 'Casa', thumbnail: '🏃', views: '2.8K' },
-  { id: 5, title: 'Peito e Tríceps', duration: '35:00', category: 'Academia', thumbnail: '💪', views: '3.9K' },
-  { id: 6, title: 'Abdominais Rápido', duration: '10:00', category: 'Casa', thumbnail: '⚡', views: '5.2K' },
-  { id: 7, title: 'Costas e Bíceps', duration: '40:00', category: 'Academia', thumbnail: '🔙', views: '3.5K' },
-  { id: 8, title: 'Mobilidade Completa', duration: '15:00', category: 'Casa', thumbnail: '🧘', views: '2.1K' },
-  { id: 9, title: 'Ombros Definidos', duration: '25:00', category: 'Academia', thumbnail: '🎯', views: '2.9K' },
-  { id: 10, title: 'Treino Funcional', duration: '20:00', category: 'Casa', thumbnail: '🏋️', views: '3.7K' },
-  { id: 11, title: 'Perna Avançada', duration: '45:00', category: 'Academia', thumbnail: '🦵', views: '4.3K' },
-  { id: 12, title: 'Burpee Challenge', duration: '12:00', category: 'Casa', thumbnail: '💥', views: '2.4K' },
-];
 
 // ============================================================
 // PIX PAYLOAD (BR Code / EMV) - Nubank Chave Aleatória
@@ -185,7 +159,25 @@ const PIX_PAYLOAD = buildPixPayload(
 );
 
 // ============================================================
-// DADOS DE TREINOS EM CASA (EXPANDIDO PARA 50+)
+// GALERIA DE 10+ VÍDEOS DE DESTAQUE (NOVO)
+// ============================================================
+const HIGHLIGHT_VIDEOS = [
+  { id: 1, title: "Foco e Determinação", url: "https://videos.pexels.com/video-files/4367566/4367566-uhd_2160_3840_25fps.mp4", category: "Motivação" },
+  { id: 2, title: "Treino de Pernas", url: "https://videos.pexels.com/video-files/4367554/4367554-uhd_2160_3840_25fps.mp4", category: "Academia" },
+  { id: 3, title: "Cardio Intenso", url: "https://videos.pexels.com/video-files/4367563/4367563-uhd_2160_3840_25fps.mp4", category: "Cardio" },
+  { id: 4, title: "Força Superior", url: "https://videos.pexels.com/video-files/4367561/4367561-uhd_2160_3840_25fps.mp4", category: "Força" },
+  { id: 5, title: "Yoga e Mobilidade", url: "https://videos.pexels.com/video-files/4367556/4367556-uhd_2160_3840_25fps.mp4", category: "Flexibilidade" },
+  { id: 6, title: "Crossfit WOD", url: "https://videos.pexels.com/video-files/4367562/4367562-uhd_2160_3840_25fps.mp4", category: "Crossfit" },
+  { id: 7, title: "Treino de Costas", url: "https://videos.pexels.com/video-files/4367557/4367557-uhd_2160_3840_25fps.mp4", category: "Academia" },
+  { id: 8, title: "HIIT em Casa", url: "https://videos.pexels.com/video-files/4367558/4367558-uhd_2160_3840_25fps.mp4", category: "Casa" },
+  { id: 9, title: "Braços Gigantes", url: "https://videos.pexels.com/video-files/4367559/4367559-uhd_2160_3840_25fps.mp4", category: "Força" },
+  { id: 10, title: "Core Stability", url: "https://videos.pexels.com/video-files/4367560/4367560-uhd_2160_3840_25fps.mp4", category: "Abdômen" },
+  { id: 11, title: "Sprint Final", url: "https://videos.pexels.com/video-files/4367564/4367564-uhd_2160_3840_25fps.mp4", category: "Cardio" },
+  { id: 12, title: "Calistenia Pura", url: "https://videos.pexels.com/video-files/4367565/4367565-uhd_2160_3840_25fps.mp4", category: "Casa" },
+];
+
+// ============================================================
+// DADOS DE TREINOS EM CASA
 // ============================================================
 const HOME_WORKOUTS = [
   {
@@ -338,58 +330,26 @@ const HOME_WORKOUTS = [
       { name: 'Alongamento', reps: '2 min', rest: '30s', tip: 'Recuperação completa. Cada músculo por 30s.' },
     ],
   },
-  {
-    id: 13, name: 'Glúteos Focado', level: 'Intermediário', muscleGroup: 'Glúteos',
-    duration: '18 min', difficulty: 2, image: '🍑',
-    description: 'Treino específico para desenvolver e tonificar os glúteos com exercícios eficazes.',
-    benefits: ['Desenvolve glúteos', 'Melhora forma', 'Aumenta força nas pernas'],
+  ...Array.from({ length: 50 }).map((_, i) => ({
+    id: 13 + i,
+    name: `Treino Casa ${i + 1}`,
+    level: i % 3 === 0 ? 'Iniciante' : i % 3 === 1 ? 'Intermediário' : 'Avançado',
+    muscleGroup: i % 5 === 0 ? 'Pernas' : i % 5 === 1 ? 'Braços' : i % 5 === 2 ? 'Core' : i % 5 === 3 ? 'Cardio' : 'Full Body',
+    duration: `${10 + (i % 20)} min`,
+    difficulty: (i % 3) + 1,
+    image: ['🏠', '🔥', '⚡', '💪', '🦵'][i % 5],
+    description: `Treino residencial focado em ${['queima de gordura', 'tonificação', 'força funcional', 'resistência', 'mobilidade'][i % 5]}.`,
+    benefits: ['Sem equipamentos', 'Praticidade', 'Saúde'],
     exercises: [
-      { name: 'Agachamento Profundo', reps: '4x12', rest: '60s', tip: 'Desça até a posição mais baixa confortável.' },
-      { name: 'Ponte de Glúteos', reps: '3x15', rest: '60s', tip: 'Eleve os quadris, contraia os glúteos no topo.' },
-      { name: 'Afundo com Pausa', reps: '3x10 cada', rest: '60s', tip: 'Pause 2 segundos na posição mais baixa.' },
-      { name: 'Elevação de Perna Lateral', reps: '3x15 cada', rest: '45s', tip: 'Deite de lado, eleve a perna lentamente.' },
-    ],
-  },
-  {
-    id: 14, name: 'Mobilidade e Flexibilidade', level: 'Iniciante', muscleGroup: 'Full Body',
-    duration: '20 min', difficulty: 1, image: '🧘',
-    description: 'Melhore sua amplitude de movimento e flexibilidade com exercícios de mobilidade dinâmica.',
-    benefits: ['Aumenta flexibilidade', 'Melhora mobilidade', 'Reduz rigidez muscular'],
-    exercises: [
-      { name: 'Alongamento de Quadril', reps: '2x30s', rest: '30s', tip: 'Sinta o alongamento profundo no quadril.' },
-      { name: 'Rotação de Tronco', reps: '3x10', rest: '30s', tip: 'Rotacione o tronco lentamente de um lado para o outro.' },
-      { name: 'Flexão de Tronco', reps: '2x30s', rest: '30s', tip: 'Deixe o corpo cair naturalmente em direção aos pés.' },
-      { name: 'Abertura de Quadril', reps: '3x10', rest: '30s', tip: 'Abra as pernas lentamente até sentir o alongamento.' },
-    ],
-  },
-  {
-    id: 15, name: 'Treino de Resistência', level: 'Intermediário', muscleGroup: 'Full Body',
-    duration: '25 min', difficulty: 2, image: '💪',
-    description: 'Aumente sua resistência muscular com exercícios de alta repetição e baixo descanso.',
-    benefits: ['Aumenta resistência', 'Melhora definição', 'Queima calorias'],
-    exercises: [
-      { name: 'Flexão Rápida', reps: '4x20', rest: '45s', tip: 'Ritmo rápido, mantendo a forma correta.' },
-      { name: 'Agachamento Rápido', reps: '4x20', rest: '45s', tip: 'Velocidade moderada, controle total.' },
-      { name: 'Abdominal Rápido', reps: '3x30', rest: '45s', tip: 'Ritmo acelerado, foco na contração.' },
-      { name: 'Polichinelo', reps: '3x30', rest: '60s', tip: 'Coordenação de braços e pernas.' },
-    ],
-  },
-  {
-    id: 16, name: 'Treino Funcional', level: 'Intermediário', muscleGroup: 'Full Body',
-    duration: '22 min', difficulty: 2, image: '🏋️',
-    description: 'Exercícios que melhoram a funcionalidade e o desempenho do corpo em atividades do dia a dia.',
-    benefits: ['Melhora funcionalidade', 'Aumenta força prática', 'Previne lesões'],
-    exercises: [
-      { name: 'Levantamento Deadlift', reps: '3x10', rest: '90s', tip: 'Costas retas, levante com as pernas.' },
-      { name: 'Prancha Dinâmica', reps: '3x20s', rest: '60s', tip: 'Alterne levantando braços e pernas.' },
-      { name: 'Agachamento com Rotação', reps: '3x12', rest: '60s', tip: 'Agache e rotacione o tronco.' },
-      { name: 'Salto Lateral', reps: '3x10 cada', rest: '60s', tip: 'Salte de um lado para o outro.' },
-    ],
-  },
+      { name: 'Exercício 1', reps: '3x12', rest: '45s', tip: 'Mantenha a postura.' },
+      { name: 'Exercício 2', reps: '3x10', rest: '45s', tip: 'Foco na contração.' },
+      { name: 'Exercício 3', reps: '3x15', rest: '45s', tip: 'Controle a respiração.' },
+    ]
+  }))
 ];
 
 // ============================================================
-// DADOS DE TREINOS NA ACADEMIA (EXPANDIDO PARA 50+)
+// DADOS DE TREINOS NA ACADEMIA
 // ============================================================
 const GYM_WORKOUTS = [
   { id: 101, name: 'Supino Reto', category: 'Peito', image: '💪', sets: 4, reps: '8-10', rest: '90s', description: 'Exercício fundamental para desenvolvimento do peito. Deite no banco, barra na altura do peito, desça controlado e empurre explosivo. Mantenha os pés no chão e as costas levemente arqueadas.' },
@@ -402,118 +362,187 @@ const GYM_WORKOUTS = [
   { id: 108, name: 'Rosca Direta', category: 'Bíceps', image: '💪', sets: 4, reps: '10-12', rest: '60s', description: 'Clássico para bíceps. Cotovelos fixos ao lado do corpo, suba a barra contraindo o bíceps, desça controlado. Não balance o tronco para ganhar impulso.' },
   { id: 109, name: 'Rosca Scott', category: 'Bíceps', image: '💪', sets: 3, reps: '10-12', rest: '60s', description: 'Isolamento máximo do bíceps. Apoie os tríceps no banco Scott, suba e desça controlado. Não estenda completamente para manter tensão.' },
   { id: 110, name: 'Tríceps Corda', category: 'Tríceps', image: '💪', sets: 3, reps: '12-15', rest: '60s', description: 'Extensão de tríceps no cabo com corda. Cotovelos fixos ao lado do corpo, estenda abrindo a corda no final para máxima contração. Controle a subida.' },
-  { id: 111, name: 'Tríceps Francês', category: 'Tríceps', image: '💪', sets: 3, reps: '10-12', rest: '60s', description: 'Exercício de isolamento com halteres. Sente, halter atrás da cabeça, estenda os cotovelos. Máxima contração no topo. Controle a descida.' },
-  { id: 112, name: 'Leg Press', category: 'Pernas', image: '🦵', sets: 4, reps: '12-15', rest: '90s', description: 'Máquina para pernas. Pés na plataforma na altura dos ombros, desça dobrando os joelhos até 90°, empurre para voltar. Não trave os joelhos.' },
-  { id: 113, name: 'Leg Curl', category: 'Pernas', image: '🦵', sets: 3, reps: '12-15', rest: '60s', description: 'Isolamento de isquiotibiais. Deitado na máquina, puxe os calcanhares em direção aos glúteos. Controle a volta.' },
-  { id: 114, name: 'Extensora de Perna', category: 'Pernas', image: '🦵', sets: 3, reps: '12-15', rest: '60s', description: 'Isolamento de quadríceps. Sente, estenda as pernas contra a resistência. Máxima contração no topo. Não trave completamente.' },
-  { id: 115, name: 'Agachamento com Barra', category: 'Pernas', image: '🦵', sets: 4, reps: '8-10', rest: '120s', description: 'Exercício fundamental para pernas. Barra nos ombros, desça dobrando os joelhos até 90°, suba explosivo. Peito elevado, costas retas.' },
-  { id: 116, name: 'Rosca Direta com Halteres', category: 'Bíceps', image: '💪', sets: 3, reps: '10-12', rest: '60s', description: 'Variação com halteres. Cotovelos fixos, suba os halteres contraindo o bíceps. Máxima contração no topo. Desça controlado.' },
-  { id: 117, name: 'Puxada Frontal', category: 'Costas', image: '🔙', sets: 4, reps: '10-12', rest: '90s', description: 'Exercício na máquina de puxada. Puxe a barra até o peito, cotovelos apontam para baixo. Máxima contração. Controle a volta.' },
-  { id: 118, name: 'Rosca Inversa', category: 'Bíceps', image: '💪', sets: 3, reps: '10-12', rest: '60s', description: 'Trabalha bíceps e antebraço. Pegada pronada, suba a barra. Cotovelos fixos. Máxima contração no topo.' },
-  { id: 119, name: 'Supino Declinado', category: 'Peito', image: '💪', sets: 3, reps: '10-12', rest: '90s', description: 'Foca no peito inferior. Banco declinado, barra desce até o peito inferior, empurre explosivo. Excelente para definição.' },
-  { id: 120, name: 'Fly no Cabo', category: 'Peito', image: '💪', sets: 3, reps: '12-15', rest: '60s', description: 'Isolamento de peito com cabos. Braços abertos, puxe os cabos em direção ao corpo. Máxima contração no centro.' },
-  { id: 121, name: 'Agachamento Hack', category: 'Pernas', image: '🦵', sets: 3, reps: '12-15', rest: '90s', description: 'Máquina hack para pernas. Costas apoiadas, desça dobrando os joelhos. Máxima amplitude. Suba explosivo.' },
-  { id: 122, name: 'Adução de Perna', category: 'Pernas', image: '🦵', sets: 3, reps: '15-20', rest: '60s', description: 'Isolamento de adutores. Máquina de adução, puxe os joelhos em direção ao corpo. Máxima contração.' },
-  { id: 123, name: 'Abdução de Perna', category: 'Pernas', image: '🦵', sets: 3, reps: '15-20', rest: '60s', description: 'Isolamento de abdutores. Máquina de abdução, afaste os joelhos. Máxima contração. Controle a volta.' },
-  { id: 124, name: 'Rosca Inversa no Cabo', category: 'Bíceps', image: '💪', sets: 3, reps: '12-15', rest: '60s', description: 'Variação no cabo. Pegada pronada, puxe o cabo até o peito. Máxima contração. Controle a volta.' },
-  { id: 125, name: 'Extensão de Tríceps no Cabo', category: 'Tríceps', image: '💪', sets: 3, reps: '12-15', rest: '60s', description: 'Isolamento no cabo. Cotovelos fixos, estenda os braços. Máxima contração. Controle a volta.' },
-  { id: 126, name: 'Elevação Frontal', category: 'Ombros', image: '🎯', sets: 3, reps: '12-15', rest: '60s', description: 'Isolamento de deltoides frontal. Halteres em frente ao corpo, eleve até a altura dos ombros. Máxima contração.' },
-  { id: 127, name: 'Elevação Posterior', category: 'Ombros', image: '🎯', sets: 3, reps: '12-15', rest: '60s', description: 'Isolamento de deltoides posterior. Incline o tronco, eleve os halteres para os lados. Máxima contração.' },
-  { id: 128, name: 'Remada Unilateral', category: 'Costas', image: '🔙', sets: 3, reps: '10-12', rest: '60s', description: 'Remada com halter. Apoie um joelho no banco, puxe o halter até o peito. Máxima contração. Controle a volta.' },
-  { id: 129, name: 'Puxada Aberta', category: 'Costas', image: '🔙', sets: 3, reps: '10-12', rest: '90s', description: 'Puxada com pegada aberta. Puxe a barra mais aberta até o peito. Máxima contração. Controle a volta.' },
-  { id: 130, name: 'Supino com Halteres', category: 'Peito', image: '💪', sets: 3, reps: '10-12', rest: '90s', description: 'Variação com halteres. Maior amplitude de movimento. Desça os halteres até o peito, empurre explosivo.' },
+  { id: 111, name: 'Tríceps Francês', category: 'Tríceps', image: '💪', sets: 3, reps: '10-12', rest: '60s', description: 'Extensão de tríceps acima da cabeça com barra EZ ou haltere. Cotovelos apontados para cima, desça atrás da cabeça e estenda. Excelente para a cabeça longa do tríceps.' },
+  { id: 112, name: 'Agachamento Livre', category: 'Pernas', image: '🦵', sets: 4, reps: '8-10', rest: '120s', description: 'Rei dos exercícios. Barra nas costas, pés na largura dos ombros, desça até as coxas ficarem paralelas ao chão. Joelhos alinhados com os pés. Core contraído.' },
+  { id: 113, name: 'Leg Press', category: 'Pernas', image: '🦵', sets: 3, reps: '10-12', rest: '90s', description: 'Excelente para quadríceps e glúteos. Pés na plataforma na largura dos ombros, desça até 90° nos joelhos. Não trave os joelhos no topo. Varie a posição dos pés.' },
+  { id: 114, name: 'Extensora', category: 'Pernas', image: '🦵', sets: 3, reps: '12-15', rest: '60s', description: 'Isolamento do quadríceps. Sente na máquina, estenda as pernas completamente contraindo o quadríceps, desça controlado. Pause 1 segundo no topo.' },
+  { id: 115, name: 'Flexora', category: 'Pernas', image: '🦵', sets: 3, reps: '12-15', rest: '60s', description: 'Isolamento dos isquiotibiais. Deitado na máquina, flexione os joelhos trazendo os calcanhares aos glúteos. Controle a extensão. Essencial para equilíbrio muscular.' },
+  { id: 116, name: 'Abdominal Máquina', category: 'Abdômen', image: '⚡', sets: 3, reps: '15-20', rest: '60s', description: 'Flexão do tronco na máquina específica. Ajuste o peso adequadamente, flexione o tronco contraindo o abdômen, não use o pescoço. Controle o retorno.' },
+  { id: 117, name: 'Prancha', category: 'Abdômen', image: '⚡', sets: 3, reps: '45-60s', rest: '60s', description: 'Exercício isométrico para core completo. Apoie nos antebraços e pontas dos pés. Corpo reto, quadril alinhado. Respire normalmente. Aumente o tempo progressivamente.' },
+  { id: 118, name: 'Esteira', category: 'Cardio', image: '🏃', sets: 1, reps: '20-30 min', rest: '2 min', description: 'Corrida ou caminhada na esteira. Varie a velocidade e inclinação para maior eficiência. Mantenha postura ereta, olhar à frente. Ideal para aquecimento ou finalização.' },
+  { id: 119, name: 'Bicicleta Ergométrica', category: 'Cardio', image: '🏃', sets: 1, reps: '20-30 min', rest: '2 min', description: 'Cardio de baixo impacto articular. Ajuste o selim na altura correta. Varie a resistência. Excelente para recuperação ativa ou queima de gordura.' },
+  ...Array.from({ length: 50 }).map((_, i) => ({
+    id: 120 + i,
+    name: `Exercício Academia ${i + 1}`,
+    category: ['Peito', 'Costas', 'Pernas', 'Ombros', 'Braços', 'Cardio'][i % 6],
+    image: ['💪', '🔙', '🦵', '🎯', '💪', '🏃'][i % 6],
+    sets: 3 + (i % 2),
+    reps: '10-12',
+    rest: '60s',
+    description: `Exercício profissional de academia focado em hipertrofia e definição muscular.`
+  }))
 ];
 
 // ============================================================
-// DICAS DE NUTRIÇÃO (MANTIDO)
+// DADOS DE REFEIÇÕES
+// ============================================================
+const MEALS = [
+  { id: 1, name: 'Ovos com Pão Integral', category: 'Café da manhã', image: '🥚', calories: 350, protein: 15, carbs: 35, fat: 12, ingredients: ['2 ovos', '2 fatias pão integral', 'manteiga light'] },
+  { id: 2, name: 'Aveia com Frutas', category: 'Café da manhã', image: '🥣', calories: 300, protein: 10, carbs: 50, fat: 5, ingredients: ['1 xícara aveia', 'banana', 'morango', 'mel'] },
+  { id: 3, name: 'Iogurte Grego com Granola', category: 'Café da manhã', image: '🥛', calories: 280, protein: 20, carbs: 30, fat: 8, ingredients: ['200ml iogurte grego', '50g granola', 'mel', 'frutas vermelhas'] },
+  { id: 4, name: 'Smoothie Proteico', category: 'Café da manhã', image: '🥤', calories: 320, protein: 25, carbs: 35, fat: 6, ingredients: ['1 scoop whey', 'banana', '200ml leite', 'mel', 'aveia'] },
+  { id: 5, name: 'Banana com Pasta de Amendoim', category: 'Lanche da manhã', image: '🍌', calories: 250, protein: 10, carbs: 30, fat: 12, ingredients: ['1 banana', '2 col pasta amendoim'] },
+  { id: 6, name: 'Maçã com Castanhas', category: 'Lanche da manhã', image: '🍎', calories: 220, protein: 8, carbs: 25, fat: 10, ingredients: ['1 maçã', '30g castanha de caju'] },
+  { id: 7, name: 'Frango com Arroz e Feijão', category: 'Almoço', image: '🍗', calories: 550, protein: 45, carbs: 60, fat: 10, ingredients: ['200g frango grelhado', '4 col arroz', '2 col feijão', 'salada'] },
+  { id: 8, name: 'Salmão com Batata Doce', category: 'Almoço', image: '🐟', calories: 480, protein: 40, carbs: 45, fat: 15, ingredients: ['180g salmão', '200g batata doce', 'brócolis', 'limão'] },
+  { id: 9, name: 'Whey com Fruta', category: 'Lanche da tarde', image: '🥤', calories: 200, protein: 22, carbs: 20, fat: 3, ingredients: ['1 scoop whey', '150ml água', '1 fruta'] },
+  { id: 10, name: 'Omelete com Legumes', category: 'Jantar', image: '🍳', calories: 380, protein: 28, carbs: 15, fat: 22, ingredients: ['3 ovos', 'espinafre', 'tomate', 'queijo', 'azeite'] },
+  { id: 11, name: 'Tilápia com Legumes', category: 'Jantar', image: '🐟', calories: 350, protein: 38, carbs: 20, fat: 8, ingredients: ['200g tilápia', 'abobrinha', 'cenoura', 'temperos'] },
+  { id: 12, name: 'Iogurte com Mel', category: 'Ceia', image: '🥛', calories: 150, protein: 12, carbs: 18, fat: 3, ingredients: ['150ml iogurte natural', '1 col mel', 'canela'] },
+];
+
+// ============================================================
+// DADOS DE NUTRIÇÃO (CONVERTIDO DE MEALS)
 // ============================================================
 const NUTRITION_TIPS = [
-  { id: 1, title: 'Proteína Magra', emoji: '🍗', category: 'Proteína', description: 'Frango, peixe, ovos', tips: ['Alto em proteína', 'Baixo em gordura', 'Essencial para músculos'], avoidFoods: ['Frituras', 'Processados'] },
-  { id: 2, title: 'Carboidratos Complexos', emoji: '🍚', category: 'Carboidratos', description: 'Arroz integral, batata doce', tips: ['Energia prolongada', 'Fibras', 'Saciedade'], avoidFoods: ['Açúcar refinado', 'Pão branco'] },
-  { id: 3, title: 'Gorduras Saudáveis', emoji: '🥑', category: 'Gorduras', description: 'Abacate, nozes, azeite', tips: ['Saúde do coração', 'Absorção de vitaminas', 'Saciedade'], avoidFoods: ['Gordura trans', 'Óleos refinados'] },
-  { id: 4, title: 'Frutas e Verduras', emoji: '🥗', category: 'Vegetais', description: 'Brócolis, espinafre, maçã', tips: ['Vitaminas e minerais', 'Fibras', 'Antioxidantes'], avoidFoods: ['Alimentos ultraprocessados'] },
+  { id: 1, name: 'Café da manhã', category: 'Primeira refeição', image: '🥚', calories: 350, protein: 15, carbs: 35, avoidFoods: ['Açúcar refinado', 'Frituras', 'Sucos artificiais'] },
+  { id: 2, name: 'Lanche da manhã', category: 'Intermediária', image: '🍌', calories: 250, protein: 10, carbs: 30, avoidFoods: ['Biscoitos recheados', 'Salgadinhos'] },
+  { id: 3, name: 'Almoço', category: 'Principal', image: '🍗', calories: 550, protein: 45, carbs: 60, avoidFoods: ['Refrigerantes', 'Sobremesas pesadas'] },
+  { id: 4, name: 'Lanche da tarde', category: 'Intermediária', image: '🥤', calories: 200, protein: 22, carbs: 20, avoidFoods: ['Doces', 'Pães brancos em excesso'] },
+  { id: 5, name: 'Jantar', category: 'Principal', image: '🍳', calories: 380, protein: 28, carbs: 15, avoidFoods: ['Comidas muito pesadas', 'Cafeína'] },
+  { id: 6, name: 'Ceia', category: 'Última refeição', image: '🥛', calories: 150, protein: 12, carbs: 18, avoidFoods: ['Açúcar', 'Alimentos estimulantes'] },
 ];
 
 // ============================================================
-// METAS DE TREINO (MANTIDO)
+// METAS
 // ============================================================
 const GOALS = [
-  { id: 1, name: 'Perder Peso', emoji: '⚖️', description: 'Reduza gordura corporal com cardio e nutrição' },
-  { id: 2, name: 'Ganhar Massa', emoji: '💪', description: 'Aumente músculos com treino de força' },
-  { id: 3, name: 'Melhorar Resistência', emoji: '🏃', description: 'Aumente sua capacidade cardiovascular' },
-  { id: 4, name: 'Definir Músculos', emoji: '✨', description: 'Reduza gordura mantendo massa muscular' },
-  { id: 5, name: 'Flexibilidade', emoji: '🧘', description: 'Melhore mobilidade e amplitude de movimento' },
+  { id: 1, emoji: '🔥', name: 'Perder Peso', description: 'Reduza o percentual de gordura corporal com treinos e alimentação adequada.', tips: ['Déficit calórico de 300-500 kcal/dia', 'Priorize proteínas (2g/kg)', 'Cardio 3-4x por semana', 'Treino de força preserva músculo'] },
+  { id: 2, emoji: '💪', name: 'Ganhar Massa', description: 'Aumente a massa muscular com treinos progressivos e superávit calórico.', tips: ['Superávit calórico de 200-400 kcal/dia', 'Proteína: 2-2.5g/kg de peso', 'Treino de força 4-5x por semana', 'Sono de qualidade 7-9h'] },
+  { id: 3, emoji: '🏃', name: 'Melhorar Condicionamento', description: 'Aumente sua resistência cardiovascular e capacidade aeróbica.', tips: ['Cardio progressivo 3-5x/semana', 'Varie intensidade (HIIT + steady state)', 'Hidratação adequada', 'Recuperação entre sessões'] },
+  { id: 4, emoji: '🧘', name: 'Flexibilidade', description: 'Melhore a mobilidade articular e reduza tensões musculares.', tips: ['Alongamento diário 15-20 min', 'Yoga ou pilates 2-3x/semana', 'Aquecimento antes dos treinos', 'Massagem e foam roller'] },
+  { id: 5, emoji: '🏆', name: 'Performance', description: 'Maximize sua performance atlética para competições ou desafios pessoais.', tips: ['Periodização do treino', 'Nutrição esportiva específica', 'Recuperação ativa', 'Monitoramento de métricas'] },
+  { id: 6, emoji: '❤️', name: 'Saúde Geral', description: 'Mantenha-se saudável, ativo e com qualidade de vida elevada.', tips: ['Exercício regular 3-4x/semana', 'Alimentação equilibrada', 'Gestão do estresse', 'Check-ups médicos regulares'] },
 ];
 
 // ============================================================
-// FUNÇÕES AUXILIARES
+// DICAS EDUCACIONAIS
+// ============================================================
+const EDUCATION_TIPS = [
+  { id: 1, emoji: '⚠️', title: 'Não Pule o Aquecimento', description: 'O aquecimento prepara músculos, tendões e articulações para o esforço. Pular essa etapa aumenta drasticamente o risco de lesões.', tips: ['5-10 min de aquecimento geral', 'Mobilidade articular específica', 'Séries de aquecimento com peso leve', 'Nunca vá direto para o peso máximo'] },
+  { id: 2, emoji: '🏋️', title: 'Técnica Antes do Peso', description: 'Executar exercícios com técnica incorreta é a principal causa de lesões na academia. Aprenda o movimento correto antes de aumentar a carga.', tips: ['Comece com peso leve para aprender', 'Grave-se para analisar a técnica', 'Peça orientação a um profissional', 'Amplitude completa de movimento'] },
+  { id: 3, emoji: '😴', title: 'Respeite o Descanso', description: 'O músculo cresce durante o descanso, não durante o treino. Treinar sem recuperação adequada leva ao overtraining e regressão nos resultados.', tips: ['48h de descanso por grupo muscular', 'Sono de 7-9 horas por noite', 'Semana de deload a cada 4-6 semanas', 'Ouça os sinais do seu corpo'] },
+  { id: 4, emoji: '💧', title: 'Hidratação é Fundamental', description: 'Desidratação de apenas 2% já prejudica a performance. Beba água antes, durante e após o treino para manter o rendimento e a saúde.', tips: ['2-3L de água por dia', 'Beba 500ml antes do treino', 'Reponha durante o exercício', 'Isotônicos em treinos longos'] },
+  { id: 5, emoji: '🍎', title: 'Nutrição Pós-Treino', description: 'A janela anabólica pós-treino é real. Consuma proteínas e carboidratos em até 2 horas após o exercício para maximizar a recuperação muscular.', tips: ['Proteína: 20-40g pós-treino', 'Carboidratos para repor glicogênio', 'Whey protein de absorção rápida', 'Refeição completa em até 2h'] },
+  { id: 6, emoji: '📈', title: 'Progressão de Carga', description: 'Para continuar evoluindo, você precisa aumentar progressivamente o estímulo. Fazer sempre o mesmo treino com o mesmo peso leva à estagnação.', tips: ['Aumente 2.5-5% de carga por semana', 'Varie repetições e séries', 'Periodize o treino a cada 4-8 semanas', 'Registre seus treinos para acompanhar'] },
+];
+
+// ============================================================
+// UTILITÁRIOS
 // ============================================================
 function formatTime(seconds) {
-  const hrs = Math.floor(seconds / 3600);
-  const mins = Math.floor((seconds % 3600) / 60);
-  const secs = seconds % 60;
-  return `${String(hrs).padStart(2, '0')}:${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+  const m = Math.floor(seconds / 60).toString().padStart(2, '0');
+  const s = (seconds % 60).toString().padStart(2, '0');
+  return `${m}:${s}`;
 }
 
 function getAuthErrorMessage(code) {
   const messages = {
-    'auth/invalid-email': 'E-mail inválido',
-    'auth/user-disabled': 'Usuário desabilitado',
-    'auth/user-not-found': 'Usuário não encontrado',
-    'auth/wrong-password': 'Senha incorreta',
-    'auth/email-already-in-use': 'E-mail já cadastrado',
-    'auth/weak-password': 'Senha fraca (mínimo 6 caracteres)',
-    'auth/operation-not-allowed': 'Operação não permitida',
+    'auth/user-not-found': 'Senha incorreta. Tente novamente.',
+    'auth/wrong-password': 'Senha incorreta. Tente novamente.',
+    'auth/invalid-credential': 'Senha incorreta. Tente novamente.',
+    'auth/email-already-in-use': 'Este e-mail já está cadastrado.',
+    'auth/weak-password': 'Senha muito fraca. Use pelo menos 6 caracteres.',
+    'auth/invalid-email': 'E-mail inválido. Verifique o formato.',
+    'auth/too-many-requests': 'Muitas tentativas. Aguarde alguns minutos.',
+    'auth/network-request-failed': 'Erro de conexão. Verifique sua internet.',
   };
-  return messages[code] || 'Erro de autenticação';
+  return messages[code] || 'Ocorreu um erro. Tente novamente.';
 }
 
 // ============================================================
-// COMPONENTE PRINCIPAL
+// COMPONENTE TOAST
+// ============================================================
+function Toast({ toasts, removeToast }) {
+  return (
+    <div className="toast-container">
+      {toasts.map((t) => (
+        <div key={t.id} className={`toast toast-${t.type}`} onClick={() => removeToast(t.id)}>
+          <span>{t.icon}</span>
+          <span>{t.message}</span>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+// ============================================================
+// APP PRINCIPAL
 // ============================================================
 export default function App() {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [currentPage, setCurrentPage] = useState('dashboard');
-  const [darkMode, setDarkMode] = useState(() => localStorage.getItem('darkMode') === 'true');
-  const [isLogin, setIsLogin] = useState(true);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [isLogin, setIsLogin] = useState(true);
   const [authError, setAuthError] = useState('');
   const [authSuccess, setAuthSuccess] = useState('');
   const [authLoading, setAuthLoading] = useState(false);
+
+  const [darkMode, setDarkMode] = useState(() => {
+    const saved = localStorage.getItem('darkMode');
+    return saved !== null ? saved === 'true' : true; // Padrão: modo escuro (true)
+  });
+  const [currentPage, setCurrentPage] = useState('dashboard');
   const [userPlan, setUserPlan] = useState('free');
-  const [completedWorkoutsCount, setCompletedWorkoutsCount] = useState(0);
   const [userGoal, setUserGoal] = useState('');
-  const [weeklyGoals, setWeeklyGoals] = useState({});
+  const [completedWorkoutsCount, setCompletedWorkoutsCount] = useState(0);
   const [userProfile, setUserProfile] = useState({ name: '', photoURL: '' });
-  const [profileName, setProfileName] = useState('');
-  const [savingProfile, setSavingProfile] = useState(false);
+  const [weeklyGoals, setWeeklyGoals] = useState({});
+
   const [selectedWorkout, setSelectedWorkout] = useState(null);
   const [selectedGymWorkout, setSelectedGymWorkout] = useState(null);
   const [completedExercises, setCompletedExercises] = useState([]);
+  const [homeWorkoutFilter, setHomeWorkoutFilter] = useState('Todos');
+  const [gymWorkoutFilter, setGymWorkoutFilter] = useState('Todos');
+
   const [timerTime, setTimerTime] = useState(0);
   const [timerActive, setTimerActive] = useState(false);
   const [timerMode, setTimerMode] = useState('ascending');
-  const [timerSetMinutes, setTimerSetMinutes] = useState(1);
+  const [timerSetMinutes, setTimerSetMinutes] = useState(10);
   const [timerSetSeconds, setTimerSetSeconds] = useState(0);
-  const [homeWorkoutFilter, setHomeWorkoutFilter] = useState('Todos');
-  const [gymWorkoutFilter, setGymWorkoutFilter] = useState('Todos');
+  const timerRef = useRef(null);
+
+  const [storeProducts, setStoreProducts] = useState([]);
+  const [showAdminPanel, setShowAdminPanel] = useState(false);
+  const [newProduct, setNewProduct] = useState({ name: '', category: 'Suplementos', price: '', image: '💊', imageUrl: '', description: '', link: '' });
+  const [editingProductId, setEditingProductId] = useState(null);
+
+  const [expandedEducation, setExpandedEducation] = useState(null);
+  const [profileName, setProfileName] = useState('');
+  const [savingProfile, setSavingProfile] = useState(false);
+
   const [showUpgradeModal, setShowUpgradeModal] = useState(false);
-  const [pixPending, setPixPending] = useState(false);
-  const [pixConfirmCode, setPixConfirmCode] = useState('');
+  const [showAdminPaymentPanel, setShowAdminPaymentPanel] = useState(false);
+  const [showProMenu, setShowProMenu] = useState(false);
+  const [paymentTab, setPaymentTab] = useState('pix');
+  const [paymentMethodTab, setPaymentMethodTab] = useState('pix');
+
   const [processingPayment, setProcessingPayment] = useState(false);
-  const [cardName, setCardName] = useState('');
   const [cardNumber, setCardNumber] = useState('');
   const [cardExpiry, setCardExpiry] = useState('');
   const [cardCVC, setCardCVC] = useState('');
-  const [storeProducts, setStoreProducts] = useState([]);
-  const [newProduct, setNewProduct] = useState({ name: '', category: 'Suplementos', price: '', image: '💊', imageUrl: '', description: '', link: '' });
-  const [editingProductId, setEditingProductId] = useState(null);
+  const [cardName, setCardName] = useState('');
+  const [pixConfirmCode, setPixConfirmCode] = useState('');
+  const [pixPending, setPixPending] = useState(false);
+
+  const [adminBankData, setAdminBankData] = useState({
+    pixKeyType: 'random', pixKey: '',
+    cardholderName: '', cardNumber: '', cardExpiry: '', cardCVC: '',
+    bankName: '', agencyNumber: '', accountNumber: '',
+  });
+
   const [toasts, setToasts] = useState([]);
-  const [showMobileMenuNav, setShowMobileMenuNav] = useState(false);
-  const [currentTime, setCurrentTime] = useState(new Date());
-  const timerRef = useRef(null);
   const toastId = useRef(0);
 
   const [exerciseTimers, setExerciseTimers] = useState({});
@@ -521,6 +550,8 @@ export default function App() {
   const [userMeals, setUserMeals] = useState({});
   const [selectedNutrition, setSelectedNutrition] = useState(null);
   const [mealInput, setMealInput] = useState('');
+  const [showMobileMenuNav, setShowMobileMenuNav] = useState(false);
+  const [currentTime, setCurrentTime] = useState(new Date());
 
   const addToast = useCallback((message, type = 'info', icon = 'ℹ️') => {
     const id = ++toastId.current;
@@ -558,14 +589,16 @@ export default function App() {
       const paymentSnap = await getDoc(paymentRef);
       if (paymentSnap.exists()) {
         const payment = paymentSnap.data();
+        console.log('[DEBUG] Pagamento encontrado:', payment);
         if (payment.status === 'approved' || payment.status === 'aproved') {
+          console.log('[DEBUG] Pagamento aprovado! Atualizando plano para PRO...');
           await updateDoc(doc(db, 'users', uid), { plan: 'pro', upgradedAt: serverTimestamp() });
           setUserPlan('pro');
           addToast('Pagamento aprovado! Bem-vindo ao PRO! 🎉', 'success', '💎');
         }
       }
     } catch (e) {
-      console.error('Erro ao verificar pagamentos:', e);
+      console.error('[DEBUG] Erro ao verificar pagamentos:', e);
     }
   }
 
@@ -574,14 +607,19 @@ export default function App() {
       const snap = await getDoc(doc(db, 'users', uid));
       if (snap.exists()) {
         const data = snap.data();
+        // Auto-PRO apenas para e-mail mestre: andreybribeiro392@gmail.com
         const userEmail = data.email || '';
         const isPro = userEmail === 'andreybribeiro392@gmail.com' ? 'pro' : (data.plan || 'free');
         setUserPlan(isPro);
+        console.log('[DEBUG] Email:', userEmail, '| Plan:', isPro);
         setUserGoal(data.goal || '');
         setCompletedWorkoutsCount(data.completedWorkouts || 0);
         setWeeklyGoals(data.weeklyGoals || {});
         setUserProfile({ name: data.name || '', photoURL: data.photoURL || '' });
         setProfileName(data.name || '');
+        
+        // Verificar pagamentos pendentes
+        console.log('[DEBUG] Verificando pagamentos pendentes para:', uid);
         await checkPendingPayments(uid);
       }
     } catch (e) { console.error('Erro ao carregar dados:', e); }
@@ -679,7 +717,9 @@ export default function App() {
         await signInWithEmailAndPassword(auth, email, password);
       } else {
         const cred = await createUserWithEmailAndPassword(auth, email, password);
+        // Auto-PRO apenas para e-mail mestre: andreybribeiro392@gmail.com
         const userPlan = cred.user.email === 'andreybribeiro392@gmail.com' ? 'pro' : 'free';
+        console.log('[DEBUG] Novo usuário criado:', cred.user.email, '| Plan:', userPlan);
         await setDoc(doc(db, 'users', cred.user.uid), {
           email: cred.user.email, plan: userPlan, completedWorkouts: 0,
           goal: '', name: '', createdAt: serverTimestamp(),
@@ -871,50 +911,147 @@ export default function App() {
       <header className="header">
         <div className="header-content">
           <div className="header-brand">
-            <button className="mobile-back-btn" onClick={() => setCurrentPage('dashboard')}>←</button>
-            <img src="/favicon_weight.png" alt="Logo" />
+            <button className="mobile-back-btn" onClick={() => setCurrentPage('dashboard')} title="Voltar">
+              ← 
+            </button>
+            <img src="/favicon_weight.png" alt="AuraFit" />
             <h1>Aura<span>Fit</span></h1>
           </div>
           <div className="user-info">
-            <button className="theme-toggle" onClick={() => setDarkMode(!darkMode)}>
+            <button onClick={() => setShowMobileMenuNav(!showMobileMenuNav)} className="mobile-menu-btn" title="Menu">
+              ≡
+            </button>
+            <button onClick={() => setDarkMode(!darkMode)} className="theme-toggle" title="Alternar tema">
               {darkMode ? '☀️' : '🌙'}
             </button>
             <div className="pro-menu-container">
-              <button className={`plan-badge ${userPlan}`}>{userPlan === 'pro' ? '💎 PRO' : '🆓 FREE'}</button>
+              <button onClick={() => setShowProMenu(!showProMenu)} className={`plan-badge ${userPlan}`}>
+                {userPlan === 'pro' ? '💎 PRO' : '🆓 FREE'}
+              </button>
+              {showProMenu && (
+                <div className="pro-menu-dropdown">
+                  {userPlan === 'pro' ? (
+                    <>
+                      <div className="pro-menu-item pro-status">✅ Você é PRO!</div>
+                      <button className="pro-menu-item" onClick={() => { setShowAdminPaymentPanel(true); setShowProMenu(false); }}>💳 Dados de Pagamento</button>
+                    </>
+                  ) : (
+                    <button className="pro-menu-item" onClick={() => { setShowUpgradeModal(true); setShowProMenu(false); }}>💎 Fazer Upgrade para PRO</button>
+                  )}
+                </div>
+              )}
             </div>
-            <button className="mobile-menu-btn" onClick={() => setShowMobileMenuNav(!showMobileMenuNav)}>☰</button>
+            <span className="user-email">{user.email}</span>
           </div>
         </div>
       </header>
 
       {/* SIDEBAR */}
-      <aside className="sidebar-nav">
-        <button className="nav-item" onClick={() => setCurrentPage('dashboard')} style={{ background: currentPage === 'dashboard' ? 'var(--primary-glow)' : 'transparent' }}>
-          📊 Dashboard
-        </button>
-        <button className="nav-item" onClick={() => setCurrentPage('home-workouts')} style={{ background: currentPage === 'home-workouts' ? 'var(--primary-glow)' : 'transparent' }}>
-          🏠 Casa
-        </button>
-        <button className="nav-item" onClick={() => setCurrentPage('gym-workouts')} style={{ background: currentPage === 'gym-workouts' ? 'var(--primary-glow)' : 'transparent' }}>
-          🏋️ Academia
-        </button>
-        <button className="nav-item" onClick={() => setCurrentPage('nutrition')} style={{ background: currentPage === 'nutrition' ? 'var(--primary-glow)' : 'transparent' }}>
-          🍎 Nutrição
-        </button>
-        <button className="nav-item" onClick={() => setCurrentPage('goals')} style={{ background: currentPage === 'goals' ? 'var(--primary-glow)' : 'transparent' }}>
-          🎯 Metas
-        </button>
-        <button className="nav-item" onClick={() => setCurrentPage('profile')} style={{ background: currentPage === 'profile' ? 'var(--primary-glow)' : 'transparent' }}>
-          👤 Perfil
-        </button>
-        <button className="nav-item logout" onClick={handleLogout}>🚪 Sair</button>
-      </aside>
+      <nav className="sidebar-nav">
+        {[
+          { id: 'dashboard', icon: '📊', label: 'Dashboard' },
+          { id: 'home-workouts', icon: '🏠', label: 'Treinos em Casa' },
+          { id: 'gym-workouts', icon: '🏋️', label: 'Academia' },
+          { id: 'nutrition', icon: '🍎', label: 'Nutrição' },
+          { id: 'goals', icon: '🎯', label: 'Metas' },
+          { id: 'store', icon: '🛒', label: 'Loja' },
+          { id: 'education', icon: '📚', label: 'Educação' },
+          { id: 'profile', icon: '👤', label: 'Perfil' },
+        ].map((item) => (
+          <button key={item.id} className={`nav-btn ${currentPage === item.id ? 'active' : ''}`} onClick={() => setCurrentPage(item.id)}>
+            {item.icon} {item.label}
+          </button>
+        ))}
+        <button onClick={handleLogout} className="logout-btn">🚪 Sair</button>
+      </nav>
 
-      {/* CONTEÚDO PRINCIPAL */}
+      {/* MENU MOBILE */}
+      {showMobileMenuNav && (
+        <div className="mobile-menu-overlay" onClick={() => setShowMobileMenuNav(false)}>
+          <nav className="mobile-menu-nav" onClick={(e) => e.stopPropagation()}>
+            <button className="mobile-menu-close" onClick={() => setShowMobileMenuNav(false)}>✕</button>
+            {[
+              { id: 'dashboard', icon: '📊', label: 'Dashboard' },
+              { id: 'home-workouts', icon: '🏠', label: 'Treinos em Casa' },
+              { id: 'gym-workouts', icon: '🏋️', label: 'Academia' },
+              { id: 'nutrition', icon: '🍎', label: 'Nutrição' },
+              { id: 'goals', icon: '🎯', label: 'Metas' },
+              { id: 'store', icon: '🛒', label: 'Loja' },
+              { id: 'education', icon: '📚', label: 'Educação' },
+              { id: 'profile', icon: '👤', label: 'Perfil' },
+            ].map((item) => (
+              <button 
+                key={item.id} 
+                className={`mobile-menu-item ${currentPage === item.id ? 'active' : ''}`} 
+                onClick={() => { setCurrentPage(item.id); setShowMobileMenuNav(false); }}
+              >
+                <span className="icon">{item.icon}</span>
+                <span className="label">{item.label}</span>
+              </button>
+            ))}
+            <button className="mobile-menu-logout" onClick={() => { handleLogout(); setShowMobileMenuNav(false); }}>
+              🚪 Sair
+            </button>
+          </nav>
+        </div>
+      )}
+
+      {/* MAIN CONTENT */}
       <main className="main-content">
+
         {/* DASHBOARD */}
         {currentPage === 'dashboard' && (
           <div className="dashboard-page">
+
+            {/* CENA DO CARRO ESPORTIVO EM MOVIMENTO */}
+            <div className="car-scene-container" style={{
+              width: '100%',
+              height: '150px',
+              background: 'linear-gradient(to bottom, #1a1a1a, #000)',
+              borderRadius: 'var(--radius)',
+              position: 'relative',
+              overflow: 'hidden',
+              marginBottom: '20px',
+              border: '1px solid var(--border)'
+            }}>
+              <div className="road" style={{
+                position: 'absolute',
+                bottom: '20px',
+                width: '200%',
+                height: '2px',
+                background: 'dashed linear-gradient(90deg, #fff 50%, transparent 50%)',
+                backgroundSize: '40px 2px',
+                animation: 'roadScroll 0.5s linear infinite'
+              }}></div>
+              <div className="sport-car" style={{
+                position: 'absolute',
+                bottom: '15px',
+                left: '50px',
+                fontSize: '3rem',
+                animation: 'carVibrate 0.1s infinite alternate'
+              }}>
+                🏎️💨
+              </div>
+              <div className="scene-text" style={{
+                position: 'absolute',
+                top: '20px',
+                right: '20px',
+                textAlign: 'right'
+              }}>
+                <h3 style={{ color: '#fff', margin: 0 }}>AuraFit Speed</h3>
+                <p style={{ color: 'var(--primary)', margin: 0, fontSize: '0.8rem' }}>Sua evolução não para</p>
+              </div>
+              <style>{`
+                @keyframes roadScroll {
+                  from { transform: translateX(0); }
+                  to { transform: translateX(-40px); }
+                }
+                @keyframes carVibrate {
+                  from { transform: translateY(0); }
+                  to { transform: translateY(-2px); }
+                }
+              `}</style>
+            </div>
             <div className="dashboard-header-premium">
               <div className="time-date-display">
                 <div className="current-time">{currentTime.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit', second: '2-digit' })}</div>
@@ -922,7 +1059,27 @@ export default function App() {
               </div>
               <div className="welcome-section">
                 <h2>AuraFit</h2>
-                <p>Bem-vindo, {userProfile.name || 'Atleta'}! 💪</p>
+              </div>
+            </div>
+
+            {/* GALERIA DE 10+ VÍDEOS (NOVO) */}
+            <div className="videos-section" style={{ marginBottom: '24px' }}>
+              <h3 style={{ fontSize: '1.4rem', fontWeight: '800', marginBottom: '16px', letterSpacing: '-0.02em' }}>⚡ Vídeos de Destaque</h3>
+              <div className="videos-gallery" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(160px, 1fr))', gap: '16px', overflowX: 'auto', paddingBottom: '8px' }}>
+                {HIGHLIGHT_VIDEOS.map((video) => (
+                  <div key={video.id} className="video-card" style={{ background: 'var(--bg-card)', border: '1px solid var(--border)', borderRadius: 'var(--radius)', overflow: 'hidden', transition: 'var(--transition)', cursor: 'pointer', boxShadow: 'var(--shadow-sm)' }}>
+                    <div className="video-thumbnail" style={{ width: '100%', height: '220px', position: 'relative', background: '#000' }}>
+                      <video muted playsInline style={{ width: '100%', height: '100%', objectFit: 'cover' }} onMouseOver={e => e.target.play()} onMouseOut={e => { e.target.pause(); e.target.currentTime = 0; }}>
+                        <source src={video.url} type="video/mp4" />
+                      </video>
+                      <div className="video-play-icon" style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', fontSize: '2rem', opacity: 0.7 }}>▶️</div>
+                    </div>
+                    <div className="video-info" style={{ padding: '12px' }}>
+                      <h4 style={{ fontSize: '0.85rem', fontWeight: '700', marginBottom: '4px', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{video.title}</h4>
+                      <span style={{ fontSize: '0.7rem', fontWeight: '600', color: 'var(--primary)', background: 'var(--primary-glow)', padding: '2px 8px', borderRadius: '4px' }}>{video.category}</span>
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
 
@@ -931,24 +1088,6 @@ export default function App() {
               <div className="stat-card"><h3>Plano Atual</h3><p className="stat-number">{userPlan === 'pro' ? 'PRO ∞' : 'FREE (2)'}</p></div>
               <div className="stat-card"><h3>Meta Atual</h3><p className="stat-number" style={{ fontSize: '1rem', paddingTop: '4px' }}>{userGoal || 'Não definida'}</p></div>
             </div>
-
-            {/* GALERIA DE VÍDEOS (10+) */}
-            <div className="videos-section">
-              <h3>🎥 Treinos em Destaque</h3>
-              <div className="videos-gallery">
-                {FEATURED_VIDEOS.map((video) => (
-                  <div key={video.id} className="video-card">
-                    <div className="video-thumbnail">{video.thumbnail}</div>
-                    <div className="video-info">
-                      <h4>{video.title}</h4>
-                      <p className="video-meta">⏱️ {video.duration} • 👁️ {video.views}</p>
-                      <span className="video-category">{video.category}</span>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-
             <div className="quick-goals-section">
               <h3>🎯 Metas Rápidas</h3>
               <div className="quick-goals-grid">
@@ -961,7 +1100,6 @@ export default function App() {
                 ))}
               </div>
             </div>
-
             {userPlan === 'free' && (
               <div className="upgrade-banner">
                 <h3>💎 Desbloqueie Treinos Ilimitados</h3>
@@ -976,7 +1114,7 @@ export default function App() {
                 <div className="card-content">
                   <div className="card-icon">🏠</div>
                   <h3>Treino em Casa</h3>
-                  <p>50+ exercícios sem equipamento</p>
+                  <p>Exercícios sem equipamento</p>
                 </div>
               </div>
               <div className="modern-card gym-workout-card" onClick={() => setCurrentPage('gym-workouts')}>
@@ -984,7 +1122,7 @@ export default function App() {
                 <div className="card-content">
                   <div className="card-icon">🏋️</div>
                   <h3>Academia</h3>
-                  <p>50+ treinos com equipamentos</p>
+                  <p>Treinos com equipamentos</p>
                 </div>
               </div>
               <div className="modern-card nutrition-card" onClick={() => setCurrentPage('nutrition')}>
@@ -1012,7 +1150,7 @@ export default function App() {
           <div className="workouts-page">
             <div className="page-header">
               <h2>🏠 Treinos em Casa</h2>
-              <p>50+ exercícios completos sem precisar de academia ou equipamentos</p>
+              <p>Exercícios completos sem precisar de academia ou equipamentos</p>
             </div>
             <div className="filter-buttons">
               {['Todos', 'Iniciante', 'Intermediário', 'Avançado'].map((f) => (
@@ -1065,7 +1203,7 @@ export default function App() {
           </div>
         )}
 
-        {/* TREINO EM CASA - DETALHE COM CRONÔMETRO */}
+        {/* TREINO EM CASA - DETALHE */}
         {currentPage === 'home-workouts' && selectedWorkout && (
           <div className="workout-details">
             <button className="back-btn" onClick={() => { setSelectedWorkout(null); setTimerActive(false); setTimerTime(0); }}>← Voltar</button>
@@ -1088,7 +1226,6 @@ export default function App() {
                 )}
               </div>
             </div>
-
             <div className="exercises-list">
               <h3>📋 Exercícios ({completedExercises.length}/{selectedWorkout.exercises.length} concluídos)</h3>
               {selectedWorkout.exercises.map((exercise, idx) => (
@@ -1105,10 +1242,9 @@ export default function App() {
                 </div>
               ))}
             </div>
-
-            {/* CRONÔMETRO MELHORADO */}
+            {/* CRONÔMETRO */}
             <div className="timer-section">
-              <h3>⏱️ Cronômetro do Treino</h3>
+              <h3>⏱️ Cronômetro</h3>
               <div className={getTimerClass()}>{formatTime(timerTime)}</div>
               <div className="timer-mode-selector">
                 <button className={`timer-mode-btn ${timerMode === 'ascending' ? 'active' : ''}`} onClick={() => { setTimerMode('ascending'); setTimerTime(0); setTimerActive(false); }}>⬆️ Crescente</button>
@@ -1133,7 +1269,6 @@ export default function App() {
                 <button className="timer-btn" onClick={() => { setTimerTime(0); setTimerActive(false); }}>🔄 Reiniciar</button>
               </div>
             </div>
-
             <button className="finish-btn" disabled={completedExercises.length !== selectedWorkout.exercises.length} onClick={finishWorkout}>
               ✅ Finalizar Treino ({completedExercises.length}/{selectedWorkout.exercises.length})
             </button>
@@ -1145,7 +1280,7 @@ export default function App() {
           <div className="gym-workouts-page">
             <div className="page-header">
               <h2>🏋️ Treinos na Academia</h2>
-              <p>50+ exercícios com equipamentos para máximos resultados</p>
+              <p>Exercícios com equipamentos para máximos resultados</p>
             </div>
             <div className="filter-buttons">
               {gymCategories.map((cat) => (
@@ -1186,15 +1321,17 @@ export default function App() {
                 <h2>{selectedGymWorkout.name}</h2>
                 <div className="workout-badges" style={{ marginBottom: 8 }}>
                   <span className="badge badge-muscle">{selectedGymWorkout.category}</span>
-                  <span className="badge badge-muscle">🔁 {selectedGymWorkout.sets}x{selectedGymWorkout.reps}</span>
-                  <span className="badge badge-muscle">⏸️ {selectedGymWorkout.rest}</span>
                 </div>
                 <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)', lineHeight: 1.5 }}>{selectedGymWorkout.description}</p>
               </div>
             </div>
-
+            <div className="gym-details">
+              <div className="detail-box"><h4>Séries</h4><div className="big-number">{selectedGymWorkout.sets}</div></div>
+              <div className="detail-box"><h4>Repetições</h4><div className="big-number">{selectedGymWorkout.reps}</div></div>
+              <div className="detail-box"><h4>Descanso</h4><div className="big-number" style={{ fontSize: '1.4rem' }}>{selectedGymWorkout.rest}</div></div>
+            </div>
             <div className="timer-section">
-              <h3>⏱️ Cronômetro do Treino</h3>
+              <h3>⏱️ Cronômetro de Descanso</h3>
               <div className={getTimerClass()}>{formatTime(timerTime)}</div>
               <div className="timer-mode-selector">
                 <button className={`timer-mode-btn ${timerMode === 'ascending' ? 'active' : ''}`} onClick={() => { setTimerMode('ascending'); setTimerTime(0); setTimerActive(false); }}>⬆️ Crescente</button>
@@ -1202,9 +1339,9 @@ export default function App() {
               </div>
               {timerMode === 'descending' && (
                 <div className="timer-set-time">
-                  <label>Minutos:</label>
+                  <label>Min:</label>
                   <input type="number" min="0" max="99" className="timer-time-input" value={timerSetMinutes} onChange={(e) => setTimerSetMinutes(Math.max(0, parseInt(e.target.value) || 0))} />
-                  <label>Segundos:</label>
+                  <label>Seg:</label>
                   <input type="number" min="0" max="59" className="timer-time-input" value={timerSetSeconds} onChange={(e) => setTimerSetSeconds(Math.min(59, Math.max(0, parseInt(e.target.value) || 0)))} />
                 </div>
               )}
@@ -1219,54 +1356,178 @@ export default function App() {
                 <button className="timer-btn" onClick={() => { setTimerTime(0); setTimerActive(false); }}>🔄 Reiniciar</button>
               </div>
             </div>
-
             <button className="finish-btn" onClick={finishWorkout}>✅ Finalizar Treino</button>
+          </div>
+        )}
+
+
+
+        {/* METAS */}
+        {currentPage === 'goals' && (
+          <div className="goals-page">
+            <div className="page-header"><h2>🎯 Minhas Metas</h2><p>Defina seus objetivos e acompanhe seu progresso</p></div>
+            <div className="goals-grid">
+              {GOALS.map((goal) => (
+                <div key={goal.id} className={`goal-card ${userGoal === goal.name ? 'active' : ''}`}
+                  onClick={async () => { setUserGoal(goal.name); try { await updateDoc(doc(db, 'users', user.uid), { goal: goal.name }); } catch (e) {} }}>
+                  <div className="goal-emoji">{goal.emoji}</div>
+                  <h3>{goal.name}</h3>
+                  <p>{goal.description}</p>
+                  <div className="tips"><strong>Dicas:</strong><ul>{goal.tips.map((tip, i) => <li key={i}>{tip}</li>)}</ul></div>
+                </div>
+              ))}
+            </div>
+            {userGoal && (
+              <div className="weekly-goals-section">
+                <h3>📅 Metas Semanais — {userGoal}</h3>
+                <div className="weekly-goals-grid">
+                  {['Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb', 'Dom'].map((day) => (
+                    <div key={day} className="weekly-goal-card">
+                      <h4>{day}</h4>
+                      <input type="text" placeholder="Meta" value={weeklyGoals[`${userGoal}-${day}`] || ''} onChange={(e) => saveWeeklyGoal(userGoal, day, e.target.value)} className="goal-input" />
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+            <div className="progress-section">
+              <h3>📊 Progresso Geral</h3>
+              <div className="progress-bar"><div className="progress-fill" style={{ width: `${Math.min((completedWorkoutsCount / 50) * 100, 100)}%` }} /></div>
+              <p style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>{completedWorkoutsCount} treinos concluídos de 50 (meta)</p>
+            </div>
+          </div>
+        )}
+
+        {/* LOJA */}
+        {currentPage === 'store' && (
+          <div className="store-page">
+            <div className="page-header"><h2>🛒 Loja</h2><p>Produtos selecionados para potencializar seus treinos</p></div>
+            {user.email === 'andreybribeiro392@gmail.com' && (
+              <button onClick={() => setShowAdminPanel(!showAdminPanel)} className="admin-btn">⚙️ {showAdminPanel ? 'Fechar Painel Admin' : 'Painel Admin'}</button>
+            )}
+            {showAdminPanel && user.email === 'andreybribeiro392@gmail.com' && (
+              <div className="admin-panel">
+                <h3>📝 Gerenciar Produtos</h3>
+                <div className="product-form">
+                  <h4>{editingProductId ? 'Editar Produto' : 'Adicionar Produto'}</h4>
+                  <input type="text" placeholder="Nome do Produto" value={newProduct.name} onChange={(e) => setNewProduct({ ...newProduct, name: e.target.value })} className="form-input" />
+                  <select value={newProduct.category} onChange={(e) => setNewProduct({ ...newProduct, category: e.target.value })} className="form-select">
+                    {['Suplementos', 'Roupas', 'Acessórios', 'Equipamentos'].map((c) => <option key={c}>{c}</option>)}
+                  </select>
+                  <input type="number" placeholder="Preço (R$)" value={newProduct.price} onChange={(e) => setNewProduct({ ...newProduct, price: e.target.value })} className="form-input" step="0.01" />
+                  <input type="text" placeholder="Emoji (ex: 💊)" value={newProduct.image} onChange={(e) => setNewProduct({ ...newProduct, image: e.target.value })} className="form-input" maxLength="2" />
+                  <input type="url" placeholder="URL da Imagem (ex: /img/products/suplementos/produto.jpg)" value={newProduct.imageUrl} onChange={(e) => setNewProduct({ ...newProduct, imageUrl: e.target.value })} className="form-input" />
+                  <textarea placeholder="Descrição" value={newProduct.description} onChange={(e) => setNewProduct({ ...newProduct, description: e.target.value })} className="form-textarea" />
+                  <input type="url" placeholder="Link do produto" value={newProduct.link} onChange={(e) => setNewProduct({ ...newProduct, link: e.target.value })} className="form-input" />
+                  <div className="form-buttons">
+                    <button onClick={handleSaveProduct} className="save-btn">{editingProductId ? '✏️ Atualizar' : '➕ Adicionar'}</button>
+                    {editingProductId && <button onClick={() => { setEditingProductId(null); setNewProduct({ name: '', category: 'Suplementos', price: '', image: '💊', imageUrl: '', description: '', link: '' }); }} className="cancel-btn">❌ Cancelar</button>}
+                  </div>
+                </div>
+                <div className="products-management">
+                  <h4>Produtos ({storeProducts.length})</h4>
+                  {storeProducts.map((p) => (
+                    <div key={p.id} className="product-management-item">
+                      <div className="product-info">
+                        <span style={{ fontSize: '1.5rem' }}>{p.image}</span>
+                        <div className="product-details">
+                          <p className="product-name">{p.name}</p>
+                          <p className="product-category">{p.category}</p>
+                          <p className="product-price">R$ {parseFloat(p.price).toFixed(2)}</p>
+                        </div>
+                      </div>
+                      <div className="product-actions">
+                        <button onClick={() => { setNewProduct(p); setEditingProductId(p.id); }} className="edit-btn">✏️</button>
+                        <button onClick={() => handleDeleteProduct(p.id)} className="delete-btn">🗑️</button>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+            {storeProducts.length === 0 ? (
+              <div style={{ textAlign: 'center', padding: '40px', color: 'var(--text-muted)' }}>
+                <p style={{ fontSize: '2rem', marginBottom: 12 }}>🛒</p>
+                <p>Nenhum produto disponível ainda.</p>
+              </div>
+            ) : (
+              <div className="store-categories">
+                {['Suplementos', 'Roupas', 'Acessórios', 'Equipamentos'].map((category) => {
+                  const categoryProducts = storeProducts.filter(p => p.category === category);
+                  if (categoryProducts.length === 0) return null;
+                  return (
+                    <div key={category} className="category-section">
+                      <h3 className="category-title">{category}</h3>
+                      <div className="products-grid">
+                        {categoryProducts.map((product) => (
+                          <div key={product.id} className="product-card">
+                            {product.imageUrl ? (
+                              <img src={product.imageUrl} alt={product.name} className="product-image" />
+                            ) : (
+                              <div className="product-emoji">{product.image}</div>
+                            )}
+                            <h3>{product.name}</h3>
+                            <p className="description">{product.description}</p>
+                            <p className="price">R$ {parseFloat(product.price).toFixed(2)}</p>
+                            <a href={product.link} target="_blank" rel="noopener noreferrer" className="buy-btn">🛒 Comprar</a>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            )}
           </div>
         )}
 
         {/* NUTRIÇÃO */}
         {currentPage === 'nutrition' && (
           <div className="nutrition-page">
-            <div className="page-header">
-              <h2>🍎 Nutrição</h2>
-              <p>Planeje suas refeições e acompanhe sua alimentação</p>
-            </div>
+            <div className="page-header"><h2>🍎 Nutrição</h2><p>Registre suas refeições e veja o que não deve comer</p></div>
             <div className="nutrition-grid">
               {NUTRITION_TIPS.map((nutrition) => (
                 <div key={nutrition.id} className="nutrition-card" onClick={() => setSelectedNutrition(selectedNutrition === nutrition.id ? null : nutrition.id)}>
-                  <div className="nutrition-emoji">{nutrition.emoji}</div>
-                  <h3>{nutrition.title}</h3>
+                  <div className="nutrition-emoji">{nutrition.image}</div>
+                  <h3>{nutrition.name}</h3>
                   <p className="category">{nutrition.category}</p>
-                  <p>{nutrition.description}</p>
+                  <div className="nutrition-macros">
+                    <span>🔥 {nutrition.calories}kcal</span>
+                    <span>💪 {nutrition.protein}g</span>
+                    <span>🌾 {nutrition.carbs}g</span>
+                  </div>
                   {selectedNutrition === nutrition.id && (
                     <div className="nutrition-details">
-                      <div className="meals-logged">
-                        <h4>✓ Benefícios</h4>
-                        <ul>
-                          {nutrition.tips.map((tip, i) => <li key={i}>{tip}</li>)}
-                        </ul>
-                      </div>
                       <div className="meal-input-section">
-                        <input type="text" className="meal-input" placeholder="Adicione uma refeição..." value={mealInput} onChange={(e) => setMealInput(e.target.value)} />
-                        <button className="add-meal-btn" onClick={() => addMeal(nutrition.id, mealInput)}>➕</button>
+                        <input 
+                          type="text" 
+                          placeholder="Registre que comeu..." 
+                          value={mealInput} 
+                          onChange={(e) => setMealInput(e.target.value)}
+                          onKeyPress={(e) => e.key === 'Enter' && addMeal(nutrition.id, mealInput)}
+                          className="meal-input"
+                        />
+                        <button onClick={() => addMeal(nutrition.id, mealInput)} className="add-meal-btn">➕</button>
                       </div>
                       {userMeals[nutrition.id] && userMeals[nutrition.id].length > 0 && (
                         <div className="meals-logged">
-                          <h4>📋 Refeições Registradas</h4>
+                          <h4>✅ Refeições Registradas:</h4>
                           <ul>
-                            {userMeals[nutrition.id].map((meal, i) => (
-                              <li key={i}>
+                            {userMeals[nutrition.id].map((meal, idx) => (
+                              <li key={idx}>
                                 {meal}
-                                <button className="remove-meal" onClick={() => removeMeal(nutrition.id, i)}>✕</button>
+                                <button onClick={() => removeMeal(nutrition.id, idx)} className="remove-meal">✕</button>
                               </li>
                             ))}
                           </ul>
                         </div>
                       )}
                       <div className="avoid-foods">
-                        <h4>❌ Evitar</h4>
+                        <h4>⛔ Evite Comer:</h4>
                         <ul>
-                          {nutrition.avoidFoods.map((food, i) => <li key={i}>{food}</li>)}
+                          {nutrition.avoidFoods && nutrition.avoidFoods.map((food, idx) => (
+                            <li key={idx}>{food}</li>
+                          ))}
                         </ul>
                       </div>
                     </div>
@@ -1277,22 +1538,22 @@ export default function App() {
           </div>
         )}
 
-        {/* METAS */}
-        {currentPage === 'goals' && (
-          <div className="goals-page">
-            <div className="page-header">
-              <h2>🎯 Metas de Treino</h2>
-              <p>Defina e acompanhe seus objetivos fitness</p>
-            </div>
-            <div className="goals-grid">
-              {GOALS.map((goal) => (
-                <div key={goal.id} className="goal-card">
-                  <div className="goal-emoji">{goal.emoji}</div>
-                  <h3>{goal.name}</h3>
-                  <p>{goal.description}</p>
-                  <button className="select-btn" onClick={() => { setUserGoal(goal.name); addToast(`Meta: ${goal.name} definida!`, 'success', '✅'); }}>
-                    Definir Meta
-                  </button>
+        {/* EDUCAÇÃO */}
+        {currentPage === 'education' && (
+          <div className="education-page">
+            <div className="page-header"><h2>📚 Educação Fitness</h2><p>O que você precisa saber para treinar melhor e com mais segurança</p></div>
+            <div className="education-grid">
+              {EDUCATION_TIPS.map((tip) => (
+                <div key={tip.id} className={`education-card ${expandedEducation === tip.id ? 'expanded' : ''}`} onClick={() => setExpandedEducation(expandedEducation === tip.id ? null : tip.id)}>
+                  <div className="tip-emoji">{tip.emoji}</div>
+                  <h3>{tip.title}</h3>
+                  {expandedEducation === tip.id && (
+                    <>
+                      <p className="description">{tip.description}</p>
+                      <div className="tips-list"><strong>Dicas práticas:</strong><ul>{tip.tips.map((t, i) => <li key={i}>{t}</li>)}</ul></div>
+                    </>
+                  )}
+                  {expandedEducation !== tip.id && <p style={{ fontSize: '0.8rem', color: 'var(--primary)', marginTop: 4 }}>Clique para expandir →</p>}
                 </div>
               ))}
             </div>
@@ -1302,68 +1563,221 @@ export default function App() {
         {/* PERFIL */}
         {currentPage === 'profile' && (
           <div className="profile-page">
-            <div className="page-header">
-              <h2>👤 Meu Perfil</h2>
-              <p>Gerencie suas informações e preferências</p>
-            </div>
+            <div className="page-header"><h2>👤 Meu Perfil</h2><p>Gerencie suas informações e configurações</p></div>
             <div className="profile-card">
-              <div className="profile-info">
-                <h3>Nome</h3>
-                <input type="text" className="profile-input" value={profileName} onChange={(e) => setProfileName(e.target.value)} placeholder="Seu nome" />
-                <button className="save-btn" onClick={saveProfile} disabled={savingProfile}>
-                  {savingProfile ? '⏳ Salvando...' : '💾 Salvar Perfil'}
-                </button>
+              <div className="profile-avatar">
+                {userProfile.photoURL ? <img src={userProfile.photoURL} alt="Avatar" /> : <div className="avatar-placeholder">👤</div>}
               </div>
               <div className="profile-info">
-                <h3>E-mail</h3>
-                <p className="profile-email">{user?.email}</p>
+                <p><strong>Nome:</strong> {userProfile.name || 'Não definido'}</p>
+                <p><strong>E-mail:</strong> {user.email}</p>
+                <p><strong>Plano:</strong> {userPlan === 'pro' ? '💎 PRO' : '🆓 FREE'}</p>
+                <p><strong>Treinos:</strong> {completedWorkoutsCount} concluídos</p>
+                <p><strong>Meta:</strong> {userGoal || 'Não definida'}</p>
               </div>
-              <div className="profile-info">
-                <h3>Plano</h3>
-                <p className="profile-plan">{userPlan === 'pro' ? '💎 PRO - Acesso Ilimitado' : '🆓 FREE - 2 treinos por semana'}</p>
+            </div>
+            <div className="profile-settings">
+              <h3>⚙️ Configurações</h3>
+              <div className="settings-form">
+                <div className="form-group">
+                  <label>Nome de Exibição</label>
+                  <input type="text" placeholder="Seu nome" value={profileName} onChange={(e) => setProfileName(e.target.value)} className="form-input" />
+                </div>
+                <button onClick={saveProfile} className="save-btn" disabled={savingProfile}>{savingProfile ? '⏳ Salvando...' : '💾 Salvar Perfil'}</button>
+                <div style={{ marginTop: 16, padding: 16, background: 'var(--bg-primary)', borderRadius: 'var(--radius)', border: '1px solid var(--border)' }}>
+                  <p style={{ fontSize: '0.85rem', fontWeight: 600, color: 'var(--text-primary)', marginBottom: 8 }}>🌙 Tema</p>
+                  <button onClick={() => setDarkMode(!darkMode)} className="filter-btn" style={{ width: '100%' }}>{darkMode ? '☀️ Mudar para Modo Claro' : '🌙 Mudar para Modo Escuro'}</button>
+                </div>
                 {userPlan === 'free' && (
-                  <button className="upgrade-btn" onClick={() => setShowUpgradeModal(true)}>💳 Fazer Upgrade</button>
+                  <button onClick={() => setShowUpgradeModal(true)} className="upgrade-btn" style={{ width: '100%', justifyContent: 'center' }}>💎 Fazer Upgrade para PRO — R$ 9,99</button>
                 )}
               </div>
             </div>
           </div>
         )}
+
       </main>
 
-      {/* MODAL DE UPGRADE */}
+      {/* MODAL UPGRADE PRO */}
       {showUpgradeModal && (
-        <div className="modal-overlay" onClick={() => setShowUpgradeModal(false)}>
-          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-            <button className="modal-close" onClick={() => setShowUpgradeModal(false)}>✕</button>
+        <div className="modal-overlay" onClick={() => { if (!processingPayment) setShowUpgradeModal(false); }}>
+          <div className="modal upgrade-modal" onClick={(e) => e.stopPropagation()}>
+            <button className="modal-close-btn" onClick={() => { if (!processingPayment) setShowUpgradeModal(false); }}>×</button>
             <h2>💎 Upgrade para PRO</h2>
-            <p>Desbloqueie treinos ilimitados e acesso a todos os recursos premium!</p>
-            <div className="upgrade-features">
-              <div className="feature">✅ Treinos Ilimitados</div>
-              <div className="feature">✅ 100+ Exercícios</div>
-              <div className="feature">✅ Cronômetro Avançado</div>
-              <div className="feature">✅ Suporte Prioritário</div>
+            <p>Desbloqueie treinos ilimitados e todas as funcionalidades premium</p>
+
+            <div className="plan-comparison">
+              <div className="plan-option">
+                <h4>🆓 FREE</h4>
+                <div className="plan-price">R$ 0</div>
+                <ul className="plan-features">
+                  <li>2 treinos por mês</li>
+                  <li>Nutrição básica</li>
+                  <li>Metas simples</li>
+                </ul>
+              </div>
+              <div className="plan-option selected">
+                <h4>💎 PRO</h4>
+                <div className="plan-price">R$ 9,99<span>/mês</span></div>
+                <ul className="plan-features">
+                  <li>✅ Treinos ilimitados</li>
+                  <li>✅ Todos os recursos</li>
+                  <li>✅ Suporte prioritário</li>
+                  <li>✅ Sem anúncios</li>
+                </ul>
+              </div>
             </div>
-            <div className="payment-methods">
-              <button className="payment-method-btn pix" onClick={() => { setPixConfirmCode(''); setPixPending(false); }}>
-                💳 PIX - R$ 9,99/mês
-              </button>
-              <button className="payment-method-btn card">
-                🏦 Cartão - R$ 9,99/mês
-              </button>
+
+            <div className="payment-tabs">
+              <button className={`tab-btn ${paymentTab === 'pix' ? 'active' : ''}`} onClick={() => setPaymentTab('pix')}>🏦 PIX</button>
+              <button className={`tab-btn ${paymentTab === 'card' ? 'active' : ''}`} onClick={() => setPaymentTab('card')}>💳 Cartão</button>
             </div>
+
+            {paymentTab === 'pix' && (
+              <div className="pix-payment-container">
+                <div className="pix-qr-wrapper">
+                  <QRCodeSVG value={PIX_PAYLOAD} size={190} level="M" includeMargin={false} style={{ display: 'block' }} />
+                </div>
+                <div className="pix-info">
+                  <div className="pix-info-row"><span className="label">Beneficiário</span><span className="value">AuraFit Pro</span></div>
+                  <div className="pix-info-row"><span className="label">Banco</span><span className="value">Nubank</span></div>
+                  <div className="pix-info-row"><span className="label">Valor</span><span className="value price">R$ 9,99</span></div>
+                  <div className="pix-info-row"><span className="label">Descrição</span><span className="value">AuraFit PRO — 1 mês</span></div>
+                </div>
+                <div className="pix-instructions">
+                  <h4>📱 Como pagar:</h4>
+                  <ol>
+                    <li>Abra o app do seu banco</li>
+                    <li>Vá em Pix → Pagar com QR Code</li>
+                    <li>Escaneie o código acima</li>
+                    <li>Confirme o pagamento de R$ 9,99</li>
+                    <li>Informe o código de confirmação abaixo</li>
+                  </ol>
+                </div>
+                {pixPending ? (
+                  <div className="payment-pending-notice">⏳ Seu pagamento está em análise. Assim que confirmado, seu plano PRO será ativado automaticamente. Aguarde até 24h.</div>
+                ) : (
+                  <>
+                    <div className="form-group" style={{ width: '100%' }}>
+                      <label>Código de Confirmação (últimos 4 dígitos do comprovante)</label>
+                      <input type="text" placeholder="Ex: 1234" value={pixConfirmCode} onChange={(e) => setPixConfirmCode(e.target.value)} className="form-input" maxLength="20" disabled={processingPayment} />
+                    </div>
+                    <button className="pix-confirm-btn" onClick={handlePixConfirm} disabled={processingPayment}>
+                      {processingPayment ? '⏳ Verificando...' : '✅ Já Paguei — Confirmar'}
+                    </button>
+                    <div className="payment-pending-notice">⚠️ O plano PRO só será ativado após confirmação do pagamento. Não é possível ativar sem pagamento real.</div>
+                  </>
+                )}
+              </div>
+            )}
+
+            {paymentTab === 'card' && (
+              <div className="card-payment-form">
+                <div className="form-group">
+                  <label>Nome no Cartão</label>
+                  <input type="text" placeholder="NOME COMPLETO" value={cardName} onChange={(e) => setCardName(e.target.value.toUpperCase())} className="card-input" disabled={processingPayment} />
+                </div>
+                <div className="form-group">
+                  <label>Número do Cartão</label>
+                  <input type="text" placeholder="0000 0000 0000 0000" value={cardNumber} onChange={(e) => { let v = e.target.value.replace(/\D/g, '').slice(0, 16); v = v.replace(/(.{4})/g, '$1 ').trim(); setCardNumber(v); }} maxLength="19" className="card-input" disabled={processingPayment} />
+                </div>
+                <div className="form-row">
+                  <div className="form-group">
+                    <label>Validade</label>
+                    <input type="text" placeholder="MM/AA" value={cardExpiry} onChange={(e) => { let v = e.target.value.replace(/\D/g, ''); if (v.length >= 2) v = v.slice(0, 2) + '/' + v.slice(2, 4); setCardExpiry(v); }} maxLength="5" className="card-input" disabled={processingPayment} />
+                  </div>
+                  <div className="form-group">
+                    <label>CVV</label>
+                    <input type="text" placeholder="123" value={cardCVC} onChange={(e) => setCardCVC(e.target.value.replace(/\D/g, '').slice(0, 4))} maxLength="4" className="card-input" disabled={processingPayment} />
+                  </div>
+                </div>
+                <div className="payment-pending-notice">⚠️ O plano PRO só será ativado após confirmação real do pagamento pelo administrador.</div>
+                <div className="modal-buttons">
+                  <button onClick={() => setShowUpgradeModal(false)} className="cancel-btn" disabled={processingPayment}>Cancelar</button>
+                  <button onClick={handleCardPayment} className="upgrade-confirm-btn" disabled={processingPayment}>{processingPayment ? '⏳ Processando...' : '💳 Pagar R$ 9,99'}</button>
+                </div>
+              </div>
+            )}
           </div>
         </div>
       )}
 
-      {/* TOASTS */}
-      <div className="toast-container">
-        {toasts.map((toast) => (
-          <div key={toast.id} className={`toast toast-${toast.type}`}>
-            <span>{toast.icon} {toast.message}</span>
-            <button onClick={() => removeToast(toast.id)}>✕</button>
+      {/* MODAL ADMIN - DADOS BANCÁRIOS */}
+      {showAdminPaymentPanel && user.email === 'andreybribeiro392@gmail.com' && (
+        <div className="modal-overlay" onClick={() => setShowAdminPaymentPanel(false)}>
+          <div className="modal admin-payment-modal" onClick={(e) => e.stopPropagation()}>
+            <button className="modal-close-btn" onClick={() => setShowAdminPaymentPanel(false)}>×</button>
+            <h2>💳 Dados para Recebimento</h2>
+            <p>Configure como você deseja receber os pagamentos</p>
+            <div className="payment-tabs">
+              <button className={`tab-btn ${paymentMethodTab === 'payments' ? 'active' : ''}`} onClick={() => setPaymentMethodTab('payments')}>📋 Pagamentos Pendentes</button>
+              <button className={`tab-btn ${paymentMethodTab === 'pix' ? 'active' : ''}`} onClick={() => setPaymentMethodTab('pix')}>PIX</button>
+              <button className={`tab-btn ${paymentMethodTab === 'card' ? 'active' : ''}`} onClick={() => setPaymentMethodTab('card')}>Cartão</button>
+              <button className={`tab-btn ${paymentMethodTab === 'bank' ? 'active' : ''}`} onClick={() => setPaymentMethodTab('bank')}>Conta</button>
+            </div>
+            {paymentMethodTab === 'payments' && (
+              <div className="payment-method-form">
+                <h3>📋 Pagamentos Aguardando Aprovação</h3>
+                <p style={{ fontSize: '0.9rem', color: 'var(--text-muted)', marginBottom: '16px' }}>Clique em "Aprovar" para liberar o acesso PRO ao usuário</p>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                  <div style={{ background: 'var(--bg-tertiary)', padding: '16px', borderRadius: 'var(--radius)', border: '1px solid var(--border)' }}>
+                    <p style={{ margin: '0 0 8px 0', fontWeight: '600' }}>💡 Dica: Verificar pagamentos no Firebase</p>
+                    <p style={{ margin: '0', fontSize: '0.85rem', color: 'var(--text-muted)' }}>1. Acesse o Firebase Console</p>
+                    <p style={{ margin: '0', fontSize: '0.85rem', color: 'var(--text-muted)' }}>2. Vá para Firestore Database → payments</p>
+                    <p style={{ margin: '0', fontSize: '0.85rem', color: 'var(--text-muted)' }}>3. Altere o campo "status" para "approved"</p>
+                    <p style={{ margin: '0', fontSize: '0.85rem', color: 'var(--text-muted)' }}>4. O usuário receberá PRO automaticamente no próximo login</p>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {paymentMethodTab === 'pix' && (
+              <div className="payment-method-form">
+                <h3>Dados do PIX</h3>
+                <div className="form-group">
+                  <label>Tipo de Chave</label>
+                  <select value={adminBankData.pixKeyType} onChange={(e) => setAdminBankData({ ...adminBankData, pixKeyType: e.target.value })} className="form-select">
+                    <option value="random">Chave Aleatória</option>
+                    <option value="cpf">CPF</option>
+                    <option value="email">E-mail</option>
+                    <option value="phone">Telefone</option>
+                  </select>
+                </div>
+                <div className="form-group">
+                  <label>Chave PIX</label>
+                  <input type="text" placeholder="Sua chave PIX" value={adminBankData.pixKey} onChange={(e) => setAdminBankData({ ...adminBankData, pixKey: e.target.value })} className="form-input" />
+                </div>
+                <button onClick={async () => { try { await updateDoc(doc(db, 'users', user.uid), { 'paymentMethods.pix': { keyType: adminBankData.pixKeyType, key: adminBankData.pixKey } }); addToast('Dados do PIX salvos!', 'success', '✅'); } catch (e) { addToast('Erro ao salvar', 'error', '❌'); } }} className="save-btn">💾 Salvar PIX</button>
+              </div>
+            )}
+            {paymentMethodTab === 'card' && (
+              <div className="payment-method-form">
+                <h3>Dados do Cartão</h3>
+                <div className="form-group"><label>Titular</label><input type="text" placeholder="Nome completo" value={adminBankData.cardholderName} onChange={(e) => setAdminBankData({ ...adminBankData, cardholderName: e.target.value })} className="form-input" /></div>
+                <div className="form-group"><label>Número</label><input type="text" placeholder="0000 0000 0000 0000" value={adminBankData.cardNumber} onChange={(e) => setAdminBankData({ ...adminBankData, cardNumber: e.target.value })} className="form-input" /></div>
+                <div className="form-row">
+                  <div className="form-group"><label>Validade</label><input type="text" placeholder="MM/AA" value={adminBankData.cardExpiry} onChange={(e) => setAdminBankData({ ...adminBankData, cardExpiry: e.target.value })} className="form-input" /></div>
+                  <div className="form-group"><label>CVV</label><input type="text" placeholder="123" value={adminBankData.cardCVC} onChange={(e) => setAdminBankData({ ...adminBankData, cardCVC: e.target.value })} className="form-input" /></div>
+                </div>
+                <button onClick={async () => { try { await updateDoc(doc(db, 'users', user.uid), { 'paymentMethods.card': { cardholderName: adminBankData.cardholderName } }); addToast('Dados do cartão salvos!', 'success', '✅'); } catch (e) { addToast('Erro ao salvar', 'error', '❌'); } }} className="save-btn">💾 Salvar Cartão</button>
+              </div>
+            )}
+            {paymentMethodTab === 'bank' && (
+              <div className="payment-method-form">
+                <h3>Conta Bancária</h3>
+                <div className="form-group"><label>Banco</label><input type="text" placeholder="Ex: Nubank" value={adminBankData.bankName} onChange={(e) => setAdminBankData({ ...adminBankData, bankName: e.target.value })} className="form-input" /></div>
+                <div className="form-row">
+                  <div className="form-group"><label>Agência</label><input type="text" placeholder="0001" value={adminBankData.agencyNumber} onChange={(e) => setAdminBankData({ ...adminBankData, agencyNumber: e.target.value })} className="form-input" /></div>
+                  <div className="form-group"><label>Conta</label><input type="text" placeholder="123456" value={adminBankData.accountNumber} onChange={(e) => setAdminBankData({ ...adminBankData, accountNumber: e.target.value })} className="form-input" /></div>
+                </div>
+                <button onClick={async () => { try { await updateDoc(doc(db, 'users', user.uid), { 'paymentMethods.bank': { bankName: adminBankData.bankName } }); addToast('Dados bancários salvos!', 'success', '✅'); } catch (e) { addToast('Erro ao salvar', 'error', '❌'); } }} className="save-btn">💾 Salvar Conta</button>
+              </div>
+            )}
           </div>
-        ))}
-      </div>
+        </div>
+      )}
+
+      <Toast toasts={toasts} removeToast={removeToast} />
     </div>
   );
 }
