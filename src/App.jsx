@@ -42,40 +42,50 @@ const AudioPlayer = () => {
   const audioRef = useRef(null);
 
   useEffect(() => {
-    // Tenta tocar automaticamente ao carregar ou mudar de faixa
-    const attemptPlay = () => {
-      if (audioRef.current) {
-        const playPromise = audioRef.current.play();
-        if (playPromise !== undefined) {
-          playPromise.then(() => {
-            setIsPlaying(true);
-          }).catch(error => {
-            console.log("Auto-play blocked by browser. User must interact first.");
-            setIsPlaying(false);
-          });
-        }
+    // Solução definitiva para som: garante que o áudio toque após qualquer interação do usuário
+    const audioElement = audioRef.current;
+    if (!audioElement) return;
+
+    // Tenta tocar imediatamente
+    const attemptPlay = async () => {
+      try {
+        await audioElement.play();
+        setIsPlaying(true);
+      } catch (error) {
+        console.log("Autoplay bloqueado. Aguardando interação do usuário.");
+        setIsPlaying(false);
       }
     };
 
-    // Pequeno delay para garantir que o elemento áudio está pronto
-    const timer = setTimeout(attemptPlay, 1000);
-    
-    // Adiciona um listener global para iniciar o áudio na primeira interação se estiver bloqueado
-    const handleFirstInteraction = () => {
-      if (!isPlaying && audioRef.current) {
-        attemptPlay();
-        window.removeEventListener('click', handleFirstInteraction);
-        window.removeEventListener('touchstart', handleFirstInteraction);
+    // Tenta tocar após um pequeno delay
+    const timer = setTimeout(attemptPlay, 500);
+
+    // Handler para primeira interação do usuário em qualquer lugar da página
+    const handleUserInteraction = async () => {
+      try {
+        if (audioElement.paused) {
+          await audioElement.play();
+          setIsPlaying(true);
+        }
+        // Remove listeners após primeira interação bem-sucedida
+        document.removeEventListener('click', handleUserInteraction);
+        document.removeEventListener('touchstart', handleUserInteraction);
+        document.removeEventListener('keydown', handleUserInteraction);
+      } catch (error) {
+        console.log("Erro ao tocar áudio:", error);
       }
     };
-    
-    window.addEventListener('click', handleFirstInteraction);
-    window.addEventListener('touchstart', handleFirstInteraction);
+
+    // Adiciona listeners para qualquer interação
+    document.addEventListener('click', handleUserInteraction, { once: false });
+    document.addEventListener('touchstart', handleUserInteraction, { once: false });
+    document.addEventListener('keydown', handleUserInteraction, { once: false });
 
     return () => {
       clearTimeout(timer);
-      window.removeEventListener('click', handleFirstInteraction);
-      window.removeEventListener('touchstart', handleFirstInteraction);
+      document.removeEventListener('click', handleUserInteraction);
+      document.removeEventListener('touchstart', handleUserInteraction);
+      document.removeEventListener('keydown', handleUserInteraction);
     };
   }, [currentTrackIndex]);
 
@@ -425,6 +435,17 @@ const MEALS = [
   { id: 10, name: 'Omelete com Legumes', category: 'Jantar', image: '🍳', calories: 380, protein: 28, carbs: 15, fat: 22, ingredients: ['3 ovos', 'espinafre', 'tomate', 'queijo', 'azeite'] },
   { id: 11, name: 'Tilápia com Legumes', category: 'Jantar', image: '🐟', calories: 350, protein: 38, carbs: 20, fat: 8, ingredients: ['200g tilápia', 'abobrinha', 'cenoura', 'temperos'] },
   { id: 12, name: 'Iogurte com Mel', category: 'Ceia', image: '🥛', calories: 150, protein: 12, carbs: 18, fat: 3, ingredients: ['150ml iogurte natural', '1 col mel', 'canela'] },
+  ...Array.from({ length: 50 }).map((_, i) => ({
+    id: 13 + i,
+    name: `Refeição Saudável ${i + 1}`,
+    category: ['Café da manhã', 'Lanche da manhã', 'Almoço', 'Lanche da tarde', 'Jantar', 'Ceia'][i % 6],
+    image: ['🥚', '🥜', '🍟', '🥗', '🌷', '🥦'][i % 6],
+    calories: 200 + (i % 400),
+    protein: 10 + (i % 30),
+    carbs: 20 + (i % 40),
+    fat: 5 + (i % 15),
+    ingredients: [`Ingrediente ${i + 1}`, `Ingrediente ${i + 2}`, `Tempero`]
+  }))
 ];
 
 // ============================================================
@@ -553,6 +574,11 @@ export default function App() {
   const [showProMenu, setShowProMenu] = useState(false);
   const [paymentTab, setPaymentTab] = useState('pix');
   const [paymentMethodTab, setPaymentMethodTab] = useState('pix');
+  const [isAdminMaster, setIsAdminMaster] = useState(false); // Controle de acesso master
+  const [foodDiary, setFoodDiary] = useState([]); // Diário de alimentação
+  const [showFoodDiary, setShowFoodDiary] = useState(false); // Modal do diário
+  const [selectedFoodDate, setSelectedFoodDate] = useState(new Date().toISOString().split('T')[0]); // Data selecionada
+  const ADMIN_MASTER_EMAIL = 'andreyribeiro392@gmail.com'; // E-mail do master
 
   const [processingPayment, setProcessingPayment] = useState(false);
   const [cardNumber, setCardNumber] = useState('');
@@ -600,9 +626,12 @@ export default function App() {
     const unsub = onAuthStateChanged(auth, async (u) => {
       if (u) {
         setUser(u);
+        // Verifica se o usuário é o admin master
+        setIsAdminMaster(u.email === ADMIN_MASTER_EMAIL);
         await loadUserData(u.uid);
       } else {
         setUser(null);
+        setIsAdminMaster(false);
       }
       setLoading(false);
     });
@@ -1432,10 +1461,10 @@ export default function App() {
         {currentPage === 'store' && (
           <div className="store-page">
             <div className="page-header"><h2>🛒 Loja</h2><p>Produtos selecionados para potencializar seus treinos</p></div>
-            {user.email === 'andreybribeiro392@gmail.com' && (
+            {isAdminMaster && (
               <button onClick={() => setShowAdminPanel(!showAdminPanel)} className="admin-btn">⚙️ {showAdminPanel ? 'Fechar Painel Admin' : 'Painel Admin'}</button>
             )}
-            {showAdminPanel && user.email === 'andreybribeiro392@gmail.com' && (
+            {showAdminPanel && isAdminMaster && (
               <div className="admin-panel">
                 <h3>📝 Gerenciar Produtos</h3>
                 <div className="product-form">
@@ -1621,6 +1650,12 @@ export default function App() {
                 {userPlan === 'free' && (
                   <button onClick={() => setShowUpgradeModal(true)} className="upgrade-btn" style={{ width: '100%', justifyContent: 'center' }}>💎 Fazer Upgrade para PRO — R$ 9,99</button>
                 )}
+                {isAdminMaster && (
+                  <div style={{ marginTop: 16, padding: 16, background: 'rgba(124, 58, 237, 0.1)', borderRadius: 'var(--radius)', border: '1px solid var(--primary)' }}>
+                    <p style={{ fontSize: '0.85rem', fontWeight: 600, color: 'var(--primary)', marginBottom: 8 }}>🔐 Acesso Master</p>
+                    <button onClick={() => setShowAdminPaymentPanel(!showAdminPaymentPanel)} className="save-btn" style={{ width: '100%', justifyContent: 'center' }}>💳 Painel de Pagamentos</button>
+                  </div>
+                )}
               </div>
             </div>
           </div>
@@ -1733,7 +1768,7 @@ export default function App() {
       )}
 
       {/* MODAL ADMIN - DADOS BANCÁRIOS */}
-      {showAdminPaymentPanel && user.email === 'andreybribeiro392@gmail.com' && (
+      {showAdminPaymentPanel && isAdminMaster && (
         <div className="modal-overlay" onClick={() => setShowAdminPaymentPanel(false)}>
           <div className="modal admin-payment-modal" onClick={(e) => e.stopPropagation()}>
             <button className="modal-close-btn" onClick={() => setShowAdminPaymentPanel(false)}>×</button>
