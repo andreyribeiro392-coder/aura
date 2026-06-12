@@ -11,16 +11,16 @@ import {
   collection, getDocs, addDoc, deleteDoc, serverTimestamp,
 } from 'firebase/firestore';
 import { QRCodeSVG } from 'qrcode.react';
-import './styles/index.css';
+import './index.css';
 
-const VideoBackground = () => (
-  <div className="video-background">
-    <video autoPlay loop muted playsInline>
-      <source src="https://videos.pexels.com/video-files/32709636/13944311_2160_3840_30fps.mp4" type="video/mp4" />
-    </video>
-    <div className="video-overlay"></div>
-  </div>
-);
+  const VideoBackground = () => (
+    <div className="video-background">
+      <video autoPlay muted loop playsInline>
+        <source src="https://assets.mixkit.co/videos/preview/mixkit-empty-gym-with-training-equipment-23135-large.mp4" type="video/mp4" />
+      </video>
+      <div className="video-overlay"></div>
+    </div>
+  );
 
 const AudioPlayer = () => {
   const tracks = [
@@ -111,17 +111,22 @@ const AudioPlayer = () => {
         onEnded={() => setCurrentTrackIndex((currentTrackIndex + 1) % tracks.length)}
       />
       
-      <div className="audio-controls">
+      <div className="audio-controls-premium">
         <button 
-          className={`audio-toggle ${isPlaying ? 'playing' : ''}`} 
+          className={`audio-toggle-premium ${isPlaying ? 'playing' : ''}`} 
           onClick={toggleAudio}
           title={isPlaying ? "Pausar" : "Tocar"}
         >
-          {isPlaying ? '⏸️' : '▶️'}
+          <span className="play-icon-glow">{isPlaying ? '⏸️' : '▶️'}</span>
         </button>
         
+        <div className="track-display-premium">
+          <span className="track-name-premium">{tracks[currentTrackIndex].name}</span>
+          {isPlaying && <span className="playing-indicator">🎵</span>}
+        </div>
+        
         <button 
-          className="directory-toggle"
+          className="directory-toggle-premium"
           onClick={() => setShowDirectory(!showDirectory)}
           title="Diretório de Músicas"
         >
@@ -198,18 +203,18 @@ const PIX_PAYLOAD = buildPixPayload(
 // GALERIA DE 10+ VÍDEOS DE ANIMAÇÃO 3D (ATUALIZADO)
 // ============================================================
 const HIGHLIGHT_VIDEOS = [
-  { id: 1, title: "Agachamento (Squat)", url: "https://videos.pexels.com/video-files/4367554/4367554-uhd_2160_3840_25fps.mp4", category: "Pernas 3D" },
-  { id: 2, title: "Flexão (Push Up)", url: "https://videos.pexels.com/video-files/4367561/4367561-uhd_2160_3840_25fps.mp4", category: "Peito 3D" },
-  { id: 3, title: "Abdominal (Crunch)", url: "https://videos.pexels.com/video-files/4367560/4367560-uhd_2160_3840_25fps.mp4", category: "Core 3D" },
-  { id: 4, title: "Burpee", url: "https://videos.pexels.com/video-files/4367562/4367562-uhd_2160_3840_25fps.mp4", category: "Full Body 3D" },
-  { id: 5, title: "Alongamento", url: "https://videos.pexels.com/video-files/4367556/4367556-uhd_2160_3840_25fps.mp4", category: "Flexibilidade 3D" },
-  { id: 6, title: "Corrida (Running)", url: "https://videos.pexels.com/video-files/4367564/4367564-uhd_2160_3840_25fps.mp4", category: "Cardio 3D" },
-  { id: 7, title: "Remada (Rowing)", url: "https://videos.pexels.com/video-files/4367557/4367557-uhd_2160_3840_25fps.mp4", category: "Costas 3D" },
-  { id: 8, title: "Salto (Jump)", url: "https://videos.pexels.com/video-files/4367565/4367565-uhd_2160_3840_25fps.mp4", category: "Explosão 3D" },
-  { id: 9, title: "Elevação Lateral", url: "https://videos.pexels.com/video-files/4367559/4367559-uhd_2160_3840_25fps.mp4", category: "Ombros 3D" },
-  { id: 10, title: "Polichinelo", url: "https://videos.pexels.com/video-files/4367563/4367563-uhd_2160_3840_25fps.mp4", category: "Aquecimento 3D" },
-  { id: 11, title: "Avanço (Lunge)", url: "https://videos.pexels.com/video-files/4367554/4367554-uhd_2160_3840_25fps.mp4", category: "Pernas 3D" },
-  { id: 12, title: "Prancha (Plank)", url: "https://videos.pexels.com/video-files/4367560/4367560-uhd_2160_3840_25fps.mp4", category: "Core 3D" },
+  { id: 1, title: "Agachamento (Squat)", url: "https://media.giphy.com/media/l0HlTy9x8FZo0XO1i/giphy.mp4", category: "Pernas" },
+  { id: 2, title: "Flexão (Push Up)", url: "https://media.giphy.com/media/3ohzdKdb7CliMCLRVu/giphy.mp4", category: "Peito" },
+  { id: 3, title: "Abdominal (Crunch)", url: "https://media.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.mp4", category: "Core" },
+  { id: 4, title: "Burpee", url: "https://media.giphy.com/media/l0HlQaQ6oCODQXNFm/giphy.mp4", category: "Full Body" },
+  { id: 5, title: "Alongamento", url: "https://media.giphy.com/media/3o85xIO33l7RlmLR4I/giphy.mp4", category: "Flexibilidade" },
+  { id: 6, title: "Corrida (Running)", url: "https://media.giphy.com/media/l0HlNaQ9FS8Uc8Hva/giphy.mp4", category: "Cardio" },
+  { id: 7, title: "Remada (Rowing)", url: "https://media.giphy.com/media/l0HlQaQ6oCODQXNFm/giphy.mp4", category: "Costas" },
+  { id: 8, title: "Salto (Jump)", url: "https://media.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.mp4", category: "Explosão" },
+  { id: 9, title: "Elevação Lateral", url: "https://media.giphy.com/media/l0HlTy9x8FZo0XO1i/giphy.mp4", category: "Ombros" },
+  { id: 10, title: "Polichinelo", url: "https://media.giphy.com/media/3o85xIO33l7RlmLR4I/giphy.mp4", category: "Aquecimento" },
+  { id: 11, title: "Avanço (Lunge)", url: "https://media.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.mp4", category: "Pernas" },
+  { id: 12, title: "Prancha (Plank)", url: "https://media.giphy.com/media/l0HlNaQ9FS8Uc8Hva/giphy.mp4", category: "Core" },
 ];
 
 // ============================================================
@@ -578,6 +583,8 @@ export default function App() {
   const [foodDiary, setFoodDiary] = useState([]); // Diário de alimentação
   const [showFoodDiary, setShowFoodDiary] = useState(false); // Modal do diário
   const [selectedFoodDate, setSelectedFoodDate] = useState(new Date().toISOString().split('T')[0]); // Data selecionada
+  const [tiktokVideos, setTiktokVideos] = useState([]); // Vídeos do TikTok
+  const [newTiktokVideo, setNewTiktokVideo] = useState({ title: '', url: '', description: '' }); // Novo vídeo TikTok
   const ADMIN_MASTER_EMAIL = 'andreyribeiro392@gmail.com'; // E-mail do master
 
   const [processingPayment, setProcessingPayment] = useState(false);
@@ -966,9 +973,11 @@ export default function App() {
       <header className="header">
         <div className="header-content">
           <div className="header-brand">
-            <button className="mobile-back-btn" onClick={() => setCurrentPage('dashboard')} title="Voltar">
-              ← 
-            </button>
+            {currentPage !== 'dashboard' && (
+              <button className="mobile-back-btn" onClick={() => setCurrentPage('dashboard')} title="Voltar">
+                ← 
+              </button>
+            )}
             <img src="/favicon_weight.png" alt="AuraFit" />
             <h1>Aura<span>Fit</span></h1>
           </div>
@@ -1004,10 +1013,11 @@ export default function App() {
       {/* SIDEBAR */}
       <nav className="sidebar-nav">
         {[
-          { id: 'dashboard', icon: '📊', label: 'Dashboard' },
+          { id: 'dashboard', icon: '📋', label: 'Dashboard' },
           { id: 'home-workouts', icon: '🏠', label: 'Treinos em Casa' },
           { id: 'gym-workouts', icon: '🏋️', label: 'Academia' },
           { id: 'nutrition', icon: '🍎', label: 'Nutrição' },
+          { id: 'tiktok', icon: '🌟', label: 'TikTok' },
           { id: 'goals', icon: '🎯', label: 'Metas' },
           { id: 'store', icon: '🛒', label: 'Loja' },
           { id: 'education', icon: '📚', label: 'Educação' },
@@ -1026,10 +1036,11 @@ export default function App() {
           <nav className="mobile-menu-nav" onClick={(e) => e.stopPropagation()}>
             <button className="mobile-menu-close" onClick={() => setShowMobileMenuNav(false)}>✕</button>
             {[
-              { id: 'dashboard', icon: '📊', label: 'Dashboard' },
+              { id: 'dashboard', icon: '📋', label: 'Dashboard' },
               { id: 'home-workouts', icon: '🏠', label: 'Treinos em Casa' },
               { id: 'gym-workouts', icon: '🏋️', label: 'Academia' },
               { id: 'nutrition', icon: '🍎', label: 'Nutrição' },
+              { id: 'tiktok', icon: '🌟', label: 'TikTok' },
               { id: 'goals', icon: '🎯', label: 'Metas' },
               { id: 'store', icon: '🛒', label: 'Loja' },
               { id: 'education', icon: '📚', label: 'Educação' },
@@ -1058,34 +1069,27 @@ export default function App() {
         {currentPage === 'dashboard' && (
           <div className="dashboard-page">
 
-            {/* CENA DO CARRO ESPORTIVO EM MOVIMENTO */}
-            <div className="car-scene-container" style={{
+            {/* CENA DE ACADEMIA COM LEVANTAMENTO DE PESO */}
+            <div className="gym-scene-container" style={{
               width: '100%',
               height: '150px',
-              background: 'linear-gradient(to bottom, #1a1a1a, #000)',
+              background: 'linear-gradient(135deg, #00d4ff 0%, #0099cc 50%, #1a1a1a 100%)',
               borderRadius: 'var(--radius)',
               position: 'relative',
               overflow: 'hidden',
               marginBottom: '20px',
-              border: '1px solid var(--border)'
+              border: '2px solid #00d4ff',
+              boxShadow: '0 0 30px rgba(0, 212, 255, 0.3)',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center'
             }}>
-              <div className="road" style={{
+              <div style={{
                 position: 'absolute',
-                bottom: '20px',
-                width: '200%',
-                height: '2px',
-                background: 'dashed linear-gradient(90deg, #fff 50%, transparent 50%)',
-                backgroundSize: '40px 2px',
-                animation: 'roadScroll 0.5s linear infinite'
-              }}></div>
-              <div className="sport-car" style={{
-                position: 'absolute',
-                bottom: '15px',
-                left: '50px',
-                fontSize: '3rem',
-                animation: 'carVibrate 0.1s infinite alternate'
+                fontSize: '4rem',
+                animation: 'liftWeight 1.5s ease-in-out infinite'
               }}>
-                🏎️💨
+                🏋️
               </div>
               <div className="scene-text" style={{
                 position: 'absolute',
@@ -1093,17 +1097,13 @@ export default function App() {
                 right: '20px',
                 textAlign: 'right'
               }}>
-                <h3 style={{ color: '#fff', margin: 0 }}>AuraFit Speed</h3>
-                <p style={{ color: 'var(--primary)', margin: 0, fontSize: '0.8rem' }}>Sua evolução não para</p>
+                <h3 style={{ color: '#fff', margin: 0, fontSize: '1.2rem', fontWeight: 800 }}>AuraFit Pro</h3>
+                <p style={{ color: '#00d4ff', margin: 0, fontSize: '0.8rem', fontWeight: 600 }}>Sua evolução começa agora</p>
               </div>
               <style>{`
-                @keyframes roadScroll {
-                  from { transform: translateX(0); }
-                  to { transform: translateX(-40px); }
-                }
-                @keyframes carVibrate {
-                  from { transform: translateY(0); }
-                  to { transform: translateY(-2px); }
+                @keyframes liftWeight {
+                  0%, 100% { transform: translateY(0); }
+                  50% { transform: translateY(-20px); }
                 }
               `}</style>
             </div>
@@ -1124,7 +1124,7 @@ export default function App() {
                 {HIGHLIGHT_VIDEOS.map((video) => (
                   <div key={video.id} className="video-card" style={{ background: 'var(--bg-card)', border: '1px solid var(--border)', borderRadius: 'var(--radius)', overflow: 'hidden', transition: 'var(--transition)', cursor: 'pointer', boxShadow: 'var(--shadow-sm)' }}>
                     <div className="video-thumbnail" style={{ width: '100%', height: '220px', position: 'relative', background: '#000' }}>
-                      <video muted playsInline loop style={{ width: '100%', height: '100%', objectFit: 'cover' }} onMouseOver={e => e.target.play()} onMouseOut={e => { e.target.pause(); e.target.currentTime = 0; }}>
+                      <video muted playsInline loop autoPlay style={{ width: '100%', height: '100%', objectFit: 'cover' }}>
                         <source src={video.url} type="video/mp4" />
                       </video>
                       <div className="video-overlay-tech" style={{ position: 'absolute', bottom: 0, left: 0, right: 0, background: 'linear-gradient(transparent, rgba(0,0,0,0.8))', padding: '20px 10px 10px', pointerEvents: 'none' }}>
@@ -1438,14 +1438,22 @@ export default function App() {
             </div>
             {userGoal && (
               <div className="weekly-goals-section">
-                <h3>📅 Metas Semanais — {userGoal}</h3>
-                <div className="weekly-goals-grid">
-                  {['Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb', 'Dom'].map((day) => (
-                    <div key={day} className="weekly-goal-card">
-                      <h4>{day}</h4>
-                      <input type="text" placeholder="Meta" value={weeklyGoals[`${userGoal}-${day}`] || ''} onChange={(e) => saveWeeklyGoal(userGoal, day, e.target.value)} className="goal-input" />
-                    </div>
-                  ))}
+                <h3>📅 Cronograma Semanal Interativo — {userGoal}</h3>
+                <div style={{ background: 'linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(124, 58, 237, 0.1))', padding: '20px', borderRadius: 'var(--radius)', border: '2px solid rgba(0, 212, 255, 0.3)', marginBottom: '20px' }}>
+                  <p style={{ fontSize: '0.9rem', color: 'var(--text-muted)', marginBottom: '16px' }}>Clique nos dias para ver os treinos programados</p>
+                  <div className="weekly-goals-grid">
+                    {['Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb', 'Dom'].map((day, idx) => (
+                      <div key={day} className="weekly-goal-card-premium" onClick={() => {
+                        const dayIndex = idx;
+                        const dayWorkouts = dayIndex < 3 ? HOME_WORKOUTS.slice(0, 5) : GYM_WORKOUTS.slice(0, 5);
+                        setCurrentPage(dayIndex < 3 ? 'home-workouts' : 'gym-workouts');
+                      }} style={{ cursor: 'pointer', background: 'var(--bg-card)', border: '2px solid var(--border)', borderRadius: '8px', padding: '12px', textAlign: 'center', transition: 'all 0.3s ease' }}>
+                        <h4 style={{ margin: '0 0 8px 0', color: 'var(--primary)', fontWeight: 800 }}>{day}</h4>
+                        <input type="text" placeholder="Meta" value={weeklyGoals[`${userGoal}-${day}`] || ''} onChange={(e) => { e.stopPropagation(); saveWeeklyGoal(userGoal, day, e.target.value); }} className="goal-input" style={{ fontSize: '0.8rem' }} />
+                        <p style={{ fontSize: '0.7rem', color: 'var(--text-muted)', marginTop: '4px' }}>Clique para treinar</p>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </div>
             )}
@@ -1598,6 +1606,52 @@ export default function App() {
         )}
 
         {/* EDUCAÇÃO */}
+        {/* TIK TOK */}
+        {currentPage === 'tiktok' && (
+          <div className="tiktok-page">
+            <div className="page-header"><h2>🌟 TikTok</h2><p>Divulgação e Conteúdo Exclusivo</p></div>
+            {isAdminMaster && (
+              <div style={{ marginBottom: '24px', padding: '16px', background: 'var(--bg-card)', borderRadius: 'var(--radius)', border: '1px solid var(--border)' }}>
+                <h3>📹 Adicionar Vídeo TikTok</h3>
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px', marginTop: '12px' }}>
+                  <input type="text" placeholder="Título" value={newTiktokVideo.title} onChange={(e) => setNewTiktokVideo({ ...newTiktokVideo, title: e.target.value })} className="form-input" />
+                  <input type="url" placeholder="URL do TikTok" value={newTiktokVideo.url} onChange={(e) => setNewTiktokVideo({ ...newTiktokVideo, url: e.target.value })} className="form-input" />
+                </div>
+                <textarea placeholder="Descrição" value={newTiktokVideo.description} onChange={(e) => setNewTiktokVideo({ ...newTiktokVideo, description: e.target.value })} className="form-textarea" style={{ marginTop: '12px' }} />
+                <button onClick={() => {
+                  if (newTiktokVideo.title && newTiktokVideo.url) {
+                    setTiktokVideos([...tiktokVideos, { ...newTiktokVideo, id: Date.now() }]);
+                    setNewTiktokVideo({ title: '', url: '', description: '' });
+                    addToast('Vídeo adicionado!', 'success', '✅');
+                  }
+                }} className="save-btn" style={{ marginTop: '12px', width: '100%' }}>+ Adicionar Vídeo</button>
+              </div>
+            )}
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: '16px' }}>
+              {tiktokVideos.map((video) => (
+                <div key={video.id} style={{ background: 'var(--bg-card)', borderRadius: 'var(--radius)', overflow: 'hidden', border: '1px solid var(--border)' }}>
+                  <div style={{ width: '100%', height: '200px', background: '#000', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                    <iframe width="100%" height="100%" src={video.url.replace('vm.tiktok.com', 'www.tiktok.com/embed/v2').replace(//$/, '')} frameBorder="0" allow="autoplay; encrypted-media" allowFullScreen></iframe>
+                  </div>
+                  <div style={{ padding: '12px' }}>
+                    <h4 style={{ margin: '0 0 8px 0' }}>{video.title}</h4>
+                    <p style={{ margin: '0', fontSize: '0.85rem', color: 'var(--text-muted)' }}>{video.description}</p>
+                    {isAdminMaster && (
+                      <button onClick={() => setTiktokVideos(tiktokVideos.filter(v => v.id !== video.id))} style={{ marginTop: '8px', width: '100%', padding: '6px', background: '#ff4757', color: '#fff', border: 'none', borderRadius: '4px', cursor: 'pointer' }}>Deletar</button>
+                    )}
+                  </div>
+                </div>
+              ))}
+            </div>
+            {tiktokVideos.length === 0 && (
+              <div style={{ textAlign: 'center', padding: '40px', color: 'var(--text-muted)' }}>
+                <p style={{ fontSize: '2rem', marginBottom: '12px' }}>🌟</p>
+                <p>Nenhum vídeo TikTok adicionado ainda.</p>
+              </div>
+            )}
+          </div>
+        )}
+
         {currentPage === 'education' && (
           <div className="education-page">
             <div className="page-header"><h2>📚 Educação Fitness</h2><p>O que você precisa saber para treinar melhor e com mais segurança</p></div>
@@ -1626,9 +1680,30 @@ export default function App() {
             <div className="profile-card">
               <div className="profile-avatar">
                 {userProfile.photoURL ? <img src={userProfile.photoURL} alt="Avatar" /> : <div className="avatar-placeholder">👤</div>}
+                <label className="photo-upload-label" htmlFor="photo-upload">
+                  📷 Alterar Foto
+                </label>
+                <input 
+                  id="photo-upload" 
+                  type="file" 
+                  accept="image/*" 
+                  onChange={(e) => {
+                    const file = e.target.files?.[0];
+                    if (file) {
+                      const reader = new FileReader();
+                      reader.onload = (event) => {
+                        const photoURL = event.target?.result;
+                        setUserProfile({ ...userProfile, photoURL });
+                        updateDoc(doc(db, 'users', user.uid), { photoURL }).catch(err => console.error(err));
+                      };
+                      reader.readAsDataURL(file);
+                    }
+                  }}
+                  style={{ display: 'none' }}
+                />
               </div>
               <div className="profile-info">
-                <p><strong>Nome:</strong> {userProfile.name || 'Não definido'}</p>
+                <p><strong>Nome:</strong> {userProfile.name || 'Sem nome definido'}</p>
                 <p><strong>E-mail:</strong> {user.email}</p>
                 <p><strong>Plano:</strong> {userPlan === 'pro' ? '💎 PRO' : '🆓 FREE'}</p>
                 <p><strong>Treinos:</strong> {completedWorkoutsCount} concluídos</p>
