@@ -11,7 +11,7 @@ import {
   collection, getDocs, addDoc, deleteDoc, serverTimestamp,
 } from 'firebase/firestore';
 import { QRCodeSVG } from 'qrcode.react';
-import './index.css';
+import './styles/index.css';
 
   const VideoBackground = () => (
     <div className="video-background">
@@ -27,7 +27,7 @@ const AudioPlayer = () => {
     { name: "Journey - Roa", url: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663735503721/fRQACxdMWczhpsll.mp3" },
     { name: "Motivate - Wavecont", url: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663735503721/DRpeLmpMIzPuXJCf.mp3" },
     { name: "Greenland - Alex-Productions", url: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663735503721/YToOeGqHRGesECtA.mp3" },
-    { name: "FiLm - Alex-Productions", url: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663735503721/ANOrYoDAXyUYCxwv.mp3" },
+    { name: "Film - Alex-Productions", url: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663735503721/ANOrYoDAXyUYCxwv.mp3" },
     { name: "Bliss - Luke Bergs", url: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663735503721/yjxdpWHExsGGRgWV.mp3" },
     { name: "Champion - Alex-Productions", url: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663735503721/UzhZVSZeIGqDiRYm.mp3" },
     { name: "Heroic - Alex-Productions", url: "https://files.manuscdn.com/user_upload_by_module/session_file/310519663735503721/imLBTGoFyFBiKHmy.mp3" },
