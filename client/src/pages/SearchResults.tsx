@@ -5,6 +5,20 @@ import { Heart, ShoppingCart, ArrowLeft, Search } from "lucide-react";
 import { useLocation } from "wouter";
 import { useState } from "react";
 
+type Product = {
+  id: string;
+  name: string;
+  description?: string;
+  price: number;
+  categoryId: number;
+  imageUrl?: string;
+};
+
+type Category = {
+  id: string;
+  name: string;
+};
+
 export default function SearchResults() {
   const [, navigate] = useLocation();
   const [searchQuery, setSearchQuery] = useState("");
@@ -15,16 +29,23 @@ export default function SearchResults() {
   const { data: allProducts } = trpc.products.list.useQuery();
   const { data: categories } = trpc.categories.list.useQuery();
 
-  // Filter products based on search and filters
-  const filteredProducts = allProducts?.filter((product: any) => {
-    const matchesSearch = product.name.toLowerCase().includes(searchQuery.toLowerCase());
+  const products: Product[] = allProducts ?? [];
+  const categoriesTyped: Category[] = categories ?? [];
+
+  const filteredProducts = products.filter((product) => {
+    const matchesSearch = product.name
+      .toLowerCase()
+      .includes(searchQuery.toLowerCase());
+
     const matchesPrice =
-      parseFloat(product.price as any) >= minPrice &&
-      parseFloat(product.price as any) <= maxPrice;
-    const matchesCategory = !selectedCategory || product.categoryId === parseInt(selectedCategory);
+      product.price >= minPrice && product.price <= maxPrice;
+
+    const matchesCategory =
+      !selectedCategory ||
+      product.categoryId === Number(selectedCategory);
 
     return matchesSearch && matchesPrice && matchesCategory;
-  }) || [];
+  });
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
@@ -54,13 +75,16 @@ export default function SearchResults() {
             {/* Filters */}
             <div className="lg:col-span-1">
               <div className="glass p-6 rounded-lg space-y-6">
-                <div>
-                  <h3 className="text-lg font-bold text-white mb-4">Filtros</h3>
-                </div>
+                <h3 className="text-lg font-bold text-white mb-4">
+                  Filtros
+                </h3>
 
                 {/* Search */}
                 <div>
-                  <label className="block text-white font-semibold mb-2">Buscar</label>
+                  <label className="block text-white font-semibold mb-2">
+                    Buscar
+                  </label>
+
                   <form onSubmit={handleSearch} className="relative">
                     <input
                       type="text"
@@ -80,14 +104,20 @@ export default function SearchResults() {
 
                 {/* Category Filter */}
                 <div>
-                  <label className="block text-white font-semibold mb-2">Categoria</label>
+                  <label className="block text-white font-semibold mb-2">
+                    Categoria
+                  </label>
+
                   <select
                     value={selectedCategory}
-                    onChange={(e) => setSelectedCategory(e.target.value)}
+                    onChange={(e) =>
+                      setSelectedCategory(e.target.value)
+                    }
                     className="w-full bg-slate-800/50 border border-white/20 rounded-lg px-4 py-2 text-white focus:outline-none focus:border-cyan-400"
                   >
                     <option value="">Todas as categorias</option>
-                    {categories?.map((cat) => (
+
+                    {categoriesTyped.map((cat) => (
                       <option key={cat.id} value={cat.id}>
                         {cat.name}
                       </option>
@@ -97,29 +127,41 @@ export default function SearchResults() {
 
                 {/* Price Range */}
                 <div>
-                  <label className="block text-white font-semibold mb-2">Faixa de Preço</label>
+                  <label className="block text-white font-semibold mb-2">
+                    Faixa de Preço
+                  </label>
+
                   <div className="space-y-2">
                     <div>
-                      <label className="text-slate-400 text-sm">Mínimo: R$ {minPrice.toFixed(2)}</label>
+                      <label className="text-slate-400 text-sm">
+                        Mínimo: R$ {minPrice.toFixed(2)}
+                      </label>
                       <input
                         type="range"
                         min="0"
                         max="10000"
                         step="100"
                         value={minPrice}
-                        onChange={(e) => setMinPrice(parseInt(e.target.value))}
+                        onChange={(e) =>
+                          setMinPrice(Number(e.target.value))
+                        }
                         className="w-full"
                       />
                     </div>
+
                     <div>
-                      <label className="text-slate-400 text-sm">Máximo: R$ {maxPrice.toFixed(2)}</label>
+                      <label className="text-slate-400 text-sm">
+                        Máximo: R$ {maxPrice.toFixed(2)}
+                      </label>
                       <input
                         type="range"
                         min="0"
                         max="10000"
                         step="100"
                         value={maxPrice}
-                        onChange={(e) => setMaxPrice(parseInt(e.target.value))}
+                        onChange={(e) =>
+                          setMaxPrice(Number(e.target.value))
+                        }
                         className="w-full"
                       />
                     </div>
@@ -145,17 +187,20 @@ export default function SearchResults() {
             <div className="lg:col-span-3">
               <div className="mb-6">
                 <p className="text-slate-400">
-                  {filteredProducts.length} produto{filteredProducts.length !== 1 ? "s" : ""} encontrado
+                  {filteredProducts.length} produto
+                  {filteredProducts.length !== 1 ? "s" : ""} encontrado
                   {filteredProducts.length !== 1 ? "s" : ""}
                 </p>
               </div>
 
               {filteredProducts.length > 0 ? (
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                  {filteredProducts.map((product: any) => (
+                  {filteredProducts.map((product) => (
                     <Card
                       key={product.id}
-                      onClick={() => navigate(`/produto/${product.id}`)}
+                      onClick={() =>
+                        navigate(`/produto/${product.id}`)
+                      }
                       className="glass cursor-pointer hover:neon-glow transition-smooth group overflow-hidden"
                     >
                       <div className="aspect-square bg-gradient-to-br from-slate-800 to-slate-900 relative overflow-hidden flex items-center justify-center">
@@ -171,12 +216,19 @@ export default function SearchResults() {
                       </div>
 
                       <div className="p-4">
-                        <h3 className="font-bold text-white mb-2 line-clamp-2">{product.name}</h3>
-                        <p className="text-slate-400 text-sm mb-3 line-clamp-2">{product.description}</p>
+                        <h3 className="font-bold text-white mb-2 line-clamp-2">
+                          {product.name}
+                        </h3>
+
+                        <p className="text-slate-400 text-sm mb-3 line-clamp-2">
+                          {product.description}
+                        </p>
+
                         <div className="flex items-center justify-between">
                           <span className="text-cyan-400 font-bold text-lg">
-                            R$ {parseFloat(product.price).toFixed(2)}
+                            R$ {product.price.toFixed(2)}
                           </span>
+
                           <Heart className="w-5 h-5 text-slate-400 hover:text-red-500 transition-colors" />
                         </div>
                       </div>
@@ -186,7 +238,9 @@ export default function SearchResults() {
               ) : (
                 <div className="text-center py-20">
                   <ShoppingCart className="w-16 h-16 text-slate-600 mx-auto mb-4" />
-                  <p className="text-slate-400 text-lg">Nenhum produto encontrado com esses critérios.</p>
+                  <p className="text-slate-400 text-lg">
+                    Nenhum produto encontrado com esses critérios.
+                  </p>
                 </div>
               )}
             </div>
