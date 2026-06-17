@@ -18,11 +18,12 @@
     "forceConsistentCasingInFileNames": true,
     "isolatedModules": true,
     "noEmit": true,
+
+    "baseUrl": ".",
     "paths": {
-      "@/*": [
-        "./*"
-      ]
+      "@/*": ["client/src/*"]
     },
+
     "allowJs": true,
     "incremental": true,
     "plugins": [
