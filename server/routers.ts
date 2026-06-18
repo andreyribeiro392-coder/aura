@@ -90,6 +90,9 @@ export const appRouter = router({
   ai: router({
     getChatHistory: protectedProcedure.query(() => []),
     getPlans: protectedProcedure.query(() => []),
+    chat: protectedProcedure
+      .input(z.object({ message: z.string() }))
+      .mutation(({ input }) => ({ response: "AI response" })),
   }),
 });
 
