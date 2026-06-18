@@ -72,6 +72,19 @@ export const appRouter = router({
       .input(z.number())
       .mutation(({ ctx, input }) => removeFromFavorites(ctx.user.id, input)),
   }),
+
+  // Profile
+  profile: router({
+    get: protectedProcedure.query(({ ctx }) => ({
+      profile: {
+        displayName: ctx.user.name || "User",
+      },
+      subscription: {
+        plan: "free",
+        status: "active",
+      },
+    })),
+  }),
 });
 
 export type AppRouter = typeof appRouter;
