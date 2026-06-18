@@ -78,12 +78,34 @@ export const appRouter = router({
     get: protectedProcedure.query(({ ctx }) => ({
       profile: {
         displayName: ctx.user.name || "User",
+        fitnessGoal: "stay_healthy",
+        fitnessLevel: "Beginner",
+        weightKg: 70,
+        heightCm: 175,
       },
       subscription: {
         plan: "free",
         status: "active",
       },
     })),
+    update: protectedProcedure
+      .input(z.object({
+        displayName: z.string().optional(),
+        fitnessGoal: z.string().optional(),
+        fitnessLevel: z.string().optional(),
+        weightKg: z.number().optional(),
+        heightCm: z.number().optional(),
+      }))
+      .mutation(({ input }) => ({ success: true })),
+    setup: protectedProcedure
+      .input(z.object({
+        displayName: z.string(),
+        fitnessGoal: z.string(),
+        fitnessLevel: z.string(),
+        weightKg: z.number(),
+        heightCm: z.number(),
+      }))
+      .mutation(({ input }) => ({ success: true })),
   }),
 
   // AI
@@ -93,6 +115,50 @@ export const appRouter = router({
     chat: protectedProcedure
       .input(z.object({ message: z.string() }))
       .mutation(({ input }) => ({ response: "AI response" })),
+    generateWorkoutPlan: protectedProcedure
+      .mutation(() => ({ success: true })),
+    generateNutritionPlan: protectedProcedure
+      .mutation(() => ({ success: true })),
+  }),
+
+  // Workouts
+  workouts: router({
+    getStats: protectedProcedure.query(() => ({
+      total: 0,
+      thisWeek: 0,
+      thisMonth: 0,
+      streak: 0,
+      weeklyData: [],
+      recentLogs: [],
+    })),
+    getLogs: protectedProcedure
+      .input(z.object({ limit: z.number().optional() }))
+      .query(() => []),
+    logWorkout: protectedProcedure
+      .input(z.object({
+        workoutId: z.number(),
+        workoutName: z.string(),
+        workoutType: z.string(),
+        durationMinutes: z.number().optional(),
+      }))
+      .mutation(({ input }) => ({ success: true })),
+  }),
+
+  // Admin
+  admin: router({
+    getStats: adminProcedure.query(() => ({
+      totalUsers: 0,
+      proUsers: 0,
+      totalWorkouts: 0,
+      totalAiChats: 0,
+    })),
+    getUsers: adminProcedure.query(() => []),
+    updateUserRole: adminProcedure
+      .input(z.object({
+        userId: z.number(),
+        role: z.string(),
+      }))
+      .mutation(({ input }) => ({ success: true })),
   }),
 });
 
