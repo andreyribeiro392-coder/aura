@@ -85,6 +85,12 @@ export const appRouter = router({
       },
     })),
   }),
+
+  // AI
+  ai: router({
+    getChatHistory: protectedProcedure.query(() => []),
+    getPlans: protectedProcedure.query(() => []),
+  }),
 });
 
 export type AppRouter = typeof appRouter;
