@@ -1,0 +1,24 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "ts-node-dev --respawn --transpile-only _core/index.ts",
+    "build": "tsc"
+  },
+  "dependencies": {
+    "@trpc/server": "latest",
+    "express": "latest",
+    "zod": "latest",
+    "superjson": "latest",
+    "dotenv": "latest",
+    "cors": "latest"
+  },
+  "devDependencies": {
+    "typescript": "^5",
+    "ts-node-dev": "latest",
+    "@types/node": "^20",
+    "@types/express": "latest",
+    "@types/cors": "latest"
+  }
+}
